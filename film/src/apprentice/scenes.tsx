@@ -170,11 +170,13 @@ export const JobScene: React.FC<SceneProps> = ({ duration }) => {
 
 export const BaselineScene: React.FC<SceneProps> = ({ duration }) => {
   const feedAt = 420;
-  const cam: CamKey[] = [WIDE(0), WIDE(20), readKey(90, 'loop-baseline:stages', 0, 1.5), readKey(feedAt - 30, 'loop-baseline:stages', 0, 1.5, 0.03), read(feedAt + 30, topOf('loop-baseline:feed', 300), 0, 1.75), read(duration, topOf('loop-baseline:feed', 300), 0, 1.75, 0.05)];
+  // The page scrolls with the camera, so the feed is read mid-window rather than at its bottom edge.
+  const down = 260;
+  const cam: CamKey[] = [WIDE(0), WIDE(20), readKey(90, 'loop-baseline:stages', 0, 1.5), readKey(feedAt - 30, 'loop-baseline:stages', 0, 1.5, 0.03), read(feedAt + 30, topOf('loop-baseline:feed', 300), down, 1.75), read(duration, topOf('loop-baseline:feed', 300), down, 1.75, 0.05)];
   return (
     <>
       <Camera keys={cam}>
-        <Window states={[{ src: 'loop-baseline', at: 0 }]} />
+        <Window states={[{ src: 'loop-baseline', at: 0, scroll: [[feedAt - 30, 0], [feedAt + 30, down]] }]} />
       </Camera>
       <Callout text="120 tickets held out, never trained on" at={110} outAt={feedAt - 20} />
       <Callout text="Base 73%. The bar to chase: Nemotron 3 Ultra" at={feedAt + 60} outAt={duration - 20} />
@@ -184,11 +186,12 @@ export const BaselineScene: React.FC<SceneProps> = ({ duration }) => {
 
 export const TeachScene: React.FC<SceneProps> = ({ duration }) => {
   const feedAt = 160;
-  const cam: CamKey[] = [readKey(0, 'loop-teach:stages', 0, 1.5), readKey(feedAt - 40, 'loop-teach:stages', 0, 1.5, 0.03), read(feedAt + 40, topOf('loop-teach:feed', 420), 0, 1.6), read(duration, topOf('loop-teach:feed', 420), 0, 1.6, 0.06)];
+  const down = 300;
+  const cam: CamKey[] = [readKey(0, 'loop-teach:stages', 0, 1.5), readKey(feedAt - 40, 'loop-teach:stages', 0, 1.5, 0.03), read(feedAt + 40, topOf('loop-teach:feed', 420), down, 1.6), read(duration, topOf('loop-teach:feed', 420), down, 1.6, 0.06)];
   return (
     <>
       <Camera keys={cam}>
-        <Window states={[{ src: 'loop-teach', at: 0 }]} />
+        <Window states={[{ src: 'loop-teach', at: 0, scroll: [[feedAt - 40, 0], [feedAt + 40, down]] }]} />
       </Camera>
       <Callout text="Six failure types, found in its mistakes" at={feedAt + 70} outAt={560} />
       <Callout text="Kept only where both agree: 76 of 160" at={590} outAt={duration - 20} />
