@@ -23,8 +23,6 @@ interface LogEvent { at: string; kind: string; stage?: StageId; text?: string; c
 
 const main = document.getElementById('main')!;
 const STAGES: StageId[] = ['intake', 'baseline', 'teach', 'train', 'prove', 'ship'];
-const STAGE_COLOR: Record<StageId, string> = { intake: '#2c6fe0', baseline: '#e8a400', teach: '#ef3e2d', train: '#1fae6a', prove: '#e8a400', ship: '#1fae6a' };
-const SWATCH = ['#ef3e2d', '#2c6fe0', '#1fae6a', '#e8a400', '#7c8396', '#f28c28'];
 
 let config: Config;
 let runs: Run[] = [];
@@ -37,16 +35,25 @@ const pct = (x: number | null | undefined) => (x == null ? '...' : `${String(Mat
 const money = (x: number) => (x === 0 ? '$0' : x < 0.0001 ? '<$0.0001' : x < 0.01 ? `$${x.toFixed(4)}` : x < 1 ? `$${x.toFixed(3)}` : `$${x.toFixed(2)}`);
 const ms = (x: number) => (x >= 1000 ? `${(x / 1000).toFixed(1)} s` : `${String(Math.round(x))} ms`);
 const time = (iso: string) => new Date(iso).toISOString().slice(11, 19);
+const hhmm = (iso: string) => iso.slice(11, 16);
+const day = (iso: string) => new Date(iso).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC' }).replace(/,/g, '');
 const when = (iso: string) => {
-  const d = new Date(iso);
   const today = new Date().toISOString().slice(0, 10) === iso.slice(0, 10);
-  return `${today ? 'Today' : d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' })}, ${iso.slice(11, 16)} UTC`;
+  return `${today ? 'Today' : new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' })}, ${hhmm(iso)} UTC`;
 };
 const pretty = (l: string) => {
   const short: Record<string, string> = { billing: 'Bill', account_access: 'Login', product_question: 'Plans', feedback: 'Ideas', shipping: 'Ship', technical: 'Tech', cancellation: 'Cancel' };
   return short[l] ?? l.replace(/_/g, ' ').replace(/^./, (c) => c.toUpperCase());
 };
+const titleCase = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+const runNo = (r: Run) => `Run ${String(r.number).padStart(2, '0')}`;
 const statusText: Record<Status, string> = { running: 'Running', shipped: 'Shipped', not_shipped: 'Not shipped', failed: 'Stopped' };
+
+/** Two-tone number: the leading part that carries no information (zeros, "$0.") is set light. */
+function twoTone(s: string): string {
+  const m = /^(\$?0?\.?0*)(.+)$/.exec(s);
+  return m && m[1] ? `<em>${esc(m[1])}</em>${esc(m[2])}` : esc(s);
+}
 
 async function api<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(path, init);
@@ -55,35 +62,22 @@ async function api<T>(path: string, init?: RequestInit): Promise<T> {
   return body;
 }
 
-function ring(p: number, color = 'var(--accent)'): string {
-  const r = 19;
-  const L = 2 * Math.PI * r;
-  const v = Math.max(0, Math.min(1, p));
-  return `<div class="ring" aria-hidden="true"><svg viewBox="0 0 46 46"><circle cx="23" cy="23" r="${String(r)}" fill="none" stroke="#eceef3" stroke-width="4"/><circle cx="23" cy="23" r="${String(r)}" fill="none" stroke="${color}" stroke-width="4" stroke-linecap="round" stroke-dasharray="${String(L * v)} ${String(L)}" transform="rotate(-90 23 23)"/></svg><b>${String(Math.round(v * 100))}%</b></div>`;
-}
-
 const ICON = {
-  cal: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M8 3v4M16 3v4M4 10h16"/></svg>',
-  check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12l4 4 10-10"/></svg>',
-  coin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><path d="M12 7v10M9.5 9.5c0-1 1-1.5 2.5-1.5s2.5.6 2.5 1.6c0 2.4-5 1.4-5 4 0 1 1 1.6 2.5 1.6s2.5-.5 2.5-1.5"/></svg>',
-  clock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6"/></svg>',
-  lines: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h10M4 18h7"/></svg>',
-  shield: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg>',
-  search: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>',
+  check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12l4 4 10-10"/></svg>',
+  cross: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 7l10 10M17 7L7 17"/></svg>',
+  dot: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.2" fill="currentColor"/></svg>',
+  wait: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="7"/><path d="M12 8v4l2.5 1.5"/></svg>',
+  search: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>',
+  target: '<svg class="target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>',
 };
-
-function greeting(): string {
-  const h = new Date().getHours();
-  return h < 12 ? 'Good morning' : h < 18 ? 'Good afternoon' : 'Good evening';
-}
 
 function top(title: string, sub: string, search = false): string {
   const live = config.mode === 'live';
-  return `<div class="top"><div><h1>${esc(title)}</h1><p>${esc(sub)}</p></div><div class="right">${search ? `<label class="search">${ICON.search}<input id="q" type="search" placeholder="Search runs" aria-label="Search runs"></label>` : ''}<span class="mode ${live ? '' : 'stub'}" title="${live ? 'Calls go to Nebius Token Factory' : 'No NEBIUS_API_KEY: answers are simulated'}"><i></i>${live ? 'Live on Token Factory' : 'Stub mode'}</span></div></div>`;
+  return `<div class="top"><div><h1>${esc(title)}</h1><p>${esc(sub)}</p></div><div class="right">${search ? `<label class="search well">${ICON.search}<input id="q" type="search" placeholder="Search runs" aria-label="Search runs"></label>` : ''}<span class="mode raised ${live ? '' : 'stub'}" title="${live ? 'Calls go to Nebius Token Factory' : 'No NEBIUS_API_KEY: answers are simulated'}"><i></i>${live ? 'Live on Token Factory' : 'Stub mode'}</span></div></div>`;
 }
 
 function stubBanner(r: Run | null): string {
-  return r?.mode === 'stub' ? `<p class="banner"><b>Stub mode.</b> Simulated answers, so these numbers show how the loop works, not a real result. Add a Token Factory key to run it for real.</p>` : '';
+  return r?.mode === 'stub' ? `<p class="banner well"><b>Stub mode.</b> Simulated answers, so these numbers show how the loop works, not a real result. Add a Token Factory key to run it for real.</p>` : '';
 }
 
 function setNav(route: string): void {
@@ -95,13 +89,18 @@ function setNav(route: string): void {
   });
 }
 
+function dome(cls: string, p: number | null, value: string, label: string, ticks = false, grey = false): string {
+  const v = p == null ? 0 : Math.max(0, Math.min(1, p));
+  return `<div class="dome ${cls}${grey ? ' grey' : ''}" style="--p:${String(Math.round(v * 1000) / 10)}%"><i class="arc"></i>${ticks ? '<span class="tick t0">100</span><span class="tick t1">75</span><span class="tick t2">50</span><span class="tick t3">25</span>' : ''}<div class="disc"><i class="pip"></i><b>${esc(value)}</b><span>${esc(label)}</span></div></div>`;
+}
+
 function runsTable(list: Run[]): string {
-  if (!list.length) return `<div class="card"><p class="note">No runs yet.</p></div>`;
+  if (!list.length) return `<div class="panel raised"><p class="note" style="margin:0">No runs yet.</p></div>`;
   return `<div class="history" id="history">${list
     .map((r) => {
       const href = r.status === 'running' ? `#/run/${r.id}` : `#/results/${r.id}`;
       const range = r.baseline && r.tuned ? `${pct(r.baseline.accuracy)} to ${pct(r.tuned.accuracy)}` : r.baseline ? `${pct(r.baseline.accuracy)} so far` : '...';
-      return `<a class="hrow" href="${href}" data-name="${esc(r.task.name.toLowerCase())}"><span class="dot">${String(r.number).padStart(2, '0')}</span><b>${esc(r.task.name)}${r.mode === 'stub' ? ' <small style="color:var(--faint);font-weight:500">stub</small>' : ''}</b><span class="hide-sm">${when(r.createdAt)}</span><span class="hide-sm">${range}</span><span class="hide-sm">${money(r.costUsd)} spent</span><span class="pill ${r.status}">${statusText[r.status]}</span></a>`;
+      return `<a class="hrow raised" href="${href}" data-name="${esc(r.task.name.toLowerCase())}"><span class="key pressed">${String(r.number).padStart(2, '0')}</span><b>${esc(r.task.name)}${r.mode === 'stub' ? ' <small>stub</small>' : ''}</b><span class="hide-sm">${when(r.createdAt)}</span><span class="hide-sm">${range}</span><span class="hide-sm">${money(r.costUsd)} spent</span><span class="tag-s pressed ${r.status}"><i></i>${statusText[r.status]}</span></a>`;
     })
     .join('')}</div>`;
 }
@@ -114,6 +113,11 @@ function wireSearch(): void {
   });
 }
 
+function acc(e: Evals, label: string): number {
+  const s = e.perLabel[label];
+  return s && s.total ? s.correct / s.total : 0;
+}
+
 // ---------- Results
 
 function results(r: Run | null): string {
@@ -121,69 +125,77 @@ function results(r: Run | null): string {
   const base = r.baseline;
   const tuned = r.tuned;
   const ref = r.reference;
-  const gain = base && tuned ? Math.round((tuned.accuracy - base.accuracy) * 100) : null;
   const shipped = r.decision?.ship;
   const fixed = new Set(r.fixed);
   const labels = r.task.labels;
   const biggest = base && tuned ? [...labels].sort((a, b) => acc(tuned, b) - acc(base, b) - (acc(tuned, a) - acc(base, a)))[0] : undefined;
-  const gauge = tuned?.accuracy ?? 0;
-  const arc = 251 * gauge;
-  const endpoint = r.deployment && shipped ? curl(r) : '';
+  const stageNo = `Stage ${String(STAGES.indexOf(r.stage) + 1)} of 6`;
+  const whenLine = shipped ? `Shipped at ${hhmm(r.finishedAt ?? r.createdAt)} UTC` : shipped === false ? 'Not shipped' : r.status === 'failed' ? 'Stopped' : `Running: ${stageNo.toLowerCase()}`;
+  const verdict = shipped
+    ? `<div class="verdict raised"><i>${ICON.check}</i>${esc(r.decision?.reason ?? 'Shipped')}</div>`
+    : shipped === false || r.status === 'failed'
+      ? `<div class="verdict raised no"><i>${ICON.cross}</i>${esc(r.decision?.reason ?? r.error ?? 'Stopped')}</div>`
+      : `<div class="verdict raised wait"><i>${ICON.wait}</i><span>Still running. <a class="link" href="#/run/${r.id}">Watch the Loop</a></span></div>`;
+  const mins = r.training?.minutes;
 
-  return `${top(`${greeting()}`, `Run ${String(r.number).padStart(2, '0')} · ${r.task.name}`, true)}${stubBanner(r)}
-  <h2>The Numbers <small>${String(r.task.counts.test)} held-out examples, never trained on</small></h2>
-  <div class="stats">
-    <div class="stat" style="--edge:var(--grey)"><span class="ic">${ICON.cal}</span>${ring(base?.accuracy ?? 0, '#9aa0ae')}<div class="lbl">Base ${esc(r.models.studentLabel)}</div><div class="val">${pct(base?.accuracy)} <span>right</span></div><div class="foot">Before any training</div></div>
-    <div class="stat"><span class="ic">${ICON.check}</span>${ring(tuned?.accuracy ?? 0)}<div class="lbl">Tuned ${esc(r.models.studentLabel)}</div><div class="val">${pct(tuned?.accuracy)}${gain != null ? ` <span>${gain >= 0 ? '+' : ''}${String(gain)}</span>` : ''}</div><div class="foot">Same examples, after training</div></div>
-    <div class="stat" style="--edge:var(--green)"><span class="ic">${ICON.coin}</span>${ring(tuned && ref && ref.costPer1k > 0 ? 1 - tuned.costPer1k / ref.costPer1k : 0, 'var(--green)')}<div class="lbl">Cost per 1,000 calls</div><div class="val">${tuned ? money(tuned.costPer1k) : '...'} <span>vs ${ref ? money(ref.costPer1k) : '...'}</span></div><div class="foot">Tuned against ${esc(r.models.teacherLabel)}</div></div>
-    <div class="stat" style="--edge:var(--blue)"><span class="ic">${ICON.clock}</span>${ring(Math.min(1, (r.training?.minutes ?? 0) / 30), 'var(--blue)')}<div class="lbl">Training time</div><div class="val">${r.training?.minutes != null ? String(r.training.minutes) : '...'} <span>min</span></div><div class="foot">LoRA on Token Factory</div></div>
-  </div>
+  return `${top(day(r.createdAt), `${runNo(r)} · ${hhmm(r.createdAt)} UTC`, true)}${stubBanner(r)}
+  <section class="hero">
+    <div class="dials" aria-label="Tuned ${pct(tuned?.accuracy)}, base ${pct(base?.accuracy)}">
+      ${dome('d1', tuned?.accuracy ?? null, pct(tuned?.accuracy), 'Tuned', true)}
+      ${ICON.target}
+      ${dome('d2', base?.accuracy ?? null, pct(base?.accuracy), 'Base', false, true)}
+    </div>
+    <div class="headline">
+      <div class="kick">Tuned ${esc(r.models.studentLabel)}</div>
+      <h1>${esc(r.task.name)}</h1>
+      <div class="when">${esc(whenLine)}</div>
+      <div class="nums">
+        <div class="num"><span>Held-out test</span><b>${tuned ? `<em>${String(tuned.correct)} / </em>${String(tuned.total)}` : '...'}</b><small>${base ? `Up from ${String(base.correct)} right` : 'Not scored yet'}</small></div>
+        <div class="num"><span>Per 1,000 calls</span><b>${tuned ? twoTone(money(tuned.costPer1k)) : '...'}</b><small>${ref ? `${esc(r.models.teacherLabel)}: ${money(ref.costPer1k)}` : `Against ${esc(r.models.teacherLabel)}`}</small></div>
+        <div class="num"><span>Training</span><b>${mins != null ? `${mins < 10 ? '<em>0</em>' : ''}${String(mins)} min` : '...'}</b><small>LoRA on Token Factory</small></div>
+      </div>
+      ${verdict}
+    </div>
+  </section>
 
-  <h2>This Run <small>${r.status === 'running' ? `Stage ${String(STAGES.indexOf(r.stage) + 1)} of 6` : esc(r.decision?.reason ?? r.error ?? '')}</small></h2>
-  <div class="run-grid">
-    <div class="hero ${shipped === false ? 'no' : ''}">
-      <div class="kick">Tuned accuracy</div>
-      <svg class="gauge" viewBox="0 0 200 110" aria-hidden="true"><path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="20" stroke-linecap="round"/><path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="var(--on-accent)" stroke-width="20" stroke-linecap="round" stroke-dasharray="${String(arc)} 260"/></svg>
-      <div class="big">${pct(tuned?.accuracy)}</div>
-      <div class="sub">${base && tuned ? `Up from ${pct(base.accuracy)} on examples it never trained on` : 'Waiting for the test'}</div>
-      <div class="chip">${shipped ? 'Shipped' : shipped === false ? 'Not shipped' : r.status === 'failed' ? 'Stopped' : 'In progress'}</div>
-    </div>
-    <div class="pair">
-      <div class="stat" style="--edge:#f7cf1d"><span class="ic">${ICON.lines}</span>${ring(r.teach && r.teach.written ? r.teach.kept / r.teach.written : 0, '#c99000')}<div class="lbl">Teacher cases kept</div><div class="val">${r.teach ? String(r.teach.kept) : '...'} <span>of ${r.teach ? String(r.teach.written) : '...'}</span></div><div class="foot">Written by ${esc(r.models.teacherLabel)}, checked by ${esc(r.models.graderLabel)}</div></div>
-      <div class="stat" style="--edge:var(--green)"><span class="ic">${ICON.shield}</span>${ring(r.failures.length ? fixed.size / r.failures.length : 0, 'var(--green)')}<div class="lbl">Failure types fixed</div><div class="val">${String(fixed.size)} <span>of ${String(r.failures.length)}</span></div><div class="foot">Found in the base model's mistakes</div></div>
-    </div>
-    <div class="chart">
-      <div class="head"><b>Accuracy by label</b><span class="legend"><span><i style="background:#cfd3dd"></i>Base</span><span><i style="background:var(--accent)"></i>Tuned</span></span></div>
-      ${base && tuned && biggest ? `<div class="tip">${esc(pretty(biggest))}: ${pct(acc(base, biggest))} to ${pct(acc(tuned, biggest))}</div>` : ''}
-      <div class="bars" role="img" aria-label="Accuracy by label, base against tuned">${labels.map((l) => `<div class="col" title="${esc(l)}: ${pct(base ? acc(base, l) : 0)} to ${pct(tuned ? acc(tuned, l) : 0)}"><i class="base" style="height:${String((base ? acc(base, l) : 0) * 100)}%"></i><i class="tuned" style="height:${String((tuned ? acc(tuned, l) : 0) * 100)}%"></i></div>`).join('')}</div>
-      <div class="labels">${labels.map((l) => `<span title="${esc(l)}">${esc(pretty(l))}</span>`).join('')}</div>
-    </div>
-  </div>
+  <h2>The Loop <small>${r.status === 'running' ? stageNo : 'All stages finished'}</small></h2>
+  <div class="stages">${stagesHtml(r)}</div>
 
-  <div class="two" style="margin-top:22px">
-    <div class="card"><h3>Failure types</h3>${
+  <h2>What Changed <small>${String(r.task.counts.test)} held-out examples, never trained on</small></h2>
+  <div class="grid">
+    <div class="panel raised">
+      <h3>Accuracy by label<span class="legend"><span><i style="background:#c6c6c3"></i>Base</span><span><i style="background:var(--lit)"></i>Tuned</span></span></h3>
+      <div class="bars well" role="img" aria-label="Accuracy by label, base against tuned">${labels.map((l) => `<div class="col" title="${esc(l)}: ${pct(base ? acc(base, l) : 0)} to ${pct(tuned ? acc(tuned, l) : 0)}"><i class="b" style="height:${String((base ? acc(base, l) : 0) * 100)}%"></i><i class="t" style="height:${String((tuned ? acc(tuned, l) : 0) * 100)}%"></i></div>`).join('')}</div>
+      <div class="lbls">${labels.map((l) => `<span title="${esc(l)}">${esc(pretty(l))}</span>`).join('')}</div>
+      ${base && tuned && biggest ? `<p class="tip">Biggest change: <b>${esc(pretty(biggest))}</b>, ${pct(acc(base, biggest))} to ${pct(acc(tuned, biggest))}</p>` : ''}
+    </div>
+    <div class="panel raised"><h3>Training loss</h3>${lossWindow(r)}</div>
+    <div class="panel raised"><h3>Failure types</h3>${
       r.failures.length
         ? `<div class="fails">${r.failures
             .slice(0, 6)
-            .map((f, i) => `<div class="fail"><i style="background:${SWATCH[i % SWATCH.length]!}"></i><div><b>${esc(titleCase(f.name))}</b><span>${esc(f.description)}</span></div><em class="${fixed.has(f.id) ? 'ok' : 'left'}">${fixed.has(f.id) ? 'Fixed' : r.tuned ? 'Still there' : `${String(f.count)} seen`}</em></div>`)
+            .map((f) => {
+              const ok = fixed.has(f.id);
+              return `<div class="fail well"><span class="key raised ${ok ? 'ok' : ''}">${ok ? ICON.check : ICON.dot}</span><div><b>${esc(titleCase(f.name))}</b><span>${esc(f.description)}</span></div><em class="${ok ? 'ok' : ''}">${ok ? 'Fixed' : r.tuned ? 'Still there' : `${String(f.count)} seen`}</em></div>`;
+            })
             .join('')}</div>`
-        : '<p class="note">None yet.</p>'
+        : '<p class="note" style="margin:0">None yet.</p>'
     }</div>
-    <div class="card"><h3>${shipped ? 'Use it' : 'The decision'}</h3>${
-      shipped
-        ? `<p class="note" style="margin-top:0">${esc(r.decision?.reason ?? '')}</p><div class="code" id="curl"><button class="copy" data-copy="curl">Copy</button>${esc(endpoint)}</div>`
-        : `<p class="note" style="margin-top:0">${esc(r.decision?.reason ?? r.error ?? 'The run is still going.')}</p>`
-    }
-      <dl class="kv" style="margin-top:16px"><dt>Student</dt><dd>${esc(r.models.student)}</dd><dt>Teacher</dt><dd>${esc(r.models.teacher)}</dd><dt>Grader</dt><dd>${esc(r.models.grader)}</dd>${r.training ? `<dt>Fine-tune job</dt><dd>${esc(r.training.jobId)}</dd>` : ''}${r.deployment ? `<dt>Endpoint</dt><dd>${esc(r.deployment.name)}</dd>` : ''}<dt>Total spent</dt><dd>${money(r.costUsd)} <a href="#/calls/${r.id}" style="color:var(--accent-text);font-weight:600">See Every Call</a></dd></dl>
+    <div class="panel raised"><h3>Receipt</h3>
+      <dl class="receipt">
+        ${r.deployment && shipped ? `<div><dt>Endpoint</dt><dd>${esc(r.deployment.name)}</dd></div>` : ''}
+        <div><dt>Student</dt><dd>${esc(r.models.studentLabel)}</dd></div>
+        <div><dt>Teacher</dt><dd>${esc(r.models.teacherLabel)}</dd></div>
+        <div><dt>Grader</dt><dd>${esc(r.models.graderLabel)}</dd></div>
+        ${r.teach ? `<div><dt>Teacher cases kept</dt><dd>${String(r.teach.kept)} of ${String(r.teach.written)}</dd></div>` : ''}
+        ${r.training ? `<div><dt>Fine-tune job</dt><dd>${esc(r.training.jobId)}</dd></div>` : ''}
+        <div><dt>Total spent</dt><dd>${money(r.costUsd)} · <a class="link" href="#/calls/${r.id}">Every Call</a></dd></div>
+      </dl>
+      ${r.deployment && shipped ? `<div class="code" id="curl"><button class="copy" data-copy="curl">Copy</button>${esc(curl(r))}</div>` : ''}
     </div>
   </div>
 
   <h2>Runs</h2>${runsTable(runs)}`;
-}
-
-function acc(e: Evals, label: string): number {
-  const s = e.perLabel[label];
-  return s && s.total ? s.correct / s.total : 0;
 }
 
 function curl(r: Run): string {
@@ -196,21 +208,26 @@ function curl(r: Run): string {
 }
 
 function emptyState(): string {
-  return `${top(greeting(), 'Teach a small model one job')}
-  <div class="empty">
-    <div class="card">
-      <h3 style="font-size:22px;letter-spacing:-.02em">Make a small model a specialist</h3>
+  return `${top(day(new Date().toISOString()), 'Teach a small model one job')}
+  <section class="welcome">
+    <div class="dials">${dome('d1', 1, '424', 'Tickets')}</div>
+    <div class="headline">
+      <div class="kick">Apprentice</div>
+      <h1>Make a small model a specialist</h1>
       <p>Give Apprentice a narrow job and some labelled examples. An agent tests a small open model, has NVIDIA Nemotron teach it from its own mistakes, fine-tunes it on Nebius Token Factory, and ships it only if it beats the original on examples it has never seen.</p>
-      <div class="steps3"><div><b>1. Test</b><span>Score the small model as it is</span></div><div><b>2. Teach and train</b><span>Nemotron writes cases for its mistakes; LoRA fine-tune</span></div><div><b>3. Prove and ship</b><span>Same held-out test; deploy only if it wins</span></div></div>
+      <div class="steps3"><div class="raised"><b>1. Test</b><span>Score the small model as it is</span></div><div class="raised"><b>2. Teach and train</b><span>Nemotron writes cases for its mistakes, then a LoRA fine-tune</span></div><div class="raised"><b>3. Prove and ship</b><span>Same held-out test, deploy only if it wins</span></div></div>
       <a class="btn" href="#/new">Start a Run</a>
     </div>
-    <div class="hero"><div class="kick">Try it</div><div style="margin:auto 0;font:700 46px/1 'Space Grotesk';letter-spacing:-.03em">424</div><div class="sub">support tickets bundled as a sample, ready to run</div><div class="chip">8 labels</div></div>
-  </div>`;
+  </section>`;
 }
 
 // ---------- New run
 
 let upload: { name: string; text: string } | null = null;
+
+function splitHtml(train: number, dev: number, test: number): string {
+  return `<div class="well"><b>${String(train)}</b><span>to learn from</span></div><div class="well"><b>${String(dev)}</b><span>checks while tuning</span></div><div class="well"><b>${String(test)}</b><span>held out for the test</span></div>`;
+}
 
 async function newRun(): Promise<string> {
   const s = await api<Sample>('/api/sample');
@@ -219,34 +236,34 @@ async function newRun(): Promise<string> {
   return `${top('New Run', 'Teach a small model one job')}
   <h2>The Job <small>Step 1 of 3</small></h2>
   <div class="form">
-    <div class="card"><h3>What should the small model do?</h3>
+    <div class="panel raised"><h3>What should the small model do?</h3>
       <label class="f" for="name">Name</label><input class="input" id="name" value="${esc(s.name)}">
       <label class="f" for="desc">Instructions</label><textarea class="input" id="desc">${esc(s.description)}</textarea>
-      <label class="f">Labels <span id="labels-src">(from the sample)</span></label><div class="tags" id="tags">${s.labels.map((l) => `<span class="tag">${esc(l)}</span>`).join('')}</div>
+      <label class="f">Labels <span id="labels-src">(from the sample)</span></label><div class="tags" id="tags">${s.labels.map((l) => `<span class="tag raised">${esc(l)}</span>`).join('')}</div>
     </div>
-    <div class="card"><h3>Examples</h3>
-      <label class="drop" id="drop"><input type="file" id="file" accept=".csv,.jsonl,.json,text/csv,application/json"><b>Drop a CSV or JSONL file</b>Columns "text" and "label", at least 40 rows</label>
-      <button type="button" class="choice on" id="use-sample"><b>Use the sample</b><span>${String(s.counts.train + s.counts.dev + s.counts.test)} support tickets, ready to run</span></button>
-      <div class="split3" id="split"><div><b>${String(s.counts.train)}</b><span>to learn from</span></div><div><b>${String(s.counts.dev)}</b><span>checks while tuning</span></div><div><b>${String(s.counts.test)}</b><span>held out for the test</span></div></div>
+    <div class="panel raised"><h3>Examples</h3>
+      <label class="drop well" id="drop"><input type="file" id="file" accept=".csv,.jsonl,.json,text/csv,application/json"><b>Drop a CSV or JSONL file</b>Columns "text" and "label", at least 40 rows</label>
+      <button type="button" class="choice raised on" id="use-sample"><i class="dot"></i><span><b>Use the sample</b>${String(s.counts.train + s.counts.dev + s.counts.test)} support tickets, ready to run</span></button>
+      <div class="split3" id="split">${splitHtml(s.counts.train, s.counts.dev, s.counts.test)}</div>
     </div>
   </div>
   <h2>The Models <small>Step 2 of 3 · set in .env</small></h2>
   <div class="models">
-    <div class="model"><div class="role">Student</div><div class="mn">${esc(m.student.label)}</div><p>The one that learns the job: LoRA fine-tuned on Token Factory, then deployed.</p><code>${esc(m.student.id)}</code></div>
-    <div class="model"><div class="role">Teacher</div><div class="mn">${esc(m.teacher.label)}</div><p>Writes new training cases aimed at the student's mistakes${config.tavily ? ', with real wording found on the web by Tavily' : ''}.</p><code>${esc(m.teacher.id)}</code></div>
-    <div class="model"><div class="role">Grader</div><div class="mn">${esc(m.grader.label)}</div><p>Names the failure types, then labels every teacher case blind; only agreed cases are kept.</p><code>${esc(m.grader.id)}</code></div>
+    <div class="panel raised model"><div class="role">Student</div><div class="mn">${esc(m.student.label)}</div><p>The one that learns the job: LoRA fine-tuned on Token Factory, then deployed.</p><code class="well">${esc(m.student.id)}</code></div>
+    <div class="panel raised model"><div class="role">Teacher</div><div class="mn">${esc(m.teacher.label)}</div><p>Writes new training cases aimed at the student's mistakes${config.tavily ? ', with real wording found on the web by Tavily' : ''}.</p><code class="well">${esc(m.teacher.id)}</code></div>
+    <div class="panel raised model"><div class="role">Grader</div><div class="mn">${esc(m.grader.label)}</div><p>Names the failure types, then labels every teacher case blind. Only agreed cases are kept.</p><code class="well">${esc(m.grader.id)}</code></div>
   </div>
   <h2>Go <small>Step 3 of 3</small></h2>
-  <div class="go"><div class="est"><b id="est">${estimate(s.counts.test, s.counts.dev, s.labels.length)}</b><span>Model calls on Token Factory, plus the fine-tuning job. Ships only if the tuned model beats the base model on the held-out test.</span></div>
+  <div class="panel raised go"><div class="est"><b id="est">${estimate(s.counts.test, s.counts.dev)}</b><span>Model calls on Token Factory, plus the fine-tuning job. Ships only if the tuned model beats the base model on the held-out test.</span></div>
   ${running ? `<a class="btn ghost" href="#/run/${running.id}">See the Run in Progress</a>` : `<button class="btn" id="start">Start the Run</button>`}</div>
   <p class="err" id="err" hidden></p>`;
 }
 
 /** Rough cost of the model calls, from the configured prices and typical token counts per call. */
-function estimate(test: number, dev: number, labels: number): string {
+function estimate(test: number, dev: number): string {
   const p = config.models;
   const cost = (price: { in: number; out: number }, calls: number, tin: number, tout: number) => (calls * (price.in * tin + price.out * tout)) / 1e6;
-  const total = cost(p.student.price, test * 2 + dev, 220, 4) + cost(p.teacher.price, test, 220, 4) + cost(p.teacher.price, 7, 900, 3200) + cost(p.grader.price, 10, 2200, 500) + labels * 0;
+  const total = cost(p.student.price, test * 2 + dev, 220, 4) + cost(p.teacher.price, test, 220, 4) + cost(p.teacher.price, 7, 900, 3200) + cost(p.grader.price, 10, 2200, 500);
   return config.mode === 'live' ? `About ${money(total)} in model calls` : 'Free in stub mode';
 }
 
@@ -261,7 +278,7 @@ function wireNewRun(): void {
     sample.classList.remove('on');
     drop.querySelector('b')!.textContent = f.name;
     document.getElementById('labels-src')!.textContent = '(read from your file when the run starts)';
-    document.getElementById('split')!.innerHTML = `<div><b>${String(Math.round(rows * 0.6))}</b><span>to learn from</span></div><div><b>${String(Math.round(rows * 0.15))}</b><span>checks while tuning</span></div><div><b>${String(Math.round(rows * 0.25))}</b><span>held out for the test</span></div>`;
+    document.getElementById('split')!.innerHTML = splitHtml(Math.round(rows * 0.6), Math.round(rows * 0.15), Math.round(rows * 0.25));
   };
   file?.addEventListener('change', () => file.files?.[0] && void read(file.files[0]));
   drop.addEventListener('dragover', (e) => {
@@ -303,15 +320,15 @@ let liveEvents: LogEvent[] = [];
 
 function loop(r: Run): string {
   const done = r.status !== 'running';
-  return `${top(`Run ${String(r.number).padStart(2, '0')}${done ? '' : ', Live'}`, `${r.task.name} · started ${when(r.createdAt)}`)}${stubBanner(r)}
+  return `${top(`${runNo(r)}${done ? '' : ', Live'}`, `${r.task.name} · started ${when(r.createdAt)}`)}${stubBanner(r)}
   <h2>The Loop <small id="stage-note">${done ? statusText[r.status] : `Stage ${String(STAGES.indexOf(r.stage) + 1)} of 6`}</small></h2>
   <div class="stages" id="stages">${stagesHtml(r)}</div>
   <div id="done-bar">${doneBar(r)}</div>
   <div class="livegrid">
-    <div class="card"><h3>What the agent is doing</h3><div class="feed" id="feed" aria-live="polite">${feedHtml()}</div></div>
-    <div style="display:grid;gap:18px;align-content:start">
-      <div class="card"><h3>Training loss</h3><div id="loss">${lossHtml(r)}</div></div>
-      <div class="card"><h3>Every call, with its receipt</h3><div class="scroll" id="calls">${callsTable(liveCalls.slice(-8).reverse())}</div><p class="note"><span id="call-count">${String(liveCalls.length)}</span> calls so far · <a href="#/calls/${r.id}" style="color:var(--accent-text);font-weight:600">See All</a></p></div>
+    <div class="panel raised"><h3>What the agent is doing</h3><div class="feed well" id="feed" aria-live="polite">${feedHtml()}</div></div>
+    <div class="side-stack">
+      <div class="panel raised"><h3>Training loss</h3><div id="loss">${lossWindow(r)}</div></div>
+      <div class="panel raised"><h3>Every call, with its receipt</h3><div class="scroll" id="calls">${callsTable(liveCalls.slice(-8).reverse())}</div><p class="note"><span id="call-count">${String(liveCalls.length)}</span> calls so far · <a class="link" href="#/calls/${r.id}">See All</a></p></div>
     </div>
   </div>`;
 }
@@ -319,16 +336,16 @@ function loop(r: Run): string {
 function stagesHtml(r: Run): string {
   return STAGES.map((id, i) => {
     const s = r.stages[id];
-    const mark = s.status === 'done' ? '✓' : s.status === 'live' ? (s.progress != null ? pct(s.progress) : '...') : s.status === 'failed' ? '!' : s.status === 'skipped' ? '–' : '';
-    return `<div class="stg ${s.status}" aria-label="${esc(`${s.title}: ${s.status}`)}"><div class="n">${String(i + 1)} ${esc(s.title === titleCase(id) || s.status === 'waiting' ? titleCase(id) : titleCase(id))}</div><span class="st">${mark}</span><div class="t">${esc(s.status === 'waiting' ? 'Waiting' : s.title)}</div><div class="d">${esc(s.detail)}</div>${s.status === 'live' && s.progress != null ? `<div class="bar"><b style="width:${String(Math.round(s.progress * 100))}%"></b></div>` : ''}</div>`;
+    const live = s.status === 'live';
+    const inner = s.status === 'done' ? ICON.check : live ? (s.progress != null ? pct(s.progress) : '...') : s.status === 'failed' ? '!' : s.status === 'skipped' ? '–' : String(i + 1);
+    const p = live && s.progress != null ? `--p:${String(Math.round(s.progress * 100))}%` : live ? '--p:12%' : '';
+    return `<div class="stage ${s.status}" title="${esc(s.detail)}"><span class="key ${live ? 'pressed' : 'raised'}" style="${p}" role="img" aria-label="${esc(`${titleCase(id)}: ${s.status}`)}">${inner}</span><b>${titleCase(id)}</b><span>${esc(s.status === 'waiting' ? 'Waiting' : live && s.detail ? s.detail : s.title)}</span></div>`;
   }).join('');
 }
 
-const titleCase = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
-
 function doneBar(r: Run): string {
   if (r.status === 'running') return '';
-  return `<div class="done-bar"><b>${r.status === 'shipped' ? 'Shipped. ' : r.status === 'not_shipped' ? 'Not shipped. ' : 'Stopped. '}${esc(r.decision?.reason ?? r.error ?? '')}</b><a class="btn" href="#/results/${r.id}">See the Results</a></div>`;
+  return `<div class="done-row raised"><span>${r.status === 'shipped' ? 'Shipped. ' : r.status === 'not_shipped' ? 'Not shipped. ' : 'Stopped. '}${esc(r.decision?.reason ?? r.error ?? '')}</span><a class="btn" href="#/results/${r.id}">See the Results</a></div>`;
 }
 
 function feedHtml(): string {
@@ -337,27 +354,28 @@ function feedHtml(): string {
   return logs
     .slice()
     .reverse()
-    .map((e) => `<div class="ev"><time>${time(e.at)}</time><i style="background:${STAGE_COLOR[e.stage ?? 'intake']}"></i><span>${esc(titleCase(e.text ?? ''))}</span></div>`)
+    .map((e) => `<div class="ev"><time>${time(e.at)}</time><i></i><span>${esc(titleCase(e.text ?? ''))}</span></div>`)
     .join('');
 }
 
-function lossHtml(r: Run): string {
+function lossWindow(r: Run): string {
   const c = r.training?.checkpoints ?? [];
-  if (!c.length) return `<p class="note">${r.training ? 'Waiting for the first epoch.' : 'Starts at the Train stage.'}</p>`;
+  if (!c.length) return `<div class="window"><span class="empty-cap">${r.training ? 'Waiting for the first epoch' : 'Starts at the Train stage'}</span></div>`;
   const vals = c.flatMap((k) => [k.trainLoss ?? 0, k.validLoss ?? 0]);
   const max = Math.max(...vals, 0.01) * 1.1;
   const x = (i: number) => (c.length === 1 ? 150 : (i / (c.length - 1)) * 300);
   const y = (v: number) => 120 - (v / max) * 110;
   const path = (key: 'trainLoss' | 'validLoss') => c.map((k, i) => `${i ? 'L' : 'M'} ${x(i).toFixed(1)} ${y(k[key] ?? 0).toFixed(1)}`).join(' ');
-  const dots = (key: 'trainLoss' | 'validLoss', col: string) => c.map((k, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(k[key] ?? 0).toFixed(1)}" r="4" fill="${col}"/>`).join('');
-  return `<svg class="loss" viewBox="-6 -6 312 132" preserveAspectRatio="none" role="img" aria-label="Training and validation loss by epoch"><path d="${path('trainLoss')}" fill="none" stroke="var(--accent)" stroke-width="3"/><path d="${path('validLoss')}" fill="none" stroke="#9aa0ae" stroke-width="3" stroke-dasharray="6 6"/>${dots('trainLoss', 'var(--accent)')}${dots('validLoss', '#9aa0ae')}</svg><span class="legend"><span><i style="background:var(--accent)"></i>Training ${c.at(-1)?.trainLoss?.toFixed(2) ?? ''}</span><span><i style="background:#9aa0ae"></i>Validation ${c.at(-1)?.validLoss?.toFixed(2) ?? ''}</span></span>`;
+  const last = c.length - 1;
+  const dots = c.map((k, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(k.trainLoss ?? 0).toFixed(1)}" r="5" fill="${i === last ? 'var(--lit)' : '#f3f3f0'}"/>`).join('');
+  return `<div class="window"><div class="cap"><span>Training ${c[last]?.trainLoss?.toFixed(2) ?? ''}</span><span>Validation ${c[last]?.validLoss?.toFixed(2) ?? ''}</span></div><svg viewBox="0 0 300 120" preserveAspectRatio="none" role="img" aria-label="Training and validation loss by epoch"><path d="${path('validLoss')}" fill="none" stroke="#9c9c99" stroke-width="3" stroke-dasharray="7 7" vector-effect="non-scaling-stroke"/><path d="${path('trainLoss')}" fill="none" stroke="#f3f3f0" stroke-width="3" vector-effect="non-scaling-stroke"/>${dots}</svg></div>`;
 }
 
 function callsTable(calls: Call[]): string {
-  if (!calls.length) return '<p class="note">No calls yet.</p>';
+  if (!calls.length) return '<p class="note" style="margin:0">No calls yet.</p>';
   const label = (c: Call) => (c.role === 'student' ? (c.step === 'prove' ? 'Tuned student' : 'Base student') : c.role === 'teacher' ? config.models.teacher.label : config.models.grader.label);
   return `<table class="calls"><thead><tr><th>Model</th><th class="hide-sm">Step</th><th>Tokens</th><th>Time</th><th>Cost</th></tr></thead><tbody>${calls
-    .map((c) => `<tr><td>${esc(label(c))}${c.ok ? '' : ' <span style="color:#b42318">failed</span>'}</td><td class="hide-sm">${esc(titleCase(c.step))}</td><td>${(c.tokensIn + c.tokensOut).toLocaleString('en-US')}</td><td>${ms(c.latencyMs)}</td><td>${money(c.costUsd)}</td></tr>`)
+    .map((c) => `<tr><td>${esc(label(c))}${c.ok ? '' : ' <span class="bad">failed</span>'}</td><td class="hide-sm">${esc(titleCase(c.step))}</td><td>${(c.tokensIn + c.tokensOut).toLocaleString('en-US')}</td><td>${ms(c.latencyMs)}</td><td>${money(c.costUsd)}</td></tr>`)
     .join('')}</tbody></table>`;
 }
 
@@ -373,7 +391,7 @@ function scheduleLive(r: Run): void {
     document.getElementById('feed')!.innerHTML = feedHtml();
     document.getElementById('calls')!.innerHTML = callsTable(liveCalls.slice(-8).reverse());
     document.getElementById('call-count')!.textContent = String(liveCalls.length);
-    document.getElementById('loss')!.innerHTML = lossHtml(r);
+    document.getElementById('loss')!.innerHTML = lossWindow(r);
     document.getElementById('done-bar')!.innerHTML = doneBar(r);
     document.getElementById('stage-note')!.textContent = r.status === 'running' ? `Stage ${String(STAGES.indexOf(r.stage) + 1)} of 6` : statusText[r.status];
   }, 250);
@@ -404,27 +422,27 @@ async function openLoop(id: string): Promise<void> {
 
 function callsPage(r: Run, calls: Call[]): string {
   const byStep = ['baseline', 'teach', 'train', 'prove'].map((s) => ({ s, xs: calls.filter((c) => c.step === s) })).filter((g) => g.xs.length);
-  return `${top('Every Call', `Run ${String(r.number).padStart(2, '0')} · ${calls.length} calls · ${money(r.costUsd)} in total`)}${stubBanner(r)}
-  <h2>By step</h2>
-  <div class="stats">${byStep
-    .map((g) => `<div class="stat" style="--edge:${STAGE_COLOR[g.s as StageId]}"><span class="ic">${ICON.lines}</span><div class="lbl">${titleCase(g.s)}</div><div class="val">${money(g.xs.reduce((t, c) => t + c.costUsd, 0))}</div><div class="foot">${String(g.xs.length)} calls, ${g.xs.reduce((t, c) => t + c.tokensIn + c.tokensOut, 0).toLocaleString('en-US')} tokens</div></div>`)
+  return `${top('Every Call', `${runNo(r)} · ${String(calls.length)} calls · ${money(r.costUsd)} in total`)}${stubBanner(r)}
+  <h2>By Step</h2>
+  <div class="cost-row">${byStep
+    .map((g) => `<div class="num"><span>${titleCase(g.s)}</span><b>${twoTone(money(g.xs.reduce((t, c) => t + c.costUsd, 0)))}</b><small>${String(g.xs.length)} calls, ${g.xs.reduce((t, c) => t + c.tokensIn + c.tokensOut, 0).toLocaleString('en-US')} tokens</small></div>`)
     .join('')}</div>
-  <h2>All calls <small>Newest first</small></h2>
-  <div class="card scroll tall"><table class="calls"><thead><tr><th>Time (UTC)</th><th>Model</th><th>Step</th><th>Tokens in</th><th>Tokens out</th><th>Latency</th><th>Cost</th></tr></thead><tbody>${calls
+  <h2>All Calls <small>Newest first</small></h2>
+  <div class="panel raised"><div class="scroll tall"><table class="calls"><thead><tr><th>Time (UTC)</th><th>Model</th><th class="hide-sm">Step</th><th class="hide-sm">Tokens in</th><th class="hide-sm">Tokens out</th><th>Latency</th><th>Cost</th></tr></thead><tbody>${calls
     .slice()
     .reverse()
     .slice(0, 400)
-    .map((c) => `<tr><td>${time(c.at)}</td><td>${esc(c.model)}${c.ok ? '' : ` <span style="color:#b42318">${esc(c.error ?? 'failed')}</span>`}</td><td>${esc(titleCase(c.step))}</td><td>${c.tokensIn.toLocaleString('en-US')}</td><td>${c.tokensOut.toLocaleString('en-US')}</td><td>${ms(c.latencyMs)}</td><td>${money(c.costUsd)}</td></tr>`)
-    .join('')}</tbody></table>${calls.length > 400 ? '<p class="note">Showing the newest 400.</p>' : ''}</div>`;
+    .map((c) => `<tr><td>${time(c.at)}</td><td>${esc(c.model)}${c.ok ? '' : ` <span class="bad">${esc(c.error ?? 'failed')}</span>`}</td><td class="hide-sm">${esc(titleCase(c.step))}</td><td class="hide-sm">${c.tokensIn.toLocaleString('en-US')}</td><td class="hide-sm">${c.tokensOut.toLocaleString('en-US')}</td><td>${ms(c.latencyMs)}</td><td>${money(c.costUsd)}</td></tr>`)
+    .join('')}</tbody></table></div>${calls.length > 400 ? '<p class="note">Showing the newest 400.</p>' : ''}</div>`;
 }
 
 // ---------- About
 
 function about(): string {
   return `${top('About Apprentice', 'How the loop works')}
-  <div class="prose">
+  <div class="panel raised prose" style="margin-top:34px">
     <h3>The job</h3><p>Frontier models are accurate but expensive for narrow, repetitive work. Small open models are cheap but not accurate enough out of the box. Apprentice closes the gap for one job at a time, and proves it.</p>
-    <h3>The loop</h3><p><b>Baseline</b> scores the small model on held-out examples, and scores ${esc(config.models.teacher.label)} on the same examples as the bar to chase. <b>Teach</b>: ${esc(config.models.grader.label)} groups the small model's mistakes into failure types; ${esc(config.models.teacher.label)} writes new cases aimed at each one${config.tavily ? ', using real wording found on the web with Tavily' : ''}; the grader labels every case blind and only agreed cases are kept. <b>Train</b>: a LoRA fine-tune on Nebius Token Factory. <b>Prove</b>: the tuned model takes the same held-out test. <b>Ship</b>: the endpoint is kept only if the tuned model wins.</p>
+    <h3>The loop</h3><p><b>Baseline</b> scores the small model on held-out examples, and scores ${esc(config.models.teacher.label)} on the same examples as the bar to chase. <b>Teach</b>: ${esc(config.models.grader.label)} groups the small model's mistakes into failure types, ${esc(config.models.teacher.label)} writes new cases aimed at each one${config.tavily ? ', using real wording found on the web with Tavily' : ''}, and the grader labels every case blind so only agreed cases are kept. <b>Train</b>: a LoRA fine-tune on Nebius Token Factory. <b>Prove</b>: the tuned model takes the same held-out test. <b>Ship</b>: the endpoint is kept only if the tuned model wins.</p>
     <h3>The guarantees</h3><p>Held-out examples are never used to teach or train. Every model call is logged with its tokens, time and cost. The eval runs at temperature 0 with the same prompt, so scores are repeatable.</p>
     <h3>Mode</h3><p>${config.mode === 'live' ? 'Live: calls go to Nebius Token Factory.' : 'Stub mode: no NEBIUS_API_KEY, so answers are simulated to show the loop. Add a key to .env to run it for real.'}</p>
   </div>`;
@@ -460,7 +478,7 @@ async function route(): Promise<void> {
     } else if (page === 'run') {
       setNav('run');
       const target = id ?? running?.id ?? runs[0]?.id;
-      if (!target) main.innerHTML = `${top('The Loop', 'No runs yet')}<div class="card" style="margin-top:22px"><p class="note" style="margin-top:0">Start a run to watch the loop.</p><a class="btn" href="#/new">Start a Run</a></div>`;
+      if (!target) main.innerHTML = `${top('The Loop', 'No runs yet')}<div class="panel raised" style="margin-top:34px"><p class="note" style="margin:0 0 18px">Start a run to watch the loop.</p><a class="btn" href="#/new">Start a Run</a></div>`;
       else await openLoop(target);
     } else if (page === 'calls') {
       setNav('calls');
