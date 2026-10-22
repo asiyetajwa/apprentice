@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apprentice Soft</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Sketch: Apprentice in a soft, moulded material. Grey stone surface, glass dome dials, round pressable keys,
+   two-tone numbers. ?tone=mono drops the Saffron touch. */
+:root {
+  --stone: #e4e4e2; --slab: #ebebe9; --raised-1: #f6f6f4; --raised-2: #d9d9d6;
+  --ink: #3a3a3a; --ink-2: #6c6c6a; --ink-3: #a3a3a0;
+  --disc-1: #6e6e6c; --disc-2: #4c4c4a;
+  --lit: #e8a400; --lit-soft: rgba(232, 164, 0, .16); --lit-text: #8f6400;
+  --hi: rgba(255, 255, 255, .95); --lo: rgba(70, 70, 60, .22);
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.3 0 0 0 0 0.3 0 0 0 0 0.3 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+:root[data-tone="mono"] { --lit: #4c4c4a; --lit-soft: rgba(60, 60, 60, .1); --lit-text: #3a3a3a; }
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--noise), var(--stone); color: var(--ink); font: 500 14px/1.5 Manrope, system-ui, sans-serif; min-height: 100vh; }
+
+/* material */
+.slab { background: var(--noise), linear-gradient(160deg, #f1f1ef, #e3e3e0); border-radius: 44px; box-shadow: 30px 40px 80px rgba(60, 60, 50, .2), -14px -14px 40px rgba(255, 255, 255, .8), inset 2px 2px 2px rgba(255, 255, 255, .9), inset -2px -3px 4px rgba(0, 0, 0, .05); }
+.raised { background: var(--noise), linear-gradient(145deg, var(--raised-1), var(--raised-2)); box-shadow: 10px 12px 26px var(--lo), -8px -8px 20px var(--hi), inset 1px 1px 1px #fff; }
+.well { background: var(--noise), #dededb; box-shadow: inset 6px 6px 14px rgba(0, 0, 0, .13), inset -6px -6px 14px rgba(255, 255, 255, .85); }
+
+.app { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 28px; max-width: 1340px; margin: 0 auto; padding: 36px 32px 48px; }
+.rail { position: sticky; top: 36px; align-self: start; display: grid; justify-items: center; gap: 22px; padding: 26px 0; }
+.logo { display: grid; grid-template-columns: repeat(2, 13px); gap: 4px; margin-bottom: 14px; }
+.logo i { width: 13px; height: 13px; border-radius: 4px; background: linear-gradient(145deg, #8a8a88, #5a5a58); box-shadow: inset 1px 1px 1px rgba(255, 255, 255, .4); }
+.logo i:first-child { background: linear-gradient(145deg, #ffcf4d, var(--lit)); }
+.key { width: 58px; height: 58px; border-radius: 50%; border: 0; display: grid; place-items: center; color: var(--ink-2); cursor: pointer; }
+.key svg { width: 21px; height: 21px; }
+.key.on { background: var(--noise), #dededb; box-shadow: inset 5px 5px 11px rgba(0, 0, 0, .15), inset -5px -5px 11px rgba(255, 255, 255, .9); color: var(--lit-text); }
+.key.on::after { content: ""; position: absolute; }
+.rail .spacer { height: 120px; }
+
+.main { padding: 40px 44px 46px; min-width: 0; }
+.top { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+.date { font-size: 21px; font-weight: 600; letter-spacing: -.01em; }
+.date span { display: block; color: var(--ink-3); font-size: 13px; font-weight: 500; letter-spacing: 0; }
+.right { display: flex; gap: 14px; align-items: center; }
+.search { width: 300px; height: 52px; border-radius: 26px; display: flex; align-items: center; justify-content: space-between; padding: 0 22px; color: var(--ink-2); }
+.search svg { width: 18px; height: 18px; }
+.pill { height: 52px; border-radius: 26px; padding: 0 20px; display: flex; align-items: center; gap: 9px; font-size: 13px; font-weight: 700; color: var(--ink-2); }
+.pill i { width: 9px; height: 9px; border-radius: 50%; background: var(--lit); box-shadow: 0 0 0 4px var(--lit-soft); }
+
+/* hero */
+.hero { display: grid; grid-template-columns: 440px minmax(0, 1fr); gap: 40px; align-items: center; margin-top: 34px; }
+.dials { position: relative; height: 470px; }
+.dome { position: absolute; border-radius: 50%; background: radial-gradient(circle at 38% 30%, #ffffff 0, #f5f5f3 26%, #e0e0dd 62%, #c9c9c6 100%); box-shadow: 26px 34px 50px rgba(60, 60, 50, .26), -16px -16px 36px rgba(255, 255, 255, .95), inset -10px -14px 24px rgba(0, 0, 0, .12), inset 10px 12px 20px rgba(255, 255, 255, .95); }
+.dome::before, .dome .arc { content: ""; position: absolute; inset: 7%; border-radius: 50%; background: radial-gradient(circle, #8f8f8c 1.1px, transparent 1.6px) 0 0 / 8px 8px; -webkit-mask: radial-gradient(circle, transparent 50%, #000 51%, #000 69%, transparent 70%); mask: radial-gradient(circle, transparent 50%, #000 51%, #000 69%, transparent 70%); opacity: .45; }
+.dome .arc { background: radial-gradient(circle, var(--lit) 1.5px, transparent 2px) 0 0 / 8px 8px; opacity: 1; -webkit-mask: conic-gradient(#000 0 var(--p), transparent 0), radial-gradient(circle, transparent 50%, #000 51%, #000 69%, transparent 70%); -webkit-mask-composite: source-in; mask: conic-gradient(#000 0 var(--p), transparent 0), radial-gradient(circle, transparent 50%, #000 51%, #000 69%, transparent 70%); mask-composite: intersect; }
+.dome::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(ellipse 46% 30% at 40% 18%, rgba(255, 255, 255, .95), transparent 70%), radial-gradient(ellipse 30% 16% at 70% 86%, rgba(255, 255, 255, .5), transparent 70%); pointer-events: none; }
+.disc { position: absolute; inset: 29%; border-radius: 50%; background: radial-gradient(circle at 40% 30%, var(--disc-1), var(--disc-2)); box-shadow: inset 4px 6px 12px rgba(0, 0, 0, .35), inset -2px -3px 6px rgba(255, 255, 255, .15), 0 2px 1px rgba(255, 255, 255, .9); display: grid; place-content: center; text-align: center; color: #fafaf8; z-index: 1; }
+.disc b { font-size: 46px; font-weight: 700; letter-spacing: -.03em; line-height: 1; }
+.disc span { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; opacity: .75; margin-top: 8px; }
+.disc .pip { width: 5px; height: 5px; border-radius: 50%; background: currentColor; margin: 0 auto 10px; opacity: .8; }
+.mark { position: absolute; font-weight: 800; color: #6a6a68; font-size: 15px; z-index: 1; text-shadow: 0 1px 0 #fff; }
+.d1 { width: 340px; height: 340px; left: 0; top: 0; --p: 89%; }
+.d1 .m0 { top: 3.5%; left: 50%; transform: translateX(-50%); }
+.d1 .m1 { right: 3.5%; top: 50%; transform: translateY(-50%); }
+.d1 .m2 { bottom: 3.5%; left: 50%; transform: translateX(-50%); }
+.d1 .m3 { left: 3.5%; top: 50%; transform: translateY(-50%); }
+.d2 { width: 196px; height: 196px; right: 0; bottom: 0; --p: 73%; }
+.d2 .disc b { font-size: 28px; }
+.d2 .disc span { font-size: 10px; margin-top: 5px; }
+.d2::before, .d2 .arc { background-size: 6px 6px; }
+.target { position: absolute; right: 58px; top: 236px; width: 22px; height: 22px; color: var(--ink-2); }
+
+.headline { min-width: 0; }
+.kick { font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+.headline h1 { margin: 10px 0 6px; font-size: 64px; line-height: 1; font-weight: 800; letter-spacing: -.045em; padding-bottom: .1em; background: linear-gradient(90deg, #8b8b88, #3a3a3a 70%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.headline .when { font-size: 22px; color: var(--ink-2); font-weight: 400; }
+.nums { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; margin-top: 42px; }
+.num span { display: block; color: var(--ink-2); font-size: 14px; margin-bottom: 6px; }
+.num b { font-size: 36px; font-weight: 800; letter-spacing: -.03em; color: #3a3a3a; font-variant-numeric: tabular-nums; }
+.num b em { font-style: normal; color: #9c9c99; }
+.num small { display: block; margin-top: 4px; font-size: 13px; color: var(--ink-3); }
+.ship { display: inline-flex; align-items: center; gap: 10px; margin-top: 34px; height: 48px; padding: 0 22px 0 8px; border-radius: 24px; font-weight: 700; }
+.ship i { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(145deg, #ffcf4d, var(--lit)); color: #2a2a28; box-shadow: inset 1px 1px 1px rgba(255, 255, 255, .6), 2px 3px 6px rgba(0, 0, 0, .18); }
+:root[data-tone="mono"] .ship i { background: linear-gradient(145deg, #7a7a78, #4c4c4a); color: #fff; }
+.ship svg { width: 16px; height: 16px; }
+
+/* stages */
+h2 { margin: 52px 0 20px; font-size: 22px; font-weight: 700; letter-spacing: -.02em; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+h2 small { font-size: 13px; color: var(--ink-3); font-weight: 500; letter-spacing: 0; }
+.stages { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 18px; }
+.stage { text-align: center; }
+.stage .key { width: 76px; height: 76px; margin: 0 auto 14px; font-weight: 800; font-size: 13px; position: relative; }
+.stage .key svg { width: 24px; height: 24px; }
+.stage.live .key { background: var(--noise), #dededb; box-shadow: inset 5px 5px 11px rgba(0, 0, 0, .15), inset -5px -5px 11px rgba(255, 255, 255, .9); color: var(--lit-text); }
+.stage.live .key::after { content: ""; position: absolute; inset: -7px; border-radius: 50%; background: conic-gradient(var(--lit) 0 62%, transparent 0); -webkit-mask: radial-gradient(circle, transparent 66%, #000 67%); mask: radial-gradient(circle, transparent 66%, #000 67%); }
+.stage.wait .key { color: var(--ink-3); }
+.stage b { display: block; font-size: 15px; }
+.stage span { color: var(--ink-2); font-size: 13px; }
+
+/* panels */
+.grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 26px; }
+.panel { border-radius: 30px; padding: 26px 28px; }
+.panel h3 { margin: 0 0 18px; font-size: 16px; font-weight: 700; }
+.bars { height: 200px; border-radius: 22px; padding: 20px 18px 0; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 12px; align-items: end; }
+.col { display: flex; gap: 5px; align-items: end; justify-content: center; height: 100%; }
+.col i { width: 12px; border-radius: 7px 7px 3px 3px; }
+.col .b { background: linear-gradient(#cfcfcc, #bdbdba); box-shadow: inset 1px 1px 1px rgba(255, 255, 255, .7); }
+.col .t { background: linear-gradient(#7a7a78, #4c4c4a); box-shadow: inset 1px 1px 1px rgba(255, 255, 255, .3), 2px 2px 5px rgba(0, 0, 0, .15); }
+:root:not([data-tone="mono"]) .col .t { background: linear-gradient(#ffcf4d, var(--lit)); }
+.lbls { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 12px; padding: 10px 18px 0; color: var(--ink-2); font-size: 12px; text-align: center; }
+.legend { display: flex; gap: 16px; font-size: 12px; color: var(--ink-2); font-weight: 500; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
+
+.window { position: relative; height: 200px; border-radius: 28px; padding: 18px 20px; background: radial-gradient(ellipse at 30% 0%, #5c5c5a, #2c2c2b 70%); box-shadow: 0 0 0 7px rgba(255, 255, 255, .55), 0 0 0 8px rgba(0, 0, 0, .06), 14px 20px 36px rgba(60, 60, 50, .3), inset 0 10px 24px rgba(0, 0, 0, .5); overflow: hidden; color: #e9e9e6; }
+.window::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(ellipse 60% 28% at 26% 6%, rgba(255, 255, 255, .45), transparent 70%), linear-gradient(115deg, transparent 58%, rgba(255, 255, 255, .1) 60%, transparent 72%); pointer-events: none; }
+.window svg { position: absolute; left: 20px; right: 20px; bottom: 18px; width: calc(100% - 40px); height: 120px; }
+.window .cap { display: flex; justify-content: space-between; font-size: 12px; opacity: .8; position: relative; z-index: 1; }
+
+.fails { display: grid; gap: 12px; }
+.fail { display: flex; align-items: center; gap: 14px; border-radius: 22px; padding: 14px 16px; }
+.fail .key { width: 40px; height: 40px; flex: none; }
+.fail .key svg { width: 16px; height: 16px; }
+.fail b { display: block; font-size: 14px; }
+.fail span { color: var(--ink-2); font-size: 12.5px; }
+.fail em { margin-left: auto; font-style: normal; font-size: 12px; font-weight: 700; color: var(--ink-3); white-space: nowrap; }
+.fail em.ok { color: var(--lit-text); }
+
+.receipt { display: grid; gap: 0; }
+.receipt div { display: flex; justify-content: space-between; gap: 12px; padding: 12px 2px; border-bottom: 1px solid rgba(0, 0, 0, .06); box-shadow: 0 1px 0 rgba(255, 255, 255, .8); font-size: 14px; }
+.receipt div:last-child { border: 0; box-shadow: none; }
+.receipt dt { color: var(--ink-2); }
+.receipt dd { margin: 0; font-weight: 700; text-align: right; overflow-wrap: anywhere; }
+
+.tone { width: max-content; margin: 22px auto 0; display: flex; gap: 6px; padding: 6px; border-radius: 22px; z-index: 9; }
+.tone a { padding: 7px 14px; border-radius: 16px; color: var(--ink-2); font-size: 12px; font-weight: 700; text-decoration: none; }
+.tone a.on { background: #dededb; box-shadow: inset 3px 3px 7px rgba(0, 0, 0, .14), inset -3px -3px 7px #fff; color: var(--ink); }
+
+.dock { display: none; }
+
+@media (max-width: 900px) {
+  .app { grid-template-columns: minmax(0, 1fr); padding: 14px 12px 120px; gap: 0; }
+  .rail { display: none; }
+  .main { padding: 26px 20px 30px; border-radius: 38px; }
+  .top { flex-direction: column; align-items: stretch; text-align: center; }
+  .right { flex-direction: column; }
+  .search { width: 100%; }
+  .pill { justify-content: center; height: 40px; }
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 30px; margin-top: 24px; }
+  .dials { height: 430px; width: 310px; margin: 0 auto; }
+  .d1 { width: 290px; height: 290px; }
+  .d1 .disc b { font-size: 40px; }
+  .d2 { width: 170px; height: 170px; right: -6px; }
+  .target { right: 18px; top: 304px; }
+  .headline { text-align: center; }
+  .headline h1 { font-size: 42px; }
+  .headline .when { font-size: 18px; }
+  .nums { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 22px 14px; }
+  .num:last-child { grid-column: 1 / -1; }
+  .num b { font-size: 28px; }
+  .stages { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px 10px; }
+  .stage .key { width: 64px; height: 64px; }
+  .grid { grid-template-columns: minmax(0, 1fr); }
+  .panel { padding: 22px 18px; }
+  .bars { gap: 6px; padding: 16px 10px 0; }
+  .col { gap: 3px; }
+  .col i { width: 8px; }
+  .lbls { gap: 6px; padding: 10px 10px 0; font-size: 10px; }
+  .dock { display: flex; justify-content: space-between; position: fixed; left: 50%; transform: translateX(-50%); bottom: 18px; width: min(360px, calc(100% - 40px)); z-index: 8; pointer-events: none; }
+  .dock .key { width: 66px; height: 66px; pointer-events: auto; }
+}
+</style>
+</head>
+<body>
+<div class="tone raised"><a href="?tone=saffron" id="t-saffron">Saffron touch</a><a href="?tone=mono" id="t-mono">Monochrome</a></div>
+<div class="app">
+  <aside class="rail slab" aria-label="Main">
+    <div class="logo" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <button class="key raised on" aria-label="Results"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M12 12l4-3"/></svg></button>
+    <button class="key raised" aria-label="Loop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3"/><path d="M18 3v4h-4M6 21v-4h4"/></svg></button>
+    <button class="key raised" aria-label="New run"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 6v12M6 12h12"/></svg></button>
+    <button class="key raised" aria-label="Every call"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="5" y="3" width="14" height="18" rx="3"/><path d="M9 8h6M9 12h6M9 16h4"/></svg></button>
+    <div class="spacer"></div>
+    <button class="key raised" aria-label="About"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5h.01"/></svg></button>
+  </aside>
+
+  <main class="main slab">
+    <div class="top">
+      <div class="date">Thursday 22 October<span>Run 01 · 13:31 UTC</span></div>
+      <div class="right">
+        <label class="search well">Support ticket routing<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></label>
+        <span class="pill raised"><i></i>Live on Token Factory</span>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="dials" aria-label="Tuned 89 percent, base 73 percent">
+        <div class="dome d1"><i class="arc"></i><span class="mark m0">100</span><span class="mark m1">75</span><span class="mark m2">50</span><span class="mark m3">25</span><div class="disc"><i class="pip"></i><b>89%</b><span>Tuned</span></div></div>
+        <svg class="target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
+        <div class="dome d2"><i class="arc"></i><div class="disc"><i class="pip"></i><b>73%</b><span>Base</span></div></div>
+      </div>
+      <div class="headline">
+        <div class="kick">Tuned Llama 3.1 8B</div>
+        <h1>Ticket routing</h1>
+        <div class="when">Shipped at 13:31 UTC</div>
+        <div class="nums">
+          <div class="num"><span>Held-out test</span><b><em>107 / </em>120</b><small>Up from 88 right</small></div>
+          <div class="num"><span>Per 1,000 calls</span><b><em>$0.00</em>41</b><small>Nemotron Ultra: $0.207</small></div>
+          <div class="num"><span>Training</span><b><em>0</em>1 min</b><small>LoRA, 3 epochs</small></div>
+        </div>
+        <div class="ship raised"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4 4 10-10"/></svg></i>Shipped: beats base by 19 tickets</div>
+      </div>
+    </section>
+
+    <h2>The Loop <small>Shown mid-run: stage 4 of 6</small></h2>
+    <div class="stages">
+      <div class="stage"><button class="key raised" aria-label="Intake done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4 4 10-10"/></svg></button><b>Intake</b><span>240 examples</span></div>
+      <div class="stage"><button class="key raised" aria-label="Baseline done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4 4 10-10"/></svg></button><b>Baseline</b><span>73% right</span></div>
+      <div class="stage"><button class="key raised" aria-label="Teach done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4 4 10-10"/></svg></button><b>Teach</b><span>76 cases kept</span></div>
+      <div class="stage live"><button class="key raised" aria-label="Train in progress">62%</button><b>Train</b><span>Epoch 2 of 3</span></div>
+      <div class="stage wait"><button class="key raised" aria-label="Prove waiting">5</button><b>Prove</b><span>Waiting</span></div>
+      <div class="stage wait"><button class="key raised" aria-label="Ship waiting">6</button><b>Ship</b><span>Waiting</span></div>
+    </div>
+
+    <h2>What Changed <small>120 held-out tickets, never trained on</small></h2>
+    <div class="grid">
+      <div class="panel raised">
+        <h3 style="display:flex;justify-content:space-between;align-items:center">Accuracy by label<span class="legend"><span><i style="background:#c6c6c3"></i>Base</span><span><i style="background:var(--lit)"></i>Tuned</span></span></h3>
+        <div class="bars well">
+          <div class="col"><i class="b" style="height:88%"></i><i class="t" style="height:82%"></i></div>
+          <div class="col"><i class="b" style="height:44%"></i><i class="t" style="height:100%"></i></div>
+          <div class="col"><i class="b" style="height:100%"></i><i class="t" style="height:100%"></i></div>
+          <div class="col"><i class="b" style="height:88%"></i><i class="t" style="height:82%"></i></div>
+          <div class="col"><i class="b" style="height:80%"></i><i class="t" style="height:88%"></i></div>
+          <div class="col"><i class="b" style="height:20%"></i><i class="t" style="height:80%"></i></div>
+          <div class="col"><i class="b" style="height:58%"></i><i class="t" style="height:100%"></i></div>
+          <div class="col"><i class="b" style="height:88%"></i><i class="t" style="height:88%"></i></div>
+        </div>
+        <div class="lbls"><span>Bill</span><span>Refund</span><span>Ship</span><span>Tech</span><span>Login</span><span>Cancel</span><span>Plans</span><span>Ideas</span></div>
+      </div>
+      <div class="panel raised">
+        <h3>Training loss</h3>
+        <div class="window">
+          <div class="cap"><span>Training 0.17</span><span>Validation 0.25</span></div>
+          <svg viewBox="0 0 300 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0 18 L150 92 L300 108" fill="none" stroke="#f3f3f0" stroke-width="3"/><path d="M0 6 L150 74 L300 88" fill="none" stroke="#9c9c99" stroke-width="3" stroke-dasharray="7 7"/><circle cx="150" cy="92" r="5" fill="#f3f3f0"/><circle cx="300" cy="108" r="5" fill="var(--lit)"/></svg>
+        </div>
+      </div>
+      <div class="panel raised">
+        <h3>Failure types</h3>
+        <div class="fails">
+          <div class="fail well"><span class="key raised"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4 4 10-10"/></svg></span><div><b>Refund asked as a billing complaint</b><span>Money back, but mentions a charge</span></div><em class="ok">Fixed</em></div>
+          <div class="fail well"><span class="key raised"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4 4 10-10"/></svg></span><div><b>Plan question with prices</b><span>Asked before buying, mentions prices</span></div><em class="ok">Fixed</em></div>
+          <div class="fail well"><span class="key raised"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg></span><div><b>Cancel read as an account issue</b><span>Ends the subscription, mentions the account</span></div><em>Still there</em></div>
+        </div>
+      </div>
+      <div class="panel raised">
+        <h3>Receipt</h3>
+        <dl class="receipt">
+          <div><dt>Endpoint</dt><dd>apprentice-run-001</dd></div>
+          <div><dt>Teacher</dt><dd>Nemotron 3 Ultra</dd></div>
+          <div><dt>Grader</dt><dd>Nemotron 3 Super</dd></div>
+          <div><dt>Calls</dt><dd>439</dd></div>
+          <div><dt>Total spent</dt><dd>$0.042</dd></div>
+        </dl>
+      </div>
+    </div>
+  </main>
+</div>
+
+<nav class="dock" aria-label="Main">
+  <button class="key raised" aria-label="Loop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3"/><path d="M18 3v4h-4M6 21v-4h4"/></svg></button>
+  <button class="key raised on" aria-label="Results"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M12 12l4-3"/></svg></button>
+  <button class="key raised" aria-label="New run"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 6v12M6 12h12"/></svg></button>
+</nav>
+
+<script>
+  const tone = new URLSearchParams(location.search).get('tone') === 'mono' ? 'mono' : 'saffron';
+  document.documentElement.dataset.tone = tone;
+  document.getElementById('t-' + tone).classList.add('on');
+</script>
+</body>
+</html>
