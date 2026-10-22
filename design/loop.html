@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apprentice Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Soft, layered dashboard. One lead colour (--accent) drives the hero card, rings, chart and active states.
+   ?accent=<name> picks the variant for review. */
+:root {
+  --accent: #ef3e2d; --accent-2: #ff7a45; --accent-soft: rgba(239, 62, 45, .14);
+  --page: #e9ebf0; --panel: #f3f4f7; --card: #fbfbfd; --ink: #191b22; --muted: #8a8e9b; --line: #e3e5eb;
+  --shadow: 0 18px 30px -18px rgba(40, 46, 66, .35), 0 2px 6px rgba(40, 46, 66, .06);
+  --ok: #1fae6a;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page); color: var(--ink); font: 14px/1.4 Inter, system-ui, sans-serif; }
+.shell { display: grid; grid-template-columns: 84px 1fr; gap: 22px; max-width: 1280px; margin: 0 auto; padding: 28px; }
+.side { background: var(--panel); border-radius: 26px; box-shadow: var(--shadow); padding: 22px 0; display: flex; flex-direction: column; align-items: center; gap: 26px; min-height: 780px; }
+.mark { width: 34px; height: 34px; position: relative; margin-bottom: 30px; }
+.mark i { position: absolute; border-radius: 7px; }
+.mark i:nth-child(1) { inset: 0 17px 17px 0; background: #ef3e2d; }
+.mark i:nth-child(2) { inset: 0 0 17px 17px; background: #f7cf1d; }
+.mark i:nth-child(3) { inset: 17px 17px 0 0; background: #2c6fe0; }
+.mark i:nth-child(4) { inset: 17px 0 0 17px; border: 3px solid var(--ink); }
+.nav { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; color: #6f7484; position: relative; }
+.nav.on { color: var(--accent-text, var(--accent)); background: var(--accent-soft); }
+.nav.on::after { content: ""; position: absolute; right: -20px; width: 4px; height: 22px; border-radius: 4px; background: var(--accent); }
+.nav svg { width: 22px; height: 22px; }
+.side .grow { flex: 1; }
+.main { background: var(--panel); border-radius: 30px; box-shadow: var(--shadow); padding: 26px 30px 30px; }
+.top { display: flex; align-items: center; gap: 16px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+.top h1 { margin: 0; font: 700 24px "Space Grotesk"; letter-spacing: -.02em; }
+.top p { margin: 2px 0 0; color: var(--muted); font-size: 13px; }
+.search { margin-left: auto; width: 260px; height: 40px; border-radius: 12px; background: var(--card); box-shadow: var(--shadow); display: flex; align-items: center; gap: 10px; padding: 0 14px; color: var(--muted); }
+.icon-btn { width: 36px; height: 36px; border-radius: 50%; background: var(--card); box-shadow: var(--shadow); display: grid; place-items: center; color: #555a68; }
+.icon-btn svg { width: 17px; height: 17px; }
+.avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #f7cf1d, #ef3e2d); color: #fff; font: 700 14px/36px "Space Grotesk"; text-align: center; }
+h2 { display: flex; justify-content: space-between; align-items: center; margin: 22px 0 14px; font: 600 18px "Space Grotesk"; letter-spacing: -.01em; }
+h2 small { color: var(--muted); font: 400 13px Inter; }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.stat { position: relative; background: var(--card); border-radius: 20px; padding: 18px 20px; box-shadow: var(--shadow); overflow: hidden; }
+.stat::after { content: ""; position: absolute; right: 0; top: 26%; bottom: 26%; width: 7px; border-radius: 7px 0 0 7px; background: var(--edge, var(--accent)); }
+.stat .ic { width: 36px; height: 36px; border-radius: 11px; display: grid; place-items: center; background: var(--panel); color: var(--ink); }
+.stat .ic svg { width: 19px; height: 19px; }
+.stat .lbl { color: var(--muted); margin-top: 14px; }
+.stat .val { font: 700 28px/1.1 "Space Grotesk"; letter-spacing: -.03em; margin-top: 4px; }
+.stat .val span { color: var(--muted); font-size: 18px; font-weight: 600; }
+.stat .foot { color: var(--muted); font-size: 12px; margin-top: 4px; }
+.ring { position: absolute; right: 22px; top: 16px; width: 46px; height: 46px; }
+.ring b { position: absolute; inset: 0; display: grid; place-items: center; font: 600 10px Inter; color: var(--ink); }
+.run { display: grid; grid-template-columns: 250px 250px 1fr; gap: 18px; align-items: stretch; }
+.hero { border-radius: 24px; padding: 20px; color: var(--on-accent, #fff); background: linear-gradient(160deg, var(--accent-2), var(--accent)); box-shadow: 0 24px 40px -22px var(--accent); display: flex; flex-direction: column; align-items: center; text-align: center; }
+.hero .kick { align-self: stretch; display: flex; justify-content: space-between; font: 600 12px "Space Grotesk"; letter-spacing: .08em; text-transform: uppercase; opacity: .9; }
+.hero .gauge { margin-top: 18px; width: 170px; }
+.hero .big { font: 700 36px/1 "Space Grotesk"; letter-spacing: -.03em; margin-top: -46px; }
+.hero .sub { opacity: .9; margin-top: 18px; }
+.hero .chip { margin-top: 14px; padding: 7px 14px; border-radius: 999px; background: rgba(255, 255, 255, .35); font-weight: 600; }
+.pair { display: grid; gap: 18px; }
+.chart { background: rgba(255, 255, 255, .45); border-radius: 24px; padding: 20px 22px; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .8); position: relative; }
+.chart .head { display: flex; justify-content: space-between; align-items: center; }
+.chart .head b { font: 600 15px "Space Grotesk"; }
+.legend { display: flex; gap: 14px; color: var(--muted); font-size: 12px; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.bars { display: grid; grid-template-columns: repeat(8, 1fr); align-items: end; gap: 12px; height: 150px; margin-top: 64px; }
+.bars .col { display: flex; align-items: end; justify-content: center; gap: 4px; height: 100%; position: relative; }
+.bars .col i { width: 12px; border-radius: 6px 6px 3px 3px; }
+.bars .col i.base { background: #cfd3dd; }
+.bars .col i.tuned { background: var(--accent); }
+.labels { display: grid; grid-template-columns: repeat(8, 1fr); gap: 12px; margin-top: 10px; color: var(--muted); font-size: 11px; text-align: center; }
+.tip { position: absolute; left: 14%; top: 54px; background: var(--card); box-shadow: var(--shadow); border-radius: 10px; padding: 8px 12px; font-size: 12px; font-weight: 600; }
+.tip::after { content: ""; position: absolute; left: 18px; bottom: -6px; width: 12px; height: 12px; background: var(--card); transform: rotate(45deg); }
+.history { background: var(--card); border-radius: 18px; box-shadow: var(--shadow); }
+.hrow { display: grid; grid-template-columns: 34px 1.2fr 1fr 1fr 1fr 120px; align-items: center; gap: 12px; padding: 13px 18px; color: #5d6271; }
+.hrow + .hrow { border-top: 1px solid var(--line); }
+.hrow b { color: var(--ink); font-weight: 600; }
+.dot { width: 30px; height: 30px; border-radius: 10px; display: grid; place-items: center; background: var(--panel); font: 700 12px "Space Grotesk"; color: var(--ink); }
+.pill { justify-self: end; padding: 6px 12px; border-radius: 999px; font-weight: 600; font-size: 12px; }
+.pill.ok { background: rgba(31, 174, 106, .14); color: #148552; }
+.pill.no { background: #eceef2; color: #6f7484; }
+.pill.live { background: var(--accent-soft); color: var(--accent-text, var(--accent)); }
+.name { display: none; position: fixed; left: 28px; bottom: 12px; font: 600 12px "Space Grotesk"; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+
+.form { display: grid; grid-template-columns: 1.3fr 1fr; gap: 18px; }
+.card { background: var(--card); border-radius: 20px; padding: 20px; box-shadow: var(--shadow); }
+.card h3 { margin: 0 0 12px; font: 600 15px "Space Grotesk"; }
+label.f { display: block; color: var(--muted); font-size: 12px; margin: 12px 0 6px; }
+.input { background: var(--panel); border-radius: 12px; padding: 12px 14px; color: var(--ink); box-shadow: inset 0 1px 2px rgba(40,46,66,.08); }
+.input.area { min-height: 64px; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.tag { padding: 6px 12px; border-radius: 999px; background: var(--panel); font-weight: 500; font-size: 12px; }
+.drop { border: 2px dashed #cfd3dd; border-radius: 18px; padding: 22px; text-align: center; color: var(--muted); background: rgba(255,255,255,.5); }
+.drop b { display: block; color: var(--ink); font: 600 15px "Space Grotesk"; margin-bottom: 4px; }
+.sample { margin-top: 14px; display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 14px; background: var(--accent-soft); }
+.sample b { font-weight: 600; } .sample span { color: var(--muted); }
+.split { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px; }
+.split div { background: var(--panel); border-radius: 12px; padding: 10px 12px; } .split b { display: block; font: 700 20px "Space Grotesk"; } .split span { color: var(--muted); font-size: 12px; }
+.models { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.model { position: relative; background: var(--card); border-radius: 20px; padding: 18px 20px; box-shadow: var(--shadow); }
+.model.sel { box-shadow: 0 0 0 2.5px var(--accent), var(--shadow); }
+.model .role { font: 600 11px "Space Grotesk"; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.model .mn { font: 700 18px "Space Grotesk"; margin-top: 8px; letter-spacing: -.01em; }
+.model p { color: var(--muted); margin: 6px 0 0; font-size: 13px; }
+.model .change { position: absolute; right: 16px; top: 14px; padding: 5px 11px; border-radius: 999px; background: var(--panel); font-weight: 600; font-size: 12px; }
+.model .radio { position: absolute; right: 18px; top: 18px; width: 20px; height: 20px; border-radius: 50%; box-shadow: inset 0 0 0 2px #cfd3dd; }
+.model.sel .radio { box-shadow: inset 0 0 0 6px var(--accent); }
+.go { display: flex; align-items: center; gap: 18px; margin-top: 22px; padding: 18px 20px; border-radius: 20px; background: var(--card); box-shadow: var(--shadow); }
+.go .est b { font: 700 20px "Space Grotesk"; } .go .est span { color: var(--muted); font-size: 13px; display: block; }
+.btn { margin-left: auto; border: 0; border-radius: 14px; padding: 14px 22px; font: 600 15px "Space Grotesk"; background: var(--accent); color: var(--on-accent, #fff); box-shadow: 0 14px 24px -14px var(--accent); }
+.btn.ghost { margin-left: 0; background: var(--panel); color: var(--ink); box-shadow: none; }
+.stages { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+.stg { position: relative; background: var(--card); border-radius: 18px; padding: 14px 14px 16px; box-shadow: var(--shadow); }
+.stg .n { font: 600 11px "Space Grotesk"; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.stg .t { font: 600 15px "Space Grotesk"; margin-top: 30px; }
+.stg .d { color: var(--muted); font-size: 12px; margin-top: 2px; }
+.stg .st { position: absolute; right: 12px; top: 12px; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-size: 12px; }
+.stg.done .st { background: var(--ink); color: #fff; }
+.stg.live { box-shadow: 0 0 0 2.5px var(--accent), var(--shadow); }
+.stg.live .st { background: var(--accent-soft); color: var(--accent-text, var(--accent)); font-weight: 700; font-size: 10px; width: 34px; }
+.stg.wait { opacity: .6; }
+.livegrid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 18px; }
+.feed { display: grid; gap: 2px; }
+.ev { display: grid; grid-template-columns: 62px 10px 1fr; gap: 10px; align-items: start; padding: 9px 4px; }
+.ev time { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.ev i { width: 10px; height: 10px; border-radius: 3px; margin-top: 4px; }
+.ev b { font-weight: 600; }
+.calls { width: 100%; border-collapse: collapse; font-size: 13px; }
+.calls th { text-align: left; color: var(--muted); font-weight: 500; font-size: 12px; padding: 0 8px 8px; }
+.calls td { padding: 9px 8px; border-top: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+.calls td:first-child { font-weight: 600; }
+.loss { display: block; width: 100%; height: 120px; margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <span class="mark"><i></i><i></i><i></i><i></i></span>
+    <span class="nav on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M12 12l4-3"/><path d="M12 4v2M4 12h2M18 12h2"/></svg></span>
+    <span class="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 9h8M8 13h8M8 17h5"/></svg></span>
+    <span class="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 18V6M4 18h16M8 15v-4M12 15V8M16 15v-6"/></svg></span>
+    <span class="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3v3M12 18v3M5 12H3M21 12h-2"/><circle cx="12" cy="12" r="5"/></svg></span>
+    <span class="grow"></span>
+    <span class="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></span>
+  </aside>
+
+  <main class="main"><div class="top">
+      <div><h1>Run 07, Live</h1><p>Support ticket routing · started 11:35 UTC</p></div>
+      <div class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>Search runs</div>
+      <span class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5M12 17h.01"/></svg></span>
+      <span class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 16V11a6 6 0 1 1 12 0v5l2 2H4z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></span>
+      <span class="avatar">B</span>
+    </div>
+
+    
+<h2>The Loop <small>Stage 5 of 6</small></h2>
+<div class="stages"><div class="stg done"><div class="n">1 Intake</div><span class="st">✓</span><div class="t">240 examples</div><div class="d">8 labels</div></div><div class="stg done"><div class="n">2 Baseline</div><span class="st">✓</span><div class="t">Base: 61%</div><div class="d">Mistakes found</div></div><div class="stg done"><div class="n">3 Teach</div><span class="st">✓</span><div class="t">400 new cases</div><div class="d">5 failure types</div></div><div class="stg done"><div class="n">4 Train</div><span class="st">✓</span><div class="t">LoRA, 3 epochs</div><div class="d">11 min</div></div><div class="stg live"><div class="n">5 Prove</div><span class="st">74%</span><div class="t">Testing</div><div class="d">74 of 120</div></div><div class="stg wait"><div class="n">6 Ship</div><span class="st"></span><div class="t">Waiting</div><div class="d">Only if it wins</div></div></div>
+<div class="livegrid" style="margin-top:22px">
+  <div class="card"><h3>What the agent is doing</h3><div class="feed"><div class="ev"><time>11:52:08</time><i style="background:#e8a400"></i><span><b>Testing</b> ticket 74 of 120 on the tuned model. 68 right so far.</span></div><div class="ev"><time>11:51:40</time><i style="background:#1fae6a"></i><span><b>Training finished.</b> Validation loss 0.21, down from 1.38.</span></div><div class="ev"><time>11:40:12</time><i style="background:#1fae6a"></i><span><b>Training started</b> on Token Factory: LoRA rank 16, 3 epochs.</span></div><div class="ev"><time>11:39:55</time><i style="background:#ef3e2d"></i><span><b>Teacher wrote 400 cases</b>, 12 drawn from real support pages found with Tavily.</span></div><div class="ev"><time>11:38:30</time><i style="background:#ef3e2d"></i><span><b>Grader found 5 failure types</b> in the base model's 47 mistakes.</span></div><div class="ev"><time>11:36:02</time><i style="background:#2c6fe0"></i><span><b>Baseline:</b> base model got 73 of 120 right (61%).</span></div></div></div>
+  <div style="display:grid;gap:18px">
+    <div class="card"><h3>Training loss</h3><svg class="loss" viewBox="0 0 300 120" preserveAspectRatio="none"><path d="M0 10 C40 30 60 60 100 72 S180 96 300 104" fill="none" stroke="var(--accent)" stroke-width="3"/><path d="M0 18 C40 40 70 70 110 80 S190 98 300 101" fill="none" stroke="#cfd3dd" stroke-width="3" stroke-dasharray="6 6"/></svg><span class="legend"><span><i style="background:var(--accent)"></i>Training</span><span><i style="background:#cfd3dd"></i>Validation</span></span></div>
+    <div class="card"><h3>Every call, with its receipt</h3><table class="calls"><tr><th>Model</th><th>Step</th><th>Tokens</th><th>Time</th><th>Cost</th></tr><tr><td>Tuned student</td><td>Testing</td><td>212</td><td>38 ms</td><td>$0.00001</td></tr><tr><td>Nemotron 3 Super</td><td>Grading</td><td>1,840</td><td>1.2 s</td><td>$0.0021</td></tr><tr><td>Nemotron 3 Ultra</td><td>Teaching</td><td>6,410</td><td>9.8 s</td><td>$0.021</td></tr><tr><td>Base student</td><td>Baseline</td><td>208</td><td>35 ms</td><td>$0.00001</td></tr></table></div>
+  </div>
+</div>
+</main>
+</div>
+<span class="name" id="name"></span>
+<script>
+const ACCENTS = {
+  signal: ['#ef3e2d', '#ff7a45', 'rgba(239,62,45,.13)', 'Signal Red'],
+  cobalt: ['#2c6fe0', '#4f9bff', 'rgba(44,111,224,.13)', 'Cobalt Blue'],
+  emerald: ['#0f9f6e', '#2fd39a', 'rgba(15,159,110,.13)', 'Emerald'],
+  saffron: ['#e8a400', '#ffd23f', 'rgba(232,164,0,.16)', 'Saffron'],
+  tangerine: ['#ff6b2c', '#ffa25a', 'rgba(255,107,44,.14)', 'Tangerine'],
+};
+const key = new URLSearchParams(location.search).get('accent') ?? 'saffron';
+const [a, a2, soft, label] = ACCENTS[key];
+const root = document.documentElement.style;
+root.setProperty('--accent', a); if (key === 'saffron') { root.setProperty('--on-accent', '#191b22'); root.setProperty('--accent-text', '#9a6c00'); } root.setProperty('--accent-2', a2); root.setProperty('--accent-soft', soft);
+document.getElementById('name').textContent = label;
+document.querySelectorAll('.ring').forEach((el) => {
+  const p = Number(el.dataset.pct), c = el.dataset.c ?? a, r = 19, L = 2 * Math.PI * r;
+  el.innerHTML = `<svg viewBox="0 0 46 46"><circle cx="23" cy="23" r="${r}" fill="none" stroke="#eceef3" stroke-width="4"/><circle cx="23" cy="23" r="${r}" fill="none" stroke="${c}" stroke-width="4" stroke-linecap="round" stroke-dasharray="${(L * p) / 100} ${L}" transform="rotate(-90 23 23)"/></svg><b>${p}%</b>`;
+});
+const base = [70, 40, 85, 66, 52, 58, 61, 55], tuned = [94, 93, 97, 90, 92, 95, 86, 91];
+document.getElementById('bars').innerHTML = base.map((b, i) => `<div class="col"><i class="base" style="height:${b}%"></i><i class="tuned" style="height:${tuned[i]}%"></i></div>`).join('');
+</script>
+</body>
+</html>

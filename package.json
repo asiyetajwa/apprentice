@@ -1,0 +1,32 @@
+{
+  "name": "apprentice",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "description": "Apprentice: turn a small NVIDIA open model into a specialist for your task, with the receipts to prove it.",
+  "workspaces": [
+    "packages/nebius-core"
+  ],
+  "scripts": {
+    "build": "node scripts/build-web.mjs",
+    "start": "npm run build && tsx src/server/index.ts",
+    "dev": "npm run build && tsx watch src/server/index.ts",
+    "test": "node --import tsx --test test/*.test.ts",
+    "typecheck": "tsc -p . --noEmit",
+    "data": "node data/generate.mjs",
+    "spike": "tsx scripts/spike.ts"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "express": "^5.3.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.5",
+    "esbuild": "^0.28.2",
+    "tsx": "^4.23.15",
+    "typescript": "5.9"
+  }
+}

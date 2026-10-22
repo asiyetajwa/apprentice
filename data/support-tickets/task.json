@@ -1,0 +1,25 @@
+{
+  "name": "Support ticket routing",
+  "description": "Route each customer support ticket for the Lumen notes app to exactly one queue.",
+  "labels": [
+    "billing",
+    "refund",
+    "shipping",
+    "technical",
+    "account_access",
+    "cancellation",
+    "product_question",
+    "feedback"
+  ],
+  "labelHelp": {
+    "billing": "questions or problems about charges, invoices, prices or payment methods, without asking for money back",
+    "refund": "asks for money back",
+    "shipping": "physical orders, delivery and tracking",
+    "technical": "the app or a feature is broken, slow or erroring",
+    "account_access": "cannot sign in, passwords, two-factor, email on the account, security",
+    "cancellation": "wants to stop a subscription or close the account",
+    "product_question": "questions about plans, features or pricing before buying",
+    "feedback": "opinions, praise, complaints and suggestions with no request to act"
+  },
+  "metric": "accuracy"
+}

@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apprentice Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Soft, layered dashboard. One lead colour (--accent) drives the hero card, rings, chart and active states.
+   ?accent=<name> picks the variant for review. */
+:root {
+  --accent: #ef3e2d; --accent-2: #ff7a45; --accent-soft: rgba(239, 62, 45, .14);
+  --page: #e9ebf0; --panel: #f3f4f7; --card: #fbfbfd; --ink: #191b22; --muted: #8a8e9b; --line: #e3e5eb;
+  --shadow: 0 18px 30px -18px rgba(40, 46, 66, .35), 0 2px 6px rgba(40, 46, 66, .06);
+  --ok: #1fae6a;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page); color: var(--ink); font: 14px/1.4 Inter, system-ui, sans-serif; }
+.shell { display: grid; grid-template-columns: 84px 1fr; gap: 22px; max-width: 1280px; margin: 0 auto; padding: 28px; }
+.side { background: var(--panel); border-radius: 26px; box-shadow: var(--shadow); padding: 22px 0; display: flex; flex-direction: column; align-items: center; gap: 26px; min-height: 780px; }
+.mark { width: 34px; height: 34px; position: relative; margin-bottom: 30px; }
+.mark i { position: absolute; border-radius: 7px; }
+.mark i:nth-child(1) { inset: 0 17px 17px 0; background: #ef3e2d; }
+.mark i:nth-child(2) { inset: 0 0 17px 17px; background: #f7cf1d; }
+.mark i:nth-child(3) { inset: 17px 17px 0 0; background: #2c6fe0; }
+.mark i:nth-child(4) { inset: 17px 0 0 17px; border: 3px solid var(--ink); }
+.nav { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; color: #6f7484; position: relative; }
+.nav.on { color: var(--accent-text, var(--accent)); background: var(--accent-soft); }
+.nav.on::after { content: ""; position: absolute; right: -20px; width: 4px; height: 22px; border-radius: 4px; background: var(--accent); }
+.nav svg { width: 22px; height: 22px; }
+.side .grow { flex: 1; }
+.main { background: var(--panel); border-radius: 30px; box-shadow: var(--shadow); padding: 26px 30px 30px; }
+.top { display: flex; align-items: center; gap: 16px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+.top h1 { margin: 0; font: 700 24px "Space Grotesk"; letter-spacing: -.02em; }
+.top p { margin: 2px 0 0; color: var(--muted); font-size: 13px; }
+.search { margin-left: auto; width: 260px; height: 40px; border-radius: 12px; background: var(--card); box-shadow: var(--shadow); display: flex; align-items: center; gap: 10px; padding: 0 14px; color: var(--muted); }
+.icon-btn { width: 36px; height: 36px; border-radius: 50%; background: var(--card); box-shadow: var(--shadow); display: grid; place-items: center; color: #555a68; }
+.icon-btn svg { width: 17px; height: 17px; }
+.avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #f7cf1d, #ef3e2d); color: #fff; font: 700 14px/36px "Space Grotesk"; text-align: center; }
+h2 { display: flex; justify-content: space-between; align-items: center; margin: 22px 0 14px; font: 600 18px "Space Grotesk"; letter-spacing: -.01em; }
+h2 small { color: var(--muted); font: 400 13px Inter; }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.stat { position: relative; background: var(--card); border-radius: 20px; padding: 18px 20px; box-shadow: var(--shadow); overflow: hidden; }
+.stat::after { content: ""; position: absolute; right: 0; top: 26%; bottom: 26%; width: 7px; border-radius: 7px 0 0 7px; background: var(--edge, var(--accent)); }
+.stat .ic { width: 36px; height: 36px; border-radius: 11px; display: grid; place-items: center; background: var(--panel); color: var(--ink); }
+.stat .ic svg { width: 19px; height: 19px; }
+.stat .lbl { color: var(--muted); margin-top: 14px; }
+.stat .val { font: 700 28px/1.1 "Space Grotesk"; letter-spacing: -.03em; margin-top: 4px; }
+.stat .val span { color: var(--muted); font-size: 18px; font-weight: 600; }
+.stat .foot { color: var(--muted); font-size: 12px; margin-top: 4px; }
+.ring { position: absolute; right: 22px; top: 16px; width: 46px; height: 46px; }
+.ring b { position: absolute; inset: 0; display: grid; place-items: center; font: 600 10px Inter; color: var(--ink); }
+.run { display: grid; grid-template-columns: 250px 250px 1fr; gap: 18px; align-items: stretch; }
+.hero { border-radius: 24px; padding: 20px; color: var(--on-accent, #fff); background: linear-gradient(160deg, var(--accent-2), var(--accent)); box-shadow: 0 24px 40px -22px var(--accent); display: flex; flex-direction: column; align-items: center; text-align: center; }
+.hero .kick { align-self: stretch; display: flex; justify-content: space-between; font: 600 12px "Space Grotesk"; letter-spacing: .08em; text-transform: uppercase; opacity: .9; }
+.hero .gauge { margin-top: 18px; width: 170px; }
+.hero .big { font: 700 36px/1 "Space Grotesk"; letter-spacing: -.03em; margin-top: -46px; }
+.hero .sub { opacity: .9; margin-top: 18px; }
+.hero .chip { margin-top: 14px; padding: 7px 14px; border-radius: 999px; background: rgba(255, 255, 255, .35); font-weight: 600; }
+.pair { display: grid; gap: 18px; }
+.chart { background: rgba(255, 255, 255, .45); border-radius: 24px; padding: 20px 22px; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .8); position: relative; }
+.chart .head { display: flex; justify-content: space-between; align-items: center; }
+.chart .head b { font: 600 15px "Space Grotesk"; }
+.legend { display: flex; gap: 14px; color: var(--muted); font-size: 12px; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.bars { display: grid; grid-template-columns: repeat(8, 1fr); align-items: end; gap: 12px; height: 150px; margin-top: 64px; }
+.bars .col { display: flex; align-items: end; justify-content: center; gap: 4px; height: 100%; position: relative; }
+.bars .col i { width: 12px; border-radius: 6px 6px 3px 3px; }
+.bars .col i.base { background: #cfd3dd; }
+.bars .col i.tuned { background: var(--accent); }
+.labels { display: grid; grid-template-columns: repeat(8, 1fr); gap: 12px; margin-top: 10px; color: var(--muted); font-size: 11px; text-align: center; }
+.tip { position: absolute; left: 14%; top: 54px; background: var(--card); box-shadow: var(--shadow); border-radius: 10px; padding: 8px 12px; font-size: 12px; font-weight: 600; }
+.tip::after { content: ""; position: absolute; left: 18px; bottom: -6px; width: 12px; height: 12px; background: var(--card); transform: rotate(45deg); }
+.history { background: var(--card); border-radius: 18px; box-shadow: var(--shadow); }
+.hrow { display: grid; grid-template-columns: 34px 1.2fr 1fr 1fr 1fr 120px; align-items: center; gap: 12px; padding: 13px 18px; color: #5d6271; }
+.hrow + .hrow { border-top: 1px solid var(--line); }
+.hrow b { color: var(--ink); font-weight: 600; }
+.dot { width: 30px; height: 30px; border-radius: 10px; display: grid; place-items: center; background: var(--panel); font: 700 12px "Space Grotesk"; color: var(--ink); }
+.pill { justify-self: end; padding: 6px 12px; border-radius: 999px; font-weight: 600; font-size: 12px; }
+.pill.ok { background: rgba(31, 174, 106, .14); color: #148552; }
+.pill.no { background: #eceef2; color: #6f7484; }
+.pill.live { background: var(--accent-soft); color: var(--accent-text, var(--accent)); }
+.name { display: none; position: fixed; left: 28px; bottom: 12px; font: 600 12px "Space Grotesk"; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <span class="mark"><i></i><i></i><i></i><i></i></span>
+    <span class="nav on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M12 12l4-3"/><path d="M12 4v2M4 12h2M18 12h2"/></svg></span>
+    <span class="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 9h8M8 13h8M8 17h5"/></svg></span>
+    <span class="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 18V6M4 18h16M8 15v-4M12 15V8M16 15v-6"/></svg></span>
+    <span class="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3v3M12 18v3M5 12H3M21 12h-2"/><circle cx="12" cy="12" r="5"/></svg></span>
+    <span class="grow"></span>
+    <span class="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></span>
+  </aside>
+
+  <main class="main">
+    <div class="top">
+      <div><h1>Good afternoon, Brian</h1><p>Run 07 · Support ticket routing</p></div>
+      <div class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>Search runs</div>
+      <span class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5M12 17h.01"/></svg></span>
+      <span class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 16V11a6 6 0 1 1 12 0v5l2 2H4z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></span>
+      <span class="avatar">B</span>
+    </div>
+
+    <h2>The Numbers <small>120 held-out tickets</small></h2>
+    <div class="stats">
+      <div class="stat" style="--edge:#c9ccd6">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M8 3v4M16 3v4M4 10h16"/></svg></span>
+        <div class="ring" data-pct="61"></div>
+        <div class="lbl">Base model</div><div class="val">61% <span>accuracy</span></div><div class="foot">Before any training</div>
+      </div>
+      <div class="stat">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12l4 4 10-10"/></svg></span>
+        <div class="ring" data-pct="92"></div>
+        <div class="lbl">Tuned model</div><div class="val">92% <span>+31</span></div><div class="foot">Same tickets, after training</div>
+      </div>
+      <div class="stat" style="--edge:#1fae6a">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><path d="M12 7v10M9.5 9.5c0-1 1-1.5 2.5-1.5s2.5.6 2.5 1.6c0 2.4-5 1.4-5 4 0 1 1 1.6 2.5 1.6s2.5-.5 2.5-1.5"/></svg></span>
+        <div class="ring" data-pct="97" data-c="#1fae6a"></div>
+        <div class="lbl">Cost per 1,000 calls</div><div class="val">$0.02 <span>vs $0.61</span></div><div class="foot">Tuned against the teacher</div>
+      </div>
+      <div class="stat" style="--edge:#2c6fe0">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6"/></svg></span>
+        <div class="ring" data-pct="55" data-c="#2c6fe0"></div>
+        <div class="lbl">Training time</div><div class="val">11 <span>min</span></div><div class="foot">LoRA, 3 epochs</div>
+      </div>
+    </div>
+
+    <h2>This Run <small>Stage 5 of 6: proving</small></h2>
+    <div class="run">
+      <div class="hero">
+        <div class="kick"><span>Tuned accuracy</span><span>···</span></div>
+        <svg class="gauge" viewBox="0 0 200 110"><path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="20" stroke-linecap="round"/><path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="var(--on-accent, #fff)" stroke-width="20" stroke-linecap="round" stroke-dasharray="231 251"/></svg>
+        <div class="big">92%</div>
+        <div class="sub">Up from 61% on tickets it never trained on</div>
+        <div class="chip">Ready to ship</div>
+      </div>
+      <div class="pair">
+        <div class="stat" style="--edge:#f7cf1d"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h10M4 18h7"/></svg></span><div class="ring" data-pct="80" data-c="#d9b200"></div><div class="lbl">Teacher cases</div><div class="val">400</div><div class="foot">Written by Nemotron Ultra</div></div>
+        <div class="stat" style="--edge:#1fae6a"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></span><div class="ring" data-pct="80" data-c="#1fae6a"></div><div class="lbl">Failure types fixed</div><div class="val">4 <span>of 5</span></div><div class="foot">Found in the base model's mistakes</div></div>
+      </div>
+      <div class="chart">
+        <div class="head"><b>Accuracy by queue</b><span class="legend"><span><i style="background:#cfd3dd"></i>Base</span><span><i style="background:var(--accent)"></i>Tuned</span></span></div>
+        <div class="tip">Refund: 40% to 93%</div>
+        <div class="bars" id="bars"></div>
+        <div class="labels"><span>Billing</span><span>Refund</span><span>Ship</span><span>Tech</span><span>Login</span><span>Cancel</span><span>Plans</span><span>Ideas</span></div>
+      </div>
+    </div>
+
+    <h2>Runs</h2>
+    <div class="history">
+      <div class="hrow"><span class="dot">07</span><b>Support ticket routing</b><span>Today, 11:40 UTC</span><span>61% to 92%</span><span>$0.84 spent</span><span class="pill live">Proving</span></div>
+      <div class="hrow"><span class="dot">06</span><b>Support ticket routing</b><span>Yesterday, 18:02 UTC</span><span>61% to 64%</span><span>$0.79 spent</span><span class="pill no">Not shipped</span></div>
+      <div class="hrow"><span class="dot">05</span><b>Invoice field extraction</b><span>Oct 20, 09:15 UTC</span><span>72% to 95%</span><span>$1.12 spent</span><span class="pill ok">Shipped</span></div>
+    </div>
+  </main>
+</div>
+<span class="name" id="name"></span>
+<script>
+const ACCENTS = {
+  signal: ['#ef3e2d', '#ff7a45', 'rgba(239,62,45,.13)', 'Signal Red'],
+  cobalt: ['#2c6fe0', '#4f9bff', 'rgba(44,111,224,.13)', 'Cobalt Blue'],
+  emerald: ['#0f9f6e', '#2fd39a', 'rgba(15,159,110,.13)', 'Emerald'],
+  saffron: ['#e8a400', '#ffd23f', 'rgba(232,164,0,.16)', 'Saffron'],
+  tangerine: ['#ff6b2c', '#ffa25a', 'rgba(255,107,44,.14)', 'Tangerine'],
+};
+const key = new URLSearchParams(location.search).get('accent') ?? 'saffron';
+const [a, a2, soft, label] = ACCENTS[key];
+const root = document.documentElement.style;
+root.setProperty('--accent', a); if (key === 'saffron') { root.setProperty('--on-accent', '#191b22'); root.setProperty('--accent-text', '#9a6c00'); } root.setProperty('--accent-2', a2); root.setProperty('--accent-soft', soft);
+document.getElementById('name').textContent = label;
+document.querySelectorAll('.ring').forEach((el) => {
+  const p = Number(el.dataset.pct), c = el.dataset.c ?? a, r = 19, L = 2 * Math.PI * r;
+  el.innerHTML = `<svg viewBox="0 0 46 46"><circle cx="23" cy="23" r="${r}" fill="none" stroke="#eceef3" stroke-width="4"/><circle cx="23" cy="23" r="${r}" fill="none" stroke="${c}" stroke-width="4" stroke-linecap="round" stroke-dasharray="${(L * p) / 100} ${L}" transform="rotate(-90 23 23)"/></svg><b>${p}%</b>`;
+});
+const base = [70, 40, 85, 66, 52, 58, 61, 55], tuned = [94, 93, 97, 90, 92, 95, 86, 91];
+document.getElementById('bars').innerHTML = base.map((b, i) => `<div class="col"><i class="base" style="height:${b}%"></i><i class="tuned" style="height:${tuned[i]}%"></i></div>`).join('');
+</script>
+</body>
+</html>

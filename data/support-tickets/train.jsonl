@@ -1,0 +1,240 @@
+{"id":"train-001","text":"My iPad keeps asking for a verification code I never receive. Cheers","label":"account_access","hard":false}
+{"id":"train-002","text":"hello, love the new offline mode, it saves me so much time.","label":"feedback","hard":false}
+{"id":"train-003","text":"The app shows \"something went wrong\" every time I open it on my MacBook. Thanks!","label":"technical","hard":false}
+{"id":"train-004","text":"Hello, i upgraded to monthly and was charged the full $4.50 instead of the prorated amount, can you fix the charge?","label":"billing","hard":true}
+{"id":"train-005","text":"Hey team, if I move to the Starter plan, will I be billed again or is it prorated? Please help.","label":"product_question","hard":true}
+{"id":"train-006","text":"Hey team, does the Family plan include the calendar sync? Please help.","label":"product_question","hard":false}
+{"id":"train-007","text":"I upgraded to Team and was charged teh full $29 instead of the prorated amount, can you fix the charge? Thanks!","label":"billing","hard":true}
+{"id":"train-008","text":"Good morning. Please cancel my monthly plan before it charges me again on the 1st.","label":"cancellation","hard":true}
+{"id":"train-009","text":"Does the Team plan include dark mode?","label":"product_question","hard":false}
+{"id":"train-010","text":"Please cancel my Team subscription, I no longer need it. Appreciate it.","label":"cancellation","hard":false}
+{"id":"train-011","text":"Someone else logged into my account this morning, I think I was hacked.","label":"account_access","hard":false}
+{"id":"train-012","text":"The checkout page shows error code E42 so I cannot pay for the annual plan. Please help.","label":"technical","hard":true}
+{"id":"train-013","text":"Suggestion: please add shared folders to the mobile app. Appreciate it.","label":"feedback","hard":false}
+{"id":"train-014","text":"Hello, the price on my statement is $29 but the site said less for the Family plan. Thanks.","label":"billing","hard":false}
+{"id":"train-015","text":"Please cancel my Pro subscription, I no longer need it. Appreciate it.","label":"cancellation","hard":false}
+{"id":"train-016","text":"Hey team, the tracking for the gift card has not updated in a week, DHL says nothing Thanks!","label":"shipping","hard":false}
+{"id":"train-017","text":"Hey team, i returned my hardware key on the 3rd, when will I get my money back? Appreciate it.","label":"refund","hard":false}
+{"id":"train-018","text":"Hello, please cancel my Team subscription, I no longer need it. Please help.","label":"cancellation","hard":false}
+{"id":"train-019","text":"Hello, i would like a refund for teh $9.99 charge last Tuesday, I never used the Family plan. Appreciate it.","label":"refund","hard":false}
+{"id":"train-020","text":"the price on my statement is $119 but the site said less for the pro plan. appreciate it.","label":"billing","hard":false}
+{"id":"train-021","text":"Good morning. There was a sign-in from a Windows laptop I do not own last Tuesday, please secure my account. Please help.","label":"account_access","hard":false}
+{"id":"train-022","text":"Can you send me an invoice for the $9.99 payment on the 3rd? Our accountant needs it. Thanks!","label":"billing","hard":false}
+{"id":"train-023","text":"Hello, suggestion: please add the widget to the mobile app. Please help.","label":"feedback","hard":false}
+{"id":"train-024","text":"Hello, you charged me twice two weeks ago, please send one of the $29 payments back to my card Thanks!","label":"refund","hard":true}
+{"id":"train-025","text":"Hello, the price on my statement is $59.88 but the site said less for the Pro plan. Thanks.","label":"billing","hard":false}
+{"id":"train-026","text":"I get logged out every few minutes on my MacBook. Thanks.","label":"account_access","hard":false}
+{"id":"train-027","text":"Hello, suggestion: please add the calendar sync to the mobile app. Appreciate it.","label":"feedback","hard":false}
+{"id":"train-028","text":"Hey team, does the Team plan include two-way sync? Thanks.","label":"product_question","hard":false}
+{"id":"train-029","text":"The checkout page shows \"something went wrong\" so I cannot pay for the Pro plan.","label":"technical","hard":true}
+{"id":"train-030","text":"Good morning. Can I use the app on my Galaxy S23 and my laptop at the same time?","label":"product_question","hard":false}
+{"id":"train-031","text":"I paid for express shipping on the starter kit and it still took ten days, can you look into the delivery? Thanks!","label":"shipping","hard":true}
+{"id":"train-032","text":"Good morning. Please cancel my Team subscription, I no longer need it. Appreciate it.","label":"cancellation","hard":false}
+{"id":"train-033","text":"Hello, i upgraded to Starter and was charged the full $14 instead of the prorated amount, can you fix the charge? Thanks! This is the second time I am writing.","label":"billing","hard":true}
+{"id":"train-034","text":"Hi, i was promised a refund last Tuesday and still have not received it. Thanks!","label":"refund","hard":false}
+{"id":"train-035","text":"Hello, not a bug report, but dark mode feels slow compared to before.","label":"feedback","hard":true}
+{"id":"train-036","text":"Does the Team plan include offline mode? Please help","label":"product_question","hard":false}
+{"id":"train-037","text":"Hello, the app is extremely slow on my Chromebook, it takes a minute to load. Thanks.","label":"technical","hard":false}
+{"id":"train-038","text":"Hello, i paid for express shipping on the starter kit and it still took ten days, can you look into the delivery? Please help.","label":"shipping","hard":true}
+{"id":"train-039","text":"Hi, export to PDF does not work after the latest update.","label":"technical","hard":false}
+{"id":"train-040","text":"Hello, do you ship my hardware key to Canada and how long does it take? Please help","label":"shipping","hard":false}
+{"id":"train-041","text":"Hey team, why did my card get charged $119 on March 12? I thought I was on the free tier.","label":"billing","hard":false}
+{"id":"train-042","text":"The app shows error 503 every time I open it on my Galaxy S23. Appreciate it. This is the second time I am writing.","label":"technical","hard":false}
+{"id":"train-043","text":"The password reset link from two weeks ago says it has expired. Appreciate it. This is the second time I am writing.","label":"account_access","hard":false}
+{"id":"train-044","text":"Hi, can I use the app on my MacBook and my laptop at the same time? Cheers","label":"product_question","hard":false}
+{"id":"train-045","text":"Hello, if I move to the Starter plan, will I be billed again or is it prorated?","label":"product_question","hard":true}
+{"id":"train-046","text":"hello, i cancelled within the trial but was still billed $4.50, i want that money returned.","label":"refund","hard":true}
+{"id":"train-047","text":"Can you send me an invoice for the $450 payment on the 3rd? Our accountant needs it","label":"billing","hard":false}
+{"id":"train-048","text":"Does the widget work without an internet connection? Appreciate it.","label":"product_question","hard":false}
+{"id":"train-049","text":"please cancel my starter subscription, i no longer need it. appreciate it.","label":"cancellation","hard":false}
+{"id":"train-050","text":"I paid for express shipping on the desk stand and it still took ten days, can you look into the delivery? Thanks. This is the third time I am writing.","label":"shipping","hard":true}
+{"id":"train-051","text":"Sync stopped working on my iPad last Tuesday, my notes are not updating. Thanks.","label":"technical","hard":false}
+{"id":"train-052","text":"I upgraded to Family and was charged the full $119 instead of the prorated amount, can you fix the charge?","label":"billing","hard":true}
+{"id":"train-053","text":"I was promised a refund this morning and still have not received it. Thanks.","label":"refund","hard":false}
+{"id":"train-054","text":"I would like a refund for the $999 charge this morning, I never used the Family plan Thanks!","label":"refund","hard":false}
+{"id":"train-055","text":"good morning. i paid for express shipping on the starter kit and it still took ten days, can you look into the delivery? thanks!","label":"shipping","hard":true}
+{"id":"train-056","text":"Hi, there was a sign-in from a iPad I do not own two weeks ago, please secure my account. Appreciate it.","label":"account_access","hard":false}
+{"id":"train-057","text":"Hi, please cancel my Family plan before it charges me again on the 1st. Appreciate it.","label":"cancellation","hard":true}
+{"id":"train-058","text":"Notifications stopped arriving on my Galaxy S23.","label":"technical","hard":false}
+{"id":"train-059","text":"Hey team, you charged me twice on the 3rd, please send one of the $450 payments back to my card Please help","label":"refund","hard":true}
+{"id":"train-060","text":"Notifications stopped arriving on my Galaxy S23. Thanks!","label":"technical","hard":false}
+{"id":"train-061","text":"I need to update my card but I cannot sign in to my account since two weeks ago. Cheers","label":"account_access","hard":true}
+{"id":"train-062","text":"Good morning. Love teh new two-way sync, it saves me so much time. Appreciate it.","label":"feedback","hard":false}
+{"id":"train-063","text":"Good morning. Love the new offline mode, it saves me so much time.","label":"feedback","hard":false}
+{"id":"train-064","text":"Hey team, i was promised a refund this morning and still have not received it","label":"refund","hard":false}
+{"id":"train-065","text":"i get a spinning wheel when i try to upload a file larger than 10 mb.","label":"technical","hard":false}
+{"id":"train-066","text":"Does teh annual plan include two-way sync? Thanks!","label":"product_question","hard":false}
+{"id":"train-067","text":"The price on my statement is $9.99 but the site said less for the Team plan. Thanks.","label":"billing","hard":false}
+{"id":"train-068","text":"Hey team, i would like a refund for the $14 charge this morning, I never used the monthly plan. Thanks.","label":"refund","hard":false}
+{"id":"train-069","text":"Please cancel my Team plan before it charges me again on the 1st.","label":"cancellation","hard":true}
+{"id":"train-070","text":"Hello, i paid for express shipping on the desk stand and it still took ten days, can you look into the delivery?","label":"shipping","hard":true}
+{"id":"train-071","text":"Hello, do you ship the printed planner to Canada and how long does it take? Cheers","label":"shipping","hard":false}
+{"id":"train-072","text":"Hello, the password reset link from this morning says it has expired.","label":"account_access","hard":false}
+{"id":"train-073","text":"Hello, please cancel my monthly plan before it charges me again on the 1st.","label":"cancellation","hard":true}
+{"id":"train-074","text":"Hey team, please cancel my annual subscription, I no longer need it. Thanks.","label":"cancellation","hard":false}
+{"id":"train-075","text":"I paid for express shipping on the starter kit and it still took ten days, can you look into the delivery?","label":"shipping","hard":true}
+{"id":"train-076","text":"Hello, if I move to the Starter plan, will I be billed again or is it prorated? Appreciate it.","label":"product_question","hard":true}
+{"id":"train-077","text":"Hi, suggestion: please add two-way sync to teh mobile app. Cheers","label":"feedback","hard":false}
+{"id":"train-078","text":"Suggestion: please add the widget to the mobile app. Cheers","label":"feedback","hard":false}
+{"id":"train-079","text":"Please cancel my monthly plan before it charges me again on the 1st. Thanks!","label":"cancellation","hard":true}
+{"id":"train-080","text":"Good morning. Face ID login stopped working on my Galaxy S23.","label":"account_access","hard":false}
+{"id":"train-081","text":"Good morning. Not a bug report, but offline mode feels slow compared to before. Thanks!","label":"feedback","hard":true}
+{"id":"train-082","text":"Hello, where is my order? the gift card was supposed to arrive yesterday Thanks!","label":"shipping","hard":false}
+{"id":"train-083","text":"Hello, i would like a refund for the $5988 charge two weeks ago, I never used the Pro plan","label":"refund","hard":false}
+{"id":"train-084","text":"Do you ship the printed planner to Canada and how long does it take? Thanks!","label":"shipping","hard":false}
+{"id":"train-085","text":"Hi, i would like a refund for the $450 charge two weeks ago, I never used the Starter plan Thanks","label":"refund","hard":false}
+{"id":"train-086","text":"I need to update my card but I cannot sign in to my account since yesterday. Please help.","label":"account_access","hard":true}
+{"id":"train-087","text":"Hi, does the Pro plan include the calendar sync? Cheers","label":"product_question","hard":false}
+{"id":"train-088","text":"Hi, i upgraded to annual and was charged the full $119 instead of the prorated amount, can you fix the charge?","label":"billing","hard":true}
+{"id":"train-089","text":"I need to update my card but I cannot sign in to my account since last Tuesday.","label":"account_access","hard":true}
+{"id":"train-090","text":"My package was marked delivered two weeks ago but it is not here. Please help. This is the second time I am writing.","label":"shipping","hard":false}
+{"id":"train-091","text":"Where is my order? the desk stand was supposed to arrive yesterday. Appreciate it.","label":"shipping","hard":false}
+{"id":"train-092","text":"Can I use the app on my Chromebook and my laptop at the same time? Please help.","label":"product_question","hard":false}
+{"id":"train-093","text":"Hey team, i cannot log in because teh app shows a crash on launch right after I enter my password. Thanks!","label":"technical","hard":true}
+{"id":"train-094","text":"Please cancel my Pro subscription, I no longer need it","label":"cancellation","hard":false}
+{"id":"train-095","text":"Hi, i signed up with Google and now cannot log in with email.","label":"account_access","hard":false}
+{"id":"train-096","text":"Does the Pro plan include offline mode? Cheers","label":"product_question","hard":false}
+{"id":"train-097","text":"Hey team, not a bug report, but export to PDF feels slow compared to before.","label":"feedback","hard":true}
+{"id":"train-098","text":"Hello, can I use the app on my Galaxy S23 and my laptop at the same time?","label":"product_question","hard":false}
+{"id":"train-099","text":"Love the new offline mode, it saves me so much time. Appreciate it.","label":"feedback","hard":false}
+{"id":"train-100","text":"Not asking for money back, I just want to understand the $14 charge from yesterday. Appreciate it.","label":"billing","hard":true}
+{"id":"train-101","text":"hey team, do you ship the desk stand to canada and how long does it take? thanks","label":"shipping","hard":false}
+{"id":"train-102","text":"Hello, please cancel my Family plan before it charges me again on the 1st.","label":"cancellation","hard":true}
+{"id":"train-103","text":"I cancelled within the trial but was still billed $4.50, I want that money returned. Thanks!","label":"refund","hard":true}
+{"id":"train-104","text":"Please cancel my annual subscription, I no longer need it Thanks!","label":"cancellation","hard":false}
+{"id":"train-105","text":"I would like a refund for the $9.99 charge on the 3rd, I never used the Starter plan.","label":"refund","hard":false}
+{"id":"train-106","text":"Please cancel my Team subscription, I no longer need it.","label":"cancellation","hard":false}
+{"id":"train-107","text":"i upgraded to family and was charged the full $14 instead of the prorated amount, can you fix the charge? please help.","label":"billing","hard":true}
+{"id":"train-108","text":"Hey team, suggestion: please add shared folders to the mobile app.","label":"feedback","hard":false}
+{"id":"train-109","text":"Good morning. Notifications stopped arriving on my Galaxy S23. Thanks!","label":"technical","hard":false}
+{"id":"train-110","text":"Good morning. Does offline mode work without an internet connection? Thanks.","label":"product_question","hard":false}
+{"id":"train-111","text":"Hey team, i cancelled within the trial but was still billed $999, I want that money returned Appreciate it","label":"refund","hard":true}
+{"id":"train-112","text":"Good morning. I was charged $59.88 twice two weeks ago for the same annual plan. Thanks!","label":"billing","hard":false}
+{"id":"train-113","text":"Where is my order? the printed planner was supposed to arrive two weeks ago Cheers This is the second time I am writing.","label":"shipping","hard":false}
+{"id":"train-114","text":"Can I get my $119 back? I bought the wrong plan by mistake. Please help.","label":"refund","hard":false}
+{"id":"train-115","text":"my account is locked after too many login attempts. thanks.","label":"account_access","hard":false}
+{"id":"train-116","text":"i was charged $9.99 twice two weeks ago for the same annual plan. cheers","label":"billing","hard":false}
+{"id":"train-117","text":"i get logged out every few minutes on my windows laptop. appreciate it.","label":"account_access","hard":false}
+{"id":"train-118","text":"The tracking for the starter kit has not updated in a week, DHL says nothing. Cheers","label":"shipping","hard":false}
+{"id":"train-119","text":"i upgraded to family and was charged the full $29 instead of the prorated amount, can you fix the charge? please help.","label":"billing","hard":true}
+{"id":"train-120","text":"Hi, if I move to teh Starter plan, will I be billed again or is it prorated? Cheers","label":"product_question","hard":true}
+{"id":"train-121","text":"hey team, does shared folders work without an internet connection? thanks!","label":"product_question","hard":false}
+{"id":"train-122","text":"Hey team, please cancel my Team subscription, I no longer need it. This is the second time I am writing.","label":"cancellation","hard":false}
+{"id":"train-123","text":"My account is locked after too many login attempts. This is the third time I am writing.","label":"account_access","hard":false}
+{"id":"train-124","text":"Can you send me an invoice for the $29 payment two weeks ago? Our accountant needs it. Please help.","label":"billing","hard":false}
+{"id":"train-125","text":"I would like a refund for the $9.99 charge on the 3rd, I never used the annual plan.","label":"refund","hard":false}
+{"id":"train-126","text":"Suggestion: please add offline mode to the mobile app. Cheers","label":"feedback","hard":false}
+{"id":"train-127","text":"Good morning. I was promised a refund on March 12 and still have not received it.","label":"refund","hard":false}
+{"id":"train-128","text":"Hello, i was promised a refund last Tuesday and still have not received it. Appreciate it.","label":"refund","hard":false}
+{"id":"train-129","text":"hey team, my package was marked delivered yesterday but it is not here. please help.","label":"shipping","hard":false}
+{"id":"train-130","text":"Notifications stopped arriving on my Pixel 8.","label":"technical","hard":false}
+{"id":"train-131","text":"The checkout page shows error code E42 so I cannot pay for the Pro plan.","label":"technical","hard":true}
+{"id":"train-132","text":"I signed up with Google and now cannot log in with email. Cheers","label":"account_access","hard":false}
+{"id":"train-133","text":"Not a bug report, but offline mode feels slow compared to before. Please help.","label":"feedback","hard":true}
+{"id":"train-134","text":"Love the new two-way sync, it saves me so much time. This is the third time I am writing.","label":"feedback","hard":false}
+{"id":"train-135","text":"Hey team, where is my order? the gift card was supposed to arrive on March 12. Appreciate it.","label":"shipping","hard":false}
+{"id":"train-136","text":"Hi, not asking for money back, I just want to understand the $59.88 charge from yesterday. Please help.","label":"billing","hard":true}
+{"id":"train-137","text":"Hey team, the app shows a crash on launch every time I open it on my Windows laptop.","label":"technical","hard":false}
+{"id":"train-138","text":"hey team, does the monthly plan include two-way sync?","label":"product_question","hard":false}
+{"id":"train-139","text":"Hi, you charged me twice yesterday, please send one of the $14 payments back to my card. Thanks.","label":"refund","hard":true}
+{"id":"train-140","text":"The checkout page shows a crash on launch so I cannot pay for the annual plan Cheers","label":"technical","hard":true}
+{"id":"train-141","text":"Do you ship my hardware key to Canada and how long does it take? Thanks.","label":"shipping","hard":false}
+{"id":"train-142","text":"Hey team, if I move to the Starter plan, will I be billed again or is it prorated? Cheers","label":"product_question","hard":true}
+{"id":"train-143","text":"Hi, why did my card get charged $999 two weeks ago? I thought I was on the free tier","label":"billing","hard":false}
+{"id":"train-144","text":"Good morning. Please cancel my Pro subscription, I no longer need it. Thanks!","label":"cancellation","hard":false}
+{"id":"train-145","text":"Hey team, the checkout page shows error 503 so I cannot pay for the Starter plan. Thanks!","label":"technical","hard":true}
+{"id":"train-146","text":"Hello, i need to update my card but I cannot sign in to my account since this morning.","label":"account_access","hard":true}
+{"id":"train-147","text":"good morning. suggestion: please add shared folders to the mobile app. cheers","label":"feedback","hard":false}
+{"id":"train-148","text":"Hey team, please cancel my Starter subscription, I no longer need it. Cheers","label":"cancellation","hard":false}
+{"id":"train-149","text":"Not asking for money back, I just want to understand the $9.99 charge from last Tuesday.","label":"billing","hard":true}
+{"id":"train-150","text":"Good morning. The checkout page shows error 503 so I cannot pay for the Pro plan.","label":"technical","hard":true}
+{"id":"train-151","text":"Hi, not a bug report, but two-way sync feels slow compared to before. Appreciate it. This is the third time I am writing.","label":"feedback","hard":true}
+{"id":"train-152","text":"Good morning. Not a bug report, but export to PDF feels slow compared to before. Cheers","label":"feedback","hard":true}
+{"id":"train-153","text":"Good morning. I get logged out every few minutes on my iPhone 15. This is the second time I am writing.","label":"account_access","hard":false}
+{"id":"train-154","text":"Hello, the tracking for my hardware key has not updated in a week, FedEx says nothing. Thanks!","label":"shipping","hard":false}
+{"id":"train-155","text":"Not a bug report, but shared folders feels slow compared to before. Appreciate it.","label":"feedback","hard":true}
+{"id":"train-156","text":"Hi, i need to update my card but I cannot sign in to my account since last Tuesday. Thanks!","label":"account_access","hard":true}
+{"id":"train-157","text":"Please cancel my annual subscription, I no longer need it. Appreciate it.","label":"cancellation","hard":false}
+{"id":"train-158","text":"Can I use the app on my Galaxy S23 and my laptop at the same time? Thanks!","label":"product_question","hard":false}
+{"id":"train-159","text":"i paid for express shipping on the desk stand and it still took ten days, can you look into the delivery?","label":"shipping","hard":true}
+{"id":"train-160","text":"Suggestion: please add offline mode to the mobile app. Please help.","label":"feedback","hard":false}
+{"id":"train-161","text":"The price on my statement is $119 but the site said less for the Team plan. Thanks!","label":"billing","hard":false}
+{"id":"train-162","text":"if i move to teh starter plan, will i be billed again or is it prorated? thanks! This is the second time I am writing.","label":"product_question","hard":true}
+{"id":"train-163","text":"hey team, i paid for express shipping on the desk stand and it still took ten days, can you look into the delivery? please help.","label":"shipping","hard":true}
+{"id":"train-164","text":"Good morning. I need to update my card but I cannot sign in to my account since two weeks ago. Please help. This is the second time I am writing.","label":"account_access","hard":true}
+{"id":"train-165","text":"Please cancel my Team subscription, I no longer need it. Please help.","label":"cancellation","hard":false}
+{"id":"train-166","text":"Hey team, the tracking for the printed planner has not updated in a week, FedEx says nothing. Thanks!","label":"shipping","hard":false}
+{"id":"train-167","text":"hello, notifications stopped arriving on my pixel 8. thanks!","label":"technical","hard":false}
+{"id":"train-168","text":"The checkout page shows a crash on launch so I cannot pay for the Starter plan. This is the second time I am writing.","label":"technical","hard":true}
+{"id":"train-169","text":"Hey team, the price on my statement is $29 but the site said less for the Pro plan. Appreciate it.","label":"billing","hard":false}
+{"id":"train-170","text":"Hi, please cancel my Starter subscription, I no longer need it.","label":"cancellation","hard":false}
+{"id":"train-171","text":"Hi, can you send me an invoice for the $14 payment two weeks ago? Our accountant needs it. Thanks.","label":"billing","hard":false}
+{"id":"train-172","text":"the tracking for the desk stand has not updated in a week, ups says nothing. appreciate it.","label":"shipping","hard":false}
+{"id":"train-173","text":"Please cancel my Team subscription, I no longer need it. Cheers This is the second time I am writing.","label":"cancellation","hard":false}
+{"id":"train-174","text":"hey team, face id login stopped working on my iphone 15. cheers","label":"account_access","hard":false}
+{"id":"train-175","text":"Hello, can I use the app on my iPad and my laptop at the same time?","label":"product_question","hard":false}
+{"id":"train-176","text":"Suggestion: please add two-way sync to the mobile app.","label":"feedback","hard":false}
+{"id":"train-177","text":"Suggestion: please add two-way sync to the mobile app. Please help.","label":"feedback","hard":false}
+{"id":"train-178","text":"Good morning. Does the Team plan include shared folders? Please help. This is the second time I am writing.","label":"product_question","hard":false}
+{"id":"train-179","text":"Hello, i need to update my card but I cannot sign in to my account since last Tuesday. Thanks.","label":"account_access","hard":true}
+{"id":"train-180","text":"Love the new the calendar sync, it saves me so much time. This is the second time I am writing.","label":"feedback","hard":false}
+{"id":"train-181","text":"Good morning. I need to update my card but I cannot sign in to my account since two weeks ago. This is the third time I am writing.","label":"account_access","hard":true}
+{"id":"train-182","text":"Hi, my account got locked two weeks ago after I typed the wrong password a few times. Thanks!","label":"account_access","hard":false}
+{"id":"train-183","text":"Hi, the checkout page shows a spinning wheel so I cannot pay for the monthly plan","label":"technical","hard":true}
+{"id":"train-184","text":"Good morning. The app is extremely slow on my Windows laptop, it takes a minute to load.","label":"technical","hard":false}
+{"id":"train-185","text":"good morning. i paid for express shipping on the desk stand and it still took ten days, can you look into the delivery? appreciate it. This is the third time I am writing.","label":"shipping","hard":true}
+{"id":"train-186","text":"Good morning. Love the new the calendar sync, it saves me so much time. Thanks!","label":"feedback","hard":false}
+{"id":"train-187","text":"Hello, i cancelled within the trial but was still billed $14, I want that money returned.","label":"refund","hard":true}
+{"id":"train-188","text":"The tracking for the desk stand has not updated in a week, FedEx says nothing.","label":"shipping","hard":false}
+{"id":"train-189","text":"Hey team, i get logged out every few minutes on my Galaxy S23. Appreciate it. This is the third time I am writing.","label":"account_access","hard":false}
+{"id":"train-190","text":"hello, i need to update my card but i cannot sign in to my account since yesterday.","label":"account_access","hard":true}
+{"id":"train-191","text":"Does offline mode work without an internet connection? Cheers","label":"product_question","hard":false}
+{"id":"train-192","text":"Hey team, i would like a refund for the $9.99 charge on the 3rd, I never used the Family plan.","label":"refund","hard":false}
+{"id":"train-193","text":"hi, i get error 503 when i try to upload a file larger than 10 mb. appreciate it.","label":"technical","hard":false}
+{"id":"train-194","text":"Good morning. Please cancel my Team plan before it charges me again on the 1st. Thanks. This is the third time I am writing.","label":"cancellation","hard":true}
+{"id":"train-195","text":"Good morning. The price on my statement is $59.88 but the site said less for the monthly plan. Thanks.","label":"billing","hard":false}
+{"id":"train-196","text":"Good morning. Why did my card get charged $59.88 on March 12? I thought I was on the free tier. Thanks.","label":"billing","hard":false}
+{"id":"train-197","text":"Good morning. The password reset link from two weeks ago says it has expired. Please help.","label":"account_access","hard":false}
+{"id":"train-198","text":"You charged me twice last Tuesday, please send one of the $999 payments back to my card","label":"refund","hard":true}
+{"id":"train-199","text":"Hey team, i cannot log in because the app shows a crash on launch right after I enter my password. Appreciate it.","label":"technical","hard":true}
+{"id":"train-200","text":"Hello, if I move to the Starter plan, will I be billed again or is it prorated? Please help.","label":"product_question","hard":true}
+{"id":"train-201","text":"Hello, the app shows error code E42 every time I open it on my Galaxy S23. Thanks!","label":"technical","hard":false}
+{"id":"train-202","text":"i returned my hardware key last tuesday, when will i get my money back?","label":"refund","hard":false}
+{"id":"train-203","text":"Good morning. Please cancel my Pro subscription, I no longer need it. Appreciate it. This is the second time I am writing.","label":"cancellation","hard":false}
+{"id":"train-204","text":"Good morning Please cancel my Family plan before it charges me again on the 1st","label":"cancellation","hard":true}
+{"id":"train-205","text":"do you ship teh desk stand to canada and how long does it take? please help","label":"shipping","hard":false}
+{"id":"train-206","text":"Hi, i need to update my card but I cannot sign in to my account since this morning. Thanks.","label":"account_access","hard":true}
+{"id":"train-207","text":"Where is my order? the desk stand was supposed to arrive on the 3rd.","label":"shipping","hard":false}
+{"id":"train-208","text":"Hey team, i get \"something went wrong\" when I try to upload a file larger than 10 MB. Appreciate it.","label":"technical","hard":false}
+{"id":"train-209","text":"If I move to the Starter plan, will I be billed again or is it prorated? Appreciate it.","label":"product_question","hard":true}
+{"id":"train-210","text":"Hello, i was charged $29 twice last Tuesday for the same Starter plan. Thanks!","label":"billing","hard":false}
+{"id":"train-211","text":"Hello, if I move to the Starter plan, will I be billed again or is it prorated? Cheers","label":"product_question","hard":true}
+{"id":"train-212","text":"I cancelled within the trial but was still billed $9.99, I want that money returned. Thanks.","label":"refund","hard":true}
+{"id":"train-213","text":"hey team, sync stopped working on my chromebook on march 12, my notes are not updating.","label":"technical","hard":false}
+{"id":"train-214","text":"Can I get my $119 back? I bought the wrong plan by mistake. This is the second time I am writing.","label":"refund","hard":false}
+{"id":"train-215","text":"Can I get my $29 back? I bought the wrong plan by mistake. Thanks!","label":"refund","hard":false}
+{"id":"train-216","text":"hey team, can i get my $9.99 back? i bought the wrong plan by mistake. thanks.","label":"refund","hard":false}
+{"id":"train-217","text":"Hey team, please cancel my Team plan before it charges me again on the 1st. Appreciate it.","label":"cancellation","hard":true}
+{"id":"train-218","text":"Hello, there was a sign-in from a Windows laptop I do not own on March 12, please secure my account.","label":"account_access","hard":false}
+{"id":"train-219","text":"Good morning. The app shows a spinning wheel every time I open it on my MacBook.","label":"technical","hard":false}
+{"id":"train-220","text":"please cancel my starter subscription, i no longer need it.","label":"cancellation","hard":false}
+{"id":"train-221","text":"hello, not a bug report, but two-way sync feels slow compared to before. please help.","label":"feedback","hard":true}
+{"id":"train-222","text":"Not a bug report, but export to PDF feels slow compared to before. Appreciate it. This is the second time I am writing.","label":"feedback","hard":true}
+{"id":"train-223","text":"I was promised a refund this morning and still have not received it.","label":"refund","hard":false}
+{"id":"train-224","text":"Hey team, sync stopped working on my Galaxy S23 on the 3rd, my notes are not updating. Please help. This is the second time I am writing.","label":"technical","hard":false}
+{"id":"train-225","text":"Hello, can you send me an invoice for the $14 payment on the 3rd? Our accountant needs it. Appreciate it.","label":"billing","hard":false}
+{"id":"train-226","text":"Hey team, can you send me an invoice for the $4.50 payment yesterday? Our accountant needs it. Cheers","label":"billing","hard":false}
+{"id":"train-227","text":"Notifications stopped arriving on my Pixel 8. Please help.","label":"technical","hard":false}
+{"id":"train-228","text":"not a bug report, but dark mode feels slow compared to before.","label":"feedback","hard":true}
+{"id":"train-229","text":"Hello, my account is locked after too many login attempts.","label":"account_access","hard":false}
+{"id":"train-230","text":"Hey team, i paid for express shipping on the desk stand and it still took ten days, can you look into the delivery? Thanks.","label":"shipping","hard":true}
+{"id":"train-231","text":"hello, please cancel my team subscription, i no longer need it.","label":"cancellation","hard":false}
+{"id":"train-232","text":"Hello, suggestion: please add the calendar sync to the mobile app.","label":"feedback","hard":false}
+{"id":"train-233","text":"If I move to the Starter plan, will I be billed again or is it prorated?","label":"product_question","hard":true}
+{"id":"train-234","text":"Hello, i was charged $29 twice last Tuesday for the same Team plan.","label":"billing","hard":false}
+{"id":"train-235","text":"Hi, do you ship the gift card to Canada and how long does it take? Thanks!","label":"shipping","hard":false}
+{"id":"train-236","text":"Does offline mode work without an internet connection? Thanks.","label":"product_question","hard":false}
+{"id":"train-237","text":"Hey team, you charged me twice yesterday, please send one of teh $14 payments back to my card. Please help.","label":"refund","hard":true}
+{"id":"train-238","text":"Please cancel my Team subscription, I no longer need it. Thanks!","label":"cancellation","hard":false}
+{"id":"train-239","text":"Hey team, please cancel my Pro plan before it charges me again on teh 1st. Appreciate it.","label":"cancellation","hard":true}
+{"id":"train-240","text":"Suggestion: please add offline mode to the mobile app.","label":"feedback","hard":false}

@@ -1,0 +1,64 @@
+{"id":"dev-001","text":"does dark mode come with the monthly plan or do i need to pay extra?","label":"product_question","hard":true}
+{"id":"dev-002","text":"Hey team, i want to close my account and delete my data. Cheers This is the third time I am writing.","label":"cancellation","hard":false}
+{"id":"dev-003","text":"I want to close my account and delete my data. Thanks! This is the second time I am writing.","label":"cancellation","hard":false}
+{"id":"dev-004","text":"I set up two-factor on a iPhone 15 I sold, how do I get back in? Cheers","label":"account_access","hard":false}
+{"id":"dev-005","text":"The tracking for the printed planner has not updated in a week, the post office says nothing. Thanks!","label":"shipping","hard":false}
+{"id":"dev-006","text":"Do you ship the starter kit to Canada and how long does it take? Thanks.","label":"shipping","hard":false}
+{"id":"dev-007","text":"Sync stopped working on my iPhone 15 on the 3rd, my notes are not updating.","label":"technical","hard":false}
+{"id":"dev-008","text":"hello, i would like a refund for the $14 charge yesterday, i never used the annual plan. please help.","label":"refund","hard":false}
+{"id":"dev-009","text":"I need to update my card but I cannot sign in to my account since on March 12 Thanks!","label":"account_access","hard":true}
+{"id":"dev-010","text":"Hi, love the new shared folders, it saves me so much time Thanks!","label":"feedback","hard":false}
+{"id":"dev-011","text":"Good morning. Where is my order? the starter kit was supposed to arrive on March 12. Appreciate it.","label":"shipping","hard":false}
+{"id":"dev-012","text":"Good morning. There is a charge of $59.88 I do not recognise from two weeks ago. Appreciate it.","label":"billing","hard":false}
+{"id":"dev-013","text":"Good morning. Not asking for money back, I just want to understand the $29 charge from on March 12. This is the third time I am writing.","label":"billing","hard":true}
+{"id":"dev-014","text":"There is a charge of $119 I do not recognise from this morning.","label":"billing","hard":false}
+{"id":"dev-015","text":"Honestly the Starter plan is too expensive for what it offers, consider a cheaper tier.","label":"feedback","hard":true}
+{"id":"dev-016","text":"good morning. since the update my account settings page shows a spinning wheel. cheers","label":"technical","hard":true}
+{"id":"dev-017","text":"hey team, not asking for money back, i just want to understand the $9.99 charge from yesterday.","label":"billing","hard":true}
+{"id":"dev-018","text":"I paid for express shipping on the printed planner and it still took ten days, can you look into the delivery? Appreciate it","label":"shipping","hard":true}
+{"id":"dev-019","text":"Hello, i upgraded to Family and was charged the full $4.50 instead of the prorated amount, can you fix the charge?","label":"billing","hard":true}
+{"id":"dev-020","text":"good morning. i want to close my account and delete my data. This is the third time I am writing.","label":"cancellation","hard":false}
+{"id":"dev-021","text":"There is a charge of $4.50 I do not recognise from two weeks ago. Thanks!","label":"billing","hard":false}
+{"id":"dev-022","text":"The app is extremely slow on my MacBook, it takes a minute to load. Cheers","label":"technical","hard":false}
+{"id":"dev-023","text":"Hi, honestly the Starter plan is too expensive for what it offers, consider a cheaper tier. Thanks!","label":"feedback","hard":true}
+{"id":"dev-024","text":"Hi, you charged me twice two weeks ago, please send one of the $59.88 payments back to my card. Thanks!","label":"refund","hard":true}
+{"id":"dev-025","text":"Hey team, please cancel my annual plan before it charges me again on the 1st Thanks!","label":"cancellation","hard":true}
+{"id":"dev-026","text":"It would be great if the calendar sync supported more file types.","label":"feedback","hard":false}
+{"id":"dev-027","text":"Hello, i cancelled within teh trial but was still billed $119, I want that money returned.","label":"refund","hard":true}
+{"id":"dev-028","text":"Does the calendar sync work without an internet connection?","label":"product_question","hard":false}
+{"id":"dev-029","text":"i returned the printed planner two weeks ago, when will i get my money back? thanks. This is the third time I am writing.","label":"refund","hard":false}
+{"id":"dev-030","text":"Hi, why did my card get charged $4.50 this morning? I thought I was on the free tier. Appreciate it.","label":"billing","hard":false}
+{"id":"dev-031","text":"Please cancel my annual plan before it charges me again on the 1st. Appreciate it.","label":"cancellation","hard":true}
+{"id":"dev-032","text":"I want to keep my subscription but I cannot get into the account to manage it.","label":"account_access","hard":true}
+{"id":"dev-033","text":"Hello, i was promised a refund two weeks ago and still have not received it.","label":"refund","hard":false}
+{"id":"dev-034","text":"hey team, i returned the starter kit on the 3rd, when will i get my money back? please help.","label":"refund","hard":false}
+{"id":"dev-035","text":"hello, teh checkout page shows \"something went wrong\" so i cannot pay for the family plan thanks","label":"technical","hard":true}
+{"id":"dev-036","text":"Hello, i paid for express shipping on my hardware key and it still took ten days, can you look into the delivery? Thanks.","label":"shipping","hard":true}
+{"id":"dev-037","text":"The app shows error 503 every time I open it on my iPhone 15. Please help.","label":"technical","hard":false}
+{"id":"dev-038","text":"hi, please cancel my annual plan before it charges me again on the 1st. cheers","label":"cancellation","hard":true}
+{"id":"dev-039","text":"Hey team, notifications stopped arriving on my Windows laptop. Appreciate it.","label":"technical","hard":false}
+{"id":"dev-040","text":"Hi, if I move to the Pro plan, will I be billed again or is it prorated? Please help.","label":"product_question","hard":true}
+{"id":"dev-041","text":"Good morning. I want to keep my subscription but I cannot get into the account to manage it. Cheers","label":"account_access","hard":true}
+{"id":"dev-042","text":"Hello, requesting a full refund for the Team subscription, it is not what was advertised.","label":"refund","hard":false}
+{"id":"dev-043","text":"Hey team, does the monthly plan include export to PDF? This is the third time I am writing.","label":"product_question","hard":false}
+{"id":"dev-044","text":"Hey team, does the Family plan include the widget? Cheers","label":"product_question","hard":false}
+{"id":"dev-045","text":"Hey team, the redesign is confusing, I preferred the old layout Cheers","label":"feedback","hard":false}
+{"id":"dev-046","text":"Hey team, i forgot my password and the reset email never arrives. Thanks!","label":"account_access","hard":false}
+{"id":"dev-047","text":"Hey team, it would be great if dark mode supported more file types.","label":"feedback","hard":false}
+{"id":"dev-048","text":"does two-way sync work without an internet connection?","label":"product_question","hard":false}
+{"id":"dev-049","text":"shared folders does not work after the latest update","label":"technical","hard":false}
+{"id":"dev-050","text":"Hello, my iPhone 15 keeps asking for a verification code I never receive. Thanks!","label":"account_access","hard":false}
+{"id":"dev-051","text":"Hey team, can I use the app on my Pixel 8 and my laptop at the same time? Thanks.","label":"product_question","hard":false}
+{"id":"dev-052","text":"The checkout page shows a spinning wheel so I cannot pay for the Starter plan. Thanks!","label":"technical","hard":true}
+{"id":"dev-053","text":"It would be great if dark mode supported more file types. Appreciate it.","label":"feedback","hard":false}
+{"id":"dev-054","text":"Good morning. DHL lost my package, what happens now?","label":"shipping","hard":false}
+{"id":"dev-055","text":"Hi, if I move to the Family plan, will I be billed again or is it prorated?","label":"product_question","hard":true}
+{"id":"dev-056","text":"Hi, where is my order? the printed planner was supposed to arrive last Tuesday.","label":"shipping","hard":false}
+{"id":"dev-057","text":"Hello, you charged me twice two weeks ago, please send one of the $9.99 payments back to my card. Thanks!","label":"refund","hard":true}
+{"id":"dev-058","text":"There is a charge of $119 I do not recognise from on the 3rd. Please help.","label":"billing","hard":false}
+{"id":"dev-059","text":"Hello, honestly the annual plan is too expensive for what it offers, consider a cheaper tier. Please help. This is the second time I am writing.","label":"feedback","hard":true}
+{"id":"dev-060","text":"Please cancel my monthly subscription, I no longer need it. Appreciate it.","label":"cancellation","hard":false}
+{"id":"dev-061","text":"Hi, i want to close my account and delete my data. Thanks.","label":"cancellation","hard":false}
+{"id":"dev-062","text":"i set up two-factor on a iphone 15 i sold, how do i get back in? thanks.","label":"account_access","hard":false}
+{"id":"dev-063","text":"Hey team, i set up two-factor on a Pixel 8 I sold, how do I get back in? Cheers","label":"account_access","hard":false}
+{"id":"dev-064","text":"Hi, order says shipped on March 12 but FedEx has no record, is it actually on the way? Thanks!","label":"shipping","hard":true}
