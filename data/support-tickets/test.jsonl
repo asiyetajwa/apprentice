@@ -1,120 +1,120 @@
-{"id":"test-001","text":"Hello, i set up two-factor on a MacBook I sold, how do I get back in? Cheers","label":"account_access","hard":false}
-{"id":"test-002","text":"Hi, how many people can share a Family plan?","label":"product_question","hard":false}
-{"id":"test-003","text":"can i change the delivery address for the desk stand? it has not shipped yet. thanks!","label":"shipping","hard":false}
-{"id":"test-004","text":"I am switching to another app, please end my subscription. Appreciate it.","label":"cancellation","hard":false}
-{"id":"test-005","text":"Hello, how many people can share a Family plan? Thanks.","label":"product_question","hard":false}
-{"id":"test-006","text":"I set up two-factor on a Windows laptop I sold, how do I get back in? Appreciate it. This is the third time I am writing.","label":"account_access","hard":false}
-{"id":"test-007","text":"Good morning. I upgraded to Team and was charged the full $4.50 instead of the prorated amount, can you fix the charge? Cheers","label":"billing","hard":true}
-{"id":"test-008","text":"Hey team, export to PDF produces an empty file. Appreciate it.","label":"technical","hard":false}
-{"id":"test-009","text":"Good morning. The checkout page shows a spinning wheel so I cannot pay for the Team plan. Please help.","label":"technical","hard":true}
-{"id":"test-010","text":"hello, the login code goes to my old email, how do i update it so i can sign in?","label":"account_access","hard":true}
-{"id":"test-011","text":"Good morning. Sign in on my Chromebook says my account does not exist, but I pay for monthly. Appreciate it.","label":"account_access","hard":true}
-{"id":"test-012","text":"How many people can share a Family plan? Please help.","label":"product_question","hard":false}
-{"id":"test-013","text":"Does the calendar sync come with the Team plan or do I need to pay extra? Thanks.","label":"product_question","hard":true}
-{"id":"test-014","text":"two-way sync does not work after the latest update. please help.","label":"technical","hard":false}
-{"id":"test-015","text":"Hey team, sign in on my Galaxy S23 says my account does not exist, but I pay for Team. This is the second time I am writing.","label":"account_access","hard":true}
-{"id":"test-016","text":"Hello, there is a charge of $119 I do not recognise from two weeks ago.","label":"billing","hard":false}
-{"id":"test-017","text":"hi, i am switching to another app, please end my subscription. thanks.","label":"cancellation","hard":false}
-{"id":"test-018","text":"I was promised a refund yesterday and still have not received it.","label":"refund","hard":false}
-{"id":"test-019","text":"Notifications stopped arriving on my MacBook.","label":"technical","hard":false}
-{"id":"test-020","text":"Hey team, there is a charge of $59.88 I do not recognise from yesterday.","label":"billing","hard":false}
-{"id":"test-021","text":"Export to PDF produces an empty file.","label":"technical","hard":false}
-{"id":"test-022","text":"hi, please refund my last payment. the app did not work for me. please help.","label":"refund","hard":false}
-{"id":"test-023","text":"hello, export to pdf produces an empty file.","label":"technical","hard":false}
-{"id":"test-024","text":"Cancel my membership effective today please. This is the third time I am writing.","label":"cancellation","hard":false}
-{"id":"test-025","text":"There is a charge of $119 I do not recognise from yesterday. Please help.","label":"billing","hard":false}
-{"id":"test-026","text":"requesting a full refund for the family subscription, it is not what was advertised. thanks.","label":"refund","hard":false}
-{"id":"test-027","text":"Hey team, it would be great if export to PDF supported more file types","label":"feedback","hard":false}
-{"id":"test-028","text":"what is the difference between the pro and team plans? thanks.","label":"product_question","hard":false}
-{"id":"test-029","text":"Hey team, i am switching to another app, please end my subscription Thanks!","label":"cancellation","hard":false}
-{"id":"test-030","text":"Hello, i cannot find the cancel button in my account settings, please end the subscription for me. Thanks.","label":"cancellation","hard":true}
-{"id":"test-031","text":"Hello, i paid for express shipping on the gift card and it still took ten days, can you look into the delivery?","label":"shipping","hard":true}
-{"id":"test-032","text":"Hi, requesting a full refund for the monthly subscription, it is not what was advertised.","label":"refund","hard":false}
-{"id":"test-033","text":"not asking for money back, i just want to understand teh $119 charge from last tuesday.","label":"billing","hard":true}
-{"id":"test-034","text":"Hi, how many people can share a Family plan? Appreciate it.","label":"product_question","hard":false}
-{"id":"test-035","text":"If I move to the annual plan, will I be billed again or is it prorated?","label":"product_question","hard":true}
-{"id":"test-036","text":"I need to update my card but I cannot sign in to my account since on the 3rd. Thanks!","label":"account_access","hard":true}
-{"id":"test-037","text":"Good morning. Cancel my membership effective today please. Appreciate it.","label":"cancellation","hard":false}
-{"id":"test-038","text":"Hello, if I move to the Team plan, will I be billed again or is it prorated? Appreciate it.","label":"product_question","hard":true}
-{"id":"test-039","text":"hi, you charged me twice on the 3rd, please send one of the $14 payments back to my card. thanks!","label":"refund","hard":true}
-{"id":"test-040","text":"Good morning. My payment keeps failing when I try to update my card details. Cheers","label":"billing","hard":false}
-{"id":"test-041","text":"hey team, order says shipped yesterday but fedex has no record, is it actually on the way?","label":"shipping","hard":true}
-{"id":"test-042","text":"hey team, please cancel my family subscription, i no longer need it. please help.","label":"cancellation","hard":false}
-{"id":"test-043","text":"Export to PDF produces an empty file. Appreciate it.","label":"technical","hard":false}
-{"id":"test-044","text":"Good morning. Love the new export to PDF, it saves me so much time. Cheers","label":"feedback","hard":false}
-{"id":"test-045","text":"Good morning. Does export to PDF come with the monthly plan or do I need to pay extra?","label":"product_question","hard":true}
-{"id":"test-046","text":"Hi, the tracking for the starter kit has not updated in a week, UPS says nothing. Thanks!","label":"shipping","hard":false}
-{"id":"test-047","text":"hello, my account says starter but i am being billed for a different plan. please help.","label":"billing","hard":true}
-{"id":"test-048","text":"Hi, how many people can share a Family plan? Cheers This is the third time I am writing.","label":"product_question","hard":false}
-{"id":"test-049","text":"I lost my phone and cannot get past two-factor authentication. Appreciate it.","label":"account_access","hard":false}
-{"id":"test-050","text":"It would be great if shared folders supported more file types. Thanks! This is the third time I am writing.","label":"feedback","hard":false}
-{"id":"test-051","text":"good morning. it would be great if export to pdf supported more file types. appreciate it. This is the second time I am writing.","label":"feedback","hard":false}
-{"id":"test-052","text":"I paid for express shipping on the gift card and it still took ten days, can you look into the delivery?","label":"shipping","hard":true}
-{"id":"test-053","text":"Honestly the Pro plan is too expensive for what it offers, consider a cheaper tier. Cheers","label":"feedback","hard":true}
-{"id":"test-054","text":"Export to PDF produces an empty file. Thanks!","label":"technical","hard":false}
-{"id":"test-055","text":"Hi, the starter kit arrived broken, I do not want a replacement, just the money back. Thanks.","label":"refund","hard":true}
-{"id":"test-056","text":"Good morning FedEx lost my package, what happens now? Please help","label":"shipping","hard":false}
-{"id":"test-057","text":"There is a charge of $14 I do not recognise from last Tuesday.","label":"billing","hard":false}
-{"id":"test-058","text":"Hello, fedEx lost my package, what happens now? Thanks","label":"shipping","hard":false}
-{"id":"test-059","text":"FedEx lost my package, what happens now? Please help.","label":"shipping","hard":false}
-{"id":"test-060","text":"Hey team, fedEx lost my package, what happens now? Please help. This is the third time I am writing.","label":"shipping","hard":false}
-{"id":"test-061","text":"Hey team, not a bug report, but the calendar sync feels slow compared to before","label":"feedback","hard":true}
-{"id":"test-062","text":"Good morning. Not a bug report, but the widget feels slow compared to before. Please help. This is the third time I am writing.","label":"feedback","hard":true}
-{"id":"test-063","text":"it would be great if export to pdf supported more file types.","label":"feedback","hard":false}
-{"id":"test-064","text":"Hey team, how many people can share a Family plan? Thanks.","label":"product_question","hard":false}
-{"id":"test-065","text":"Good morning. How do I change the email address on my account? Please help.","label":"account_access","hard":false}
-{"id":"test-066","text":"the price on my statement is $29 but the site said less for the monthly plan. thanks.","label":"billing","hard":false}
-{"id":"test-067","text":"Good morning. Please cancel my Starter plan before it charges me again on the 1st.","label":"cancellation","hard":true}
-{"id":"test-068","text":"the gift card arrived broken, I do not want a replacement, just the money back Thanks","label":"refund","hard":true}
-{"id":"test-069","text":"Hi, i am switching to another app, please end my subscription. This is the third time I am writing.","label":"cancellation","hard":false}
-{"id":"test-070","text":"Hi, if I move to the monthly plan, will I be billed again or is it prorated? Appreciate it.","label":"product_question","hard":true}
-{"id":"test-071","text":"I cannot log in because the app shows a spinning wheel right after I enter my password. Cheers","label":"technical","hard":true}
-{"id":"test-072","text":"Can I get my $59.88 back? I bought the wrong plan by mistake. Appreciate it.","label":"refund","hard":false}
-{"id":"test-073","text":"Since the update my account settings page shows error 503. Cheers","label":"technical","hard":true}
-{"id":"test-074","text":"Hello, honestly the Team plan is too expensive for what it offers, consider a cheaper tier. Please help.","label":"feedback","hard":true}
-{"id":"test-075","text":"Good morning. The login code goes to my old email, how do I update it so I can sign in? Appreciate it.","label":"account_access","hard":true}
-{"id":"test-076","text":"Good morning. I set up two-factor on a Windows laptop I sold, how do I get back in? Thanks!","label":"account_access","hard":false}
-{"id":"test-077","text":"the desk stand arrived broken, I do not want a replacement, just the money back. Appreciate it.","label":"refund","hard":true}
-{"id":"test-078","text":"Hello, is there a student discount? Cheers","label":"product_question","hard":false}
-{"id":"test-079","text":"export to pdf produces an empty file. cheers","label":"technical","hard":false}
-{"id":"test-080","text":"Hi, i get logged out every few minutes on my Pixel 8. Appreciate it.","label":"account_access","hard":false}
-{"id":"test-081","text":"Good morning. My package was marked delivered this morning but it is not here. Thanks!","label":"shipping","hard":false}
-{"id":"test-082","text":"how do i stop my plan from renewing next month? cheers This is the third time I am writing.","label":"cancellation","hard":false}
-{"id":"test-083","text":"Just wanted to say your support team was great last week. Appreciate it.","label":"feedback","hard":false}
-{"id":"test-084","text":"Good morning. Honestly the Family plan is too expensive for what it offers, consider a cheaper tier. Thanks.","label":"feedback","hard":true}
-{"id":"test-085","text":"Face ID login stopped working on my MacBook. Appreciate it.","label":"account_access","hard":false}
-{"id":"test-086","text":"Hi, my account says Family but I am being billed for a different plan.","label":"billing","hard":true}
-{"id":"test-087","text":"Good morning. Order says shipped this morning but DHL has no record, is it actually on the way? Thanks.","label":"shipping","hard":true}
-{"id":"test-088","text":"Hi, can I change the delivery address for the printed planner? It has not shipped yet. Cheers","label":"shipping","hard":false}
-{"id":"test-089","text":"Hi, how do I switch from monthly to annual billing?","label":"billing","hard":false}
-{"id":"test-090","text":"Good morning. Someone else logged into my account on the 3rd, I think I was hacked. Please help.","label":"account_access","hard":false}
-{"id":"test-091","text":"Hi, stop charging my card, I am done with the service. Appreciate it.","label":"cancellation","hard":true}
-{"id":"test-092","text":"hi, i am switching to another app, please end my subscription. appreciate it.","label":"cancellation","hard":false}
-{"id":"test-093","text":"Hi, requesting a full refund for the monthly subscription, it is not what was advertised. Thanks.","label":"refund","hard":false}
-{"id":"test-094","text":"Hello, i cannot find the cancel button in my account settings, please end the subscription for me. This is the second time I am writing.","label":"cancellation","hard":true}
-{"id":"test-095","text":"Hello, requesting a full refund for the annual subscription, it is not what was advertised. Thanks. This is the second time I am writing.","label":"refund","hard":false}
-{"id":"test-096","text":"good morning. i am switching to another app, please end my subscription.","label":"cancellation","hard":false}
-{"id":"test-097","text":"Hi, my package was marked delivered on the 3rd but it is not here. Cheers","label":"shipping","hard":false}
-{"id":"test-098","text":"i cannot log in because the app shows \"something went wrong\" right after i enter my password.","label":"technical","hard":true}
-{"id":"test-099","text":"Stop charging my card, I am done with the service.","label":"cancellation","hard":true}
-{"id":"test-100","text":"I returned the gift card on March 12, when will I get my money back? Appreciate it.","label":"refund","hard":false}
-{"id":"test-101","text":"Hi, there is a charge of $4.50 I do not recognise from last Tuesday.","label":"billing","hard":false}
-{"id":"test-102","text":"Hey team, i need to change the billing address on my invoices. Cheers","label":"billing","hard":false}
-{"id":"test-103","text":"Hey team, does dark mode work without an internet connection?","label":"product_question","hard":false}
-{"id":"test-104","text":"Hello, suggestion: please add export to PDF to teh mobile app.","label":"feedback","hard":false}
-{"id":"test-105","text":"Hi, order says shipped last Tuesday but DHL has no record, is it actually on the way?","label":"shipping","hard":true}
-{"id":"test-106","text":"Hello, since the update my account settings page shows a crash on launch.","label":"technical","hard":true}
-{"id":"test-107","text":"Hi, not asking for money back, I just want to understand the $119 charge from on March 12.","label":"billing","hard":true}
-{"id":"test-108","text":"Please refund my last payment. The app did not work for me. Thanks!","label":"refund","hard":false}
-{"id":"test-109","text":"My payment keeps failing when I try to update my card details. Thanks!","label":"billing","hard":false}
-{"id":"test-110","text":"hello, i need to move my account to a new email address, the old one is gone. appreciate it.","label":"account_access","hard":false}
-{"id":"test-111","text":"i get a blank white screen when i try to upload a file larger than 10 mb. thanks.","label":"technical","hard":false}
-{"id":"test-112","text":"Hey team, it would be great if the widget supported more file types.","label":"feedback","hard":false}
-{"id":"test-113","text":"Export to PDF produces an empty file. Please help.","label":"technical","hard":false}
-{"id":"test-114","text":"Hello, suggestion: please add dark mode to the mobile app.","label":"feedback","hard":false}
-{"id":"test-115","text":"hello, usps lost my package, what happens now? thanks.","label":"shipping","hard":false}
-{"id":"test-116","text":"Hi, love the new the widget, it saves me so much time Appreciate it","label":"feedback","hard":false}
-{"id":"test-117","text":"the gift card arrived broken, I do not want a replacement, just teh money back. Cheers","label":"refund","hard":true}
-{"id":"test-118","text":"Please refund my last payment. The app did not work for me.","label":"refund","hard":false}
-{"id":"test-119","text":"Hello, i set up two-factor on a iPad I sold, how do I get back in? This is the second time I am writing.","label":"account_access","hard":false}
-{"id":"test-120","text":"hey team, can i use the app on my iphone 15 and my laptop at the same time?","label":"product_question","hard":false}
+{"id":"test-001","text":"I already tried logging out and back in. Your app crashed during my exam week and the annual plan was useless, I expect my $119 returned. Thanks!","label":"refund","hard":true}
+{"id":"test-002","text":"Hello, can you bring back the old export to PDF? The new one is harder to use.","label":"feedback","hard":true}
+{"id":"test-003","text":"Shipping on the printed planner was quick and the packaging was lovely, thank you. Thanks.","label":"feedback","hard":true}
+{"id":"test-004","text":"Good morning. My company stopped using Lumen, turn off the auto renewal on our Starter account. Cheers","label":"cancellation","hard":true}
+{"id":"test-005","text":"Good morning. Can I change the delivery address for the gift card? It has not shipped yet. Thanks.","label":"shipping","hard":false}
+{"id":"test-006","text":"I already tried logging out and back in. I lost my phone and cannot get past two-factor authentication. Cheers","label":"account_access","hard":false}
+{"id":"test-007","text":"Hi, not asking for money back, I just want to understand the $4.50 charge from this morning. Thanks!","label":"billing","hard":true}
+{"id":"test-008","text":"my package was marked delivered yesterday but it is not here. appreciate it.","label":"shipping","hard":false}
+{"id":"test-009","text":"Any plans to support MacBook? I would switch my whole team over. Thanks!","label":"feedback","hard":true}
+{"id":"test-010","text":"Hello, can the post office leave the gift card with my neighbour? I will be away when it arrives. Cheers","label":"shipping","hard":true}
+{"id":"test-011","text":"I am not trying to cancel. Your app crashed during my exam week and the Team plan was useless, I expect my $119 returned.","label":"refund","hard":true}
+{"id":"test-012","text":"Good morning. Do you ship the printed planner to Canada, and is shipping included in the Pro plan? Please help.","label":"product_question","hard":true}
+{"id":"test-013","text":"good morning. love the new two-way sync, it saves me so much time. please help.","label":"feedback","hard":false}
+{"id":"test-014","text":"your app is usually great. does the family plan include offline mode? thanks.","label":"product_question","hard":false}
+{"id":"test-015","text":"Hey team, can I pay for the Pro plan with a gift card, or only a credit card? Thanks.","label":"product_question","hard":true}
+{"id":"test-016","text":"Good morning. I returned the printed planner yesterday, when will I get my money back?","label":"refund","hard":false}
+{"id":"test-017","text":"hi, you charged me twice on march 12, please send one of the $14 payments back to my card. thanks.","label":"refund","hard":true}
+{"id":"test-018","text":"Hi, the redesign is confusing, I preferred the old layout.","label":"feedback","hard":false}
+{"id":"test-019","text":"Good morning. I do not want a refund, I just want to make sure I am not billed again next month.","label":"cancellation","hard":true}
+{"id":"test-020","text":"The app is extremely slow on my Windows laptop, it takes a minute to load.","label":"technical","hard":false}
+{"id":"test-021","text":"Do you ship my hardware key to Canada, and is shipping included in the Starter plan? Appreciate it.","label":"product_question","hard":true}
+{"id":"test-022","text":"Your app is usually great. Hi, the checkout page shows a blank white screen when I try to pay for the Pro plan. Thanks!","label":"billing","hard":true}
+{"id":"test-023","text":"Remove my card and shut down the account, the app is fine but I do not use it. Please help.","label":"cancellation","hard":true}
+{"id":"test-024","text":"The Family plan never synced on my Pixel 8, I would rather have the $14 back than more troubleshooting. Appreciate it.","label":"refund","hard":true}
+{"id":"test-025","text":"hey team, i cannot find the cancel button in my account settings, please end the subscription for me.","label":"cancellation","hard":true}
+{"id":"test-026","text":"I already tried logging out and back in. Hello, you charged me twice two weeks ago, please send one of the $9.99 payments back to my card.","label":"refund","hard":true}
+{"id":"test-027","text":"I already tried logging out and back in. Hello, can you send me an invoice for the $59.88 payment last Tuesday? Our accountant needs it.","label":"billing","hard":false}
+{"id":"test-028","text":"i use it on my windows laptop every day. hey team, there was a sign-in from a galaxy s23 i do not own yesterday, please secure my account.","label":"account_access","hard":true}
+{"id":"test-029","text":"hi, the box for the desk stand was empty when it arrived this morning, please send what i ordered.","label":"shipping","hard":true}
+{"id":"test-030","text":"You sent me the wrong item instead of the printed planner, I need the right one shipped.","label":"shipping","hard":true}
+{"id":"test-031","text":"Hey team, it would be great if export to PDF supported more file types. Appreciate it.","label":"feedback","hard":false}
+{"id":"test-032","text":"I recommended Lumen to my whole office. Good morning. If I cancel the trial early, do I keep offline mode until the end of the month? Thanks!","label":"product_question","hard":true}
+{"id":"test-033","text":"I am switching to another app, please end my subscription.","label":"cancellation","hard":false}
+{"id":"test-034","text":"i recommended lumen to my whole office. hi, the box for the starter kit was empty when it arrived on march 12, please send what i ordered.","label":"shipping","hard":true}
+{"id":"test-035","text":"I recommended Lumen to my whole office. Hey team, not asking for money back, I just want to understand the $14 charge from yesterday. Thanks!","label":"billing","hard":true}
+{"id":"test-036","text":"hey team, how do i switch from monthly to annual billing? please help.","label":"billing","hard":false}
+{"id":"test-037","text":"Hello, your app crashed during my exam week and the annual plan was useless, I expect my $119 returned.","label":"refund","hard":true}
+{"id":"test-038","text":"I paid $14 for express shipping on the desk stand and it still took ten days, can you look into the delivery? Appreciate it.","label":"shipping","hard":true}
+{"id":"test-039","text":"Notes I wrote last Tuesday on my MacBook disappeared after the sync, I am still logged in.","label":"technical","hard":true}
+{"id":"test-040","text":"Hey team, printing from the app on my Pixel 8 gives \"something went wrong\". Thanks.","label":"technical","hard":true}
+{"id":"test-041","text":"Someone else logged into my account yesterday, I think I was hacked.","label":"account_access","hard":false}
+{"id":"test-042","text":"I have been on the Pro plan for two years. Hi, my account shows my hardware key as delivered but I never got it, the app must be wrong or USPS is.","label":"shipping","hard":true}
+{"id":"test-043","text":"I have been on the Starter plan for two years. Hey team, how do I stop my plan from renewing next month? Appreciate it.","label":"cancellation","hard":false}
+{"id":"test-044","text":"hello, stop charging my card, i am done with the service. thanks!","label":"cancellation","hard":true}
+{"id":"test-045","text":"My last order arrived fine. Hi, i upgraded to Pro and was charged the full $14 instead of the prorated amount, please fix the charge. Appreciate it.","label":"billing","hard":true}
+{"id":"test-046","text":"I have been on the monthly plan for two years. Billing went through for the gift card yesterday but there is still no tracking number. Thanks!","label":"shipping","hard":true}
+{"id":"test-047","text":"Hello, i forgot my password and the reset email never arrives. Thanks.","label":"account_access","hard":false}
+{"id":"test-048","text":"your app is usually great hey team, printing from the app on my windows laptop gives \"something went wrong\" thanks","label":"technical","hard":true}
+{"id":"test-049","text":"please refund my last payment. the app did not work for me. please help.","label":"refund","hard":false}
+{"id":"test-050","text":"Can you send me an invoice for the $119 payment last Tuesday? Our accountant needs it.","label":"billing","hard":false}
+{"id":"test-051","text":"i am not trying to cancel. printing from the app on my macbook gives \"something went wrong\". thanks!","label":"technical","hard":true}
+{"id":"test-052","text":"Good morning The verification code text never arrives on my Chromebook, so I am stuck at sign in","label":"account_access","hard":true}
+{"id":"test-053","text":"Billing has never been an issue before. Good morning. Shipping on the printed planner was quick and the packaging was lovely, thank you. Thanks.","label":"feedback","hard":true}
+{"id":"test-054","text":"i pay for starter and two-way sync still says it is locked, even though everything else works. appreciate it.","label":"technical","hard":true}
+{"id":"test-055","text":"Is the widget broken or am I using it wrong? Nothing happens when I tap it.","label":"technical","hard":true}
+{"id":"test-056","text":"Honestly the monthly plan is too expensive for what it offers. Appreciate it.","label":"feedback","hard":true}
+{"id":"test-057","text":"How do I stop my plan from renewing next month? Please help.","label":"cancellation","hard":false}
+{"id":"test-058","text":"Hello, shipping on my hardware key was quick and the packaging was lovely, thank you.","label":"feedback","hard":true}
+{"id":"test-059","text":"I use it on my iPhone 15 every day. Hey team, the login screen on my iPhone 15 gives a spinning wheel so I cannot reach my notes. Please help.","label":"account_access","hard":true}
+{"id":"test-060","text":"My last order arrived fine. Does the Starter plan include offline mode?","label":"product_question","hard":false}
+{"id":"test-061","text":"hey team, i do not want a refund, i just want to make sure i am not billed again next month.","label":"cancellation","hard":true}
+{"id":"test-062","text":"I use it on my MacBook every day I see a pending charge of $29 from last Tuesday, is that right or a mistake on your side? Thanks!","label":"billing","hard":true}
+{"id":"test-063","text":"Your app is usually great. My payment keeps failing when I try to update my card details.","label":"billing","hard":false}
+{"id":"test-064","text":"I have been on the Starter plan for two years. Do you ship the starter kit to Canada, and is shipping included in the Pro plan? Appreciate it.","label":"product_question","hard":true}
+{"id":"test-065","text":"Good morning. I need to update my card but I cannot sign in to my account since this morning. Appreciate it.","label":"account_access","hard":true}
+{"id":"test-066","text":"Hey team, the checkout page shows error code E42 when I try to pay for the Family plan. Thanks!","label":"billing","hard":true}
+{"id":"test-067","text":"Can I pay for the Team plan with a gift card, or only a credit card?","label":"product_question","hard":true}
+{"id":"test-068","text":"hi, i am switching to another app, please end my subscription. thanks!","label":"cancellation","hard":false}
+{"id":"test-069","text":"Billing has never been an issue before. It would be great if two-way sync supported more file types. Please help.","label":"feedback","hard":false}
+{"id":"test-070","text":"Is the $9.99 price for Family per person or for the whole team? Thanks!","label":"product_question","hard":true}
+{"id":"test-071","text":"Your app is usually great. How many people can share a Family plan? Please help.","label":"product_question","hard":false}
+{"id":"test-072","text":"I have been on the annual plan for two years. Hello, i need to update my card but I cannot sign in to my account since on the 3rd. Cheers","label":"account_access","hard":true}
+{"id":"test-073","text":"I was promised a refund on the 3rd and still have not received it.","label":"refund","hard":false}
+{"id":"test-074","text":"Billing has never been an issue before. Hello, the app shows a blank white screen every time I open it on my Pixel 8.","label":"technical","hard":false}
+{"id":"test-075","text":"Good morning. I am switching to another app, please end my subscription. Appreciate it.","label":"cancellation","hard":false}
+{"id":"test-076","text":"Hey team, remove my card and shut down the account, the app is fine but I do not use it. Thanks.","label":"cancellation","hard":true}
+{"id":"test-077","text":"Hey team, do you ship the starter kit to Canada, and is shipping included in the annual plan? Cheers","label":"product_question","hard":true}
+{"id":"test-078","text":"Hey team, billing took $4.50 after I had already closed my account, put it back on my card please. Thanks.","label":"refund","hard":true}
+{"id":"test-079","text":"I use it on my iPad every day. Good morning. Please add shared folders to the monthly plan, my whole team would use it. Thanks!","label":"feedback","hard":true}
+{"id":"test-080","text":"Hello, the login screen on my Windows laptop gives a crash on launch so I cannot reach my notes. Please help.","label":"account_access","hard":true}
+{"id":"test-081","text":"Hello, your app crashed during my exam week and the Family plan was useless, I expect my $119 returned. Thanks!","label":"refund","hard":true}
+{"id":"test-082","text":"Billing has never been an issue before. The app is extremely slow on my Pixel 8, it takes a minute to load.","label":"technical","hard":false}
+{"id":"test-083","text":"Sign in on my MacBook says my account does not exist, but I pay for Starter.","label":"account_access","hard":true}
+{"id":"test-084","text":"Hi, i love the app but the calendar sync drains my Chromebook battery in an hour since two weeks ago. Appreciate it.","label":"technical","hard":true}
+{"id":"test-085","text":"I use it on my Windows laptop every day. I would like a refund for the $59.88 charge on March 12, I never used the Family plan. Thanks.","label":"refund","hard":false}
+{"id":"test-086","text":"I recommended Lumen to my whole office. Can you send me an invoice for teh $4.50 payment last Tuesday? Our accountant needs it. Thanks!","label":"billing","hard":false}
+{"id":"test-087","text":"I have been on the Team plan for two years. Good morning. Please add our VAT number to the $4.50 invoice from last Tuesday. Cheers","label":"billing","hard":true}
+{"id":"test-088","text":"I already tried logging out and back in. Remove my card and shut down the account, the app is fine but I do not use it.","label":"cancellation","hard":true}
+{"id":"test-089","text":"Good morning. Where is my order? my hardware key was supposed to arrive on March 12. Please help.","label":"shipping","hard":false}
+{"id":"test-090","text":"I use it on my Chromebook every day. Please add our VAT number to the $4.50 invoice from two weeks ago.","label":"billing","hard":true}
+{"id":"test-091","text":"I use it on my Chromebook every day. Hey team, printing from the app on my Chromebook gives a crash on launch. Cheers","label":"technical","hard":true}
+{"id":"test-092","text":"Good morning. Since the update my account settings page shows error code E42, I can still sign in. Please help.","label":"technical","hard":true}
+{"id":"test-093","text":"Hi, downgrade me to nothing, I mean end the subscription, before the next billing date.","label":"cancellation","hard":true}
+{"id":"test-094","text":"The checkout page shows a blank white screen when I try to pay for teh Starter plan. Cheers","label":"billing","hard":true}
+{"id":"test-095","text":"Shipping on the desk stand was quick and the packaging was lovely, thank you.","label":"feedback","hard":true}
+{"id":"test-096","text":"shipping on the printed planner was quick and the packaging was lovely, thank you. please help.","label":"feedback","hard":true}
+{"id":"test-097","text":"I recommended Lumen to my whole office. Someone else logged into my account last Tuesday, I think I was hacked. Please help.","label":"account_access","hard":false}
+{"id":"test-098","text":"Order says shipped this morning but FedEx has no record, is it actually on teh way? Thanks!","label":"shipping","hard":true}
+{"id":"test-099","text":"Billing has never been an issue before. My package was marked delivered on the 3rd but it is not here. Please help.","label":"shipping","hard":false}
+{"id":"test-100","text":"Please do not renew the Team plan on the 1st, I will not need it after this month. Cheers","label":"cancellation","hard":true}
+{"id":"test-101","text":"where is my order? the gift card was supposed to arrive on the 3rd. cheers","label":"shipping","hard":false}
+{"id":"test-102","text":"I was promised a refund yesterday and still have not received it","label":"refund","hard":false}
+{"id":"test-103","text":"Hi, i do not want to cancel, I just want the $9.99 from on March 12 reversed because I was charged for a plan I never chose. Please help.","label":"refund","hard":true}
+{"id":"test-104","text":"Billing has never been an issue before. Good morning. I paid $59.88 for express shipping on the gift card and it still took ten days, can you look into the delivery?","label":"shipping","hard":true}
+{"id":"test-105","text":"Good morning. If I move to the annual plan, will I be billed again or is it prorated?","label":"product_question","hard":true}
+{"id":"test-106","text":"I use it on my Pixel 8 every day Hi, teh verification code text never arrives on my iPhone 15, so I am stuck at sign in Cheers","label":"account_access","hard":true}
+{"id":"test-107","text":"the box for the printed planner was empty when it arrived on march 12, please send what i ordered. thanks!","label":"shipping","hard":true}
+{"id":"test-108","text":"My last order arrived fine Can teh $29 go back to my card? the printed planner was the wrong size and I already sent it back Thanks!","label":"refund","hard":true}
+{"id":"test-109","text":"Your app is usually great. Hi, any plans to support iPad? I would switch my whole team over. Thanks!","label":"feedback","hard":true}
+{"id":"test-110","text":"Your app is usually great. There was a sign-in from a Windows laptop I do not own last Tuesday, please secure my account. Thanks.","label":"account_access","hard":true}
+{"id":"test-111","text":"Good morning. Can I use the app on my Windows laptop and my laptop at the same time?","label":"product_question","hard":false}
+{"id":"test-112","text":"My last order arrived fine. Hi, it would be great if export to PDF supported more file types. Appreciate it.","label":"feedback","hard":false}
+{"id":"test-113","text":"the app shows error code e42 every time i open it on my macbook.","label":"technical","hard":false}
+{"id":"test-114","text":"Do you ship the printed planner to Canada, and is shipping included in the Family plan?","label":"product_question","hard":true}
+{"id":"test-115","text":"i forgot my password and the reset email never arrives. please help.","label":"account_access","hard":false}
+{"id":"test-116","text":"I recommended Lumen to my whole office. Hello, the app is extremely slow on my iPad, it takes a minute to load.","label":"technical","hard":false}
+{"id":"test-117","text":"Your app is usually great. Good morning. I want to cancel but first I need to get back into my account, the reset link is broken.","label":"account_access","hard":true}
+{"id":"test-118","text":"I already tried logging out and back in. Hi, i see a pending charge of $29 from yesterday, is that right or a mistake on your side?","label":"billing","hard":true}
+{"id":"test-119","text":"Printing from the app on my Windows laptop gives a blank white screen. Thanks!","label":"technical","hard":true}
+{"id":"test-120","text":"Hello, how many people can share a Family plan? Appreciate it.","label":"product_question","hard":false}

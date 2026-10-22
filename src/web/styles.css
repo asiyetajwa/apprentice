@@ -303,3 +303,7 @@ table.calls { width: 100%; border-collapse: collapse; font-size: 13px; font-vari
   .dials { transform: scale(.9); transform-origin: top center; height: 390px; }
   .dock .key { width: 52px; height: 52px; }
 }
+
+/* The playbook in the glass window: the first house rules, read like a note on dark glass. */
+.window.playbook { height: auto; min-height: 200px; }
+.window.playbook ul { position: relative; z-index: 1; margin: 14px 0 0; padding-left: 18px; display: grid; gap: 8px; font-size: 12.5px; line-height: 1.45; color: #e9e9e6; }

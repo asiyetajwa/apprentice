@@ -103,10 +103,13 @@ export function hash(s: string): number {
 }
 
 /** The one prompt the student sees, before and after training. Training data uses it too, word for word. */
-export function studentMessages(task: Task, text: string): ChatMessage[] {
+/** A playbook always starts with this line, so it can be recognised (the stub uses it to answer as a taught model). */
+export const PLAYBOOK_HEADING = 'House rules, learned from labelled examples:';
+
+export function studentMessages(task: Task, text: string, playbook?: string): ChatMessage[] {
   const labels = task.labels.map((l) => (task.labelHelp[l] ? `- ${l}: ${task.labelHelp[l]}` : `- ${l}`)).join('\n');
   return [
-    { role: 'system', content: `${task.description}\nAnswer with exactly one label from this list and nothing else:\n${labels}` },
+    { role: 'system', content: `${task.description}\nAnswer with exactly one label from this list and nothing else:\n${labels}${playbook ? `\n\n${playbook}` : ''}` },
     { role: 'user', content: text },
   ];
 }

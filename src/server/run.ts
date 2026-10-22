@@ -8,7 +8,7 @@ import { modelFor, type CallRecord, type Checkpoint, type TokenFactory } from '@
 import { evaluate, type EvalResult } from './evaluate.js';
 import { findFailureTypes, stableShuffle, writeCases, type FailureType } from './teach.js';
 import { searchWeb, type TavilyResult } from './tavily.js';
-import { studentMessages, type Task } from './task.js';
+import { PLAYBOOK_HEADING, studentMessages, type Task } from './task.js';
 
 export const STAGES = ['intake', 'baseline', 'teach', 'train', 'prove', 'ship'] as const;
 export type StageId = (typeof STAGES)[number];
@@ -23,8 +23,12 @@ export interface StageState {
 
 export type EvalSummary = Omit<EvalResult, 'predictions'> & { mistakes: number };
 
+/** How the student is taught: a playbook in its instructions (served per token), or LoRA weights. */
+export type Method = 'playbook' | 'weights';
+
 export interface RunState {
   id: string;
+  method: Method;
   number: number;
   createdAt: string;
   finishedAt: string | null;
@@ -40,6 +44,7 @@ export interface RunState {
   failures: FailureType[];
   fixed: string[];
   teach: { written: number; kept: number; rejected: number; web: { query: string; results: number; live: boolean } | null } | null;
+  playbook: { rules: number; examples: number; chars: number; text: string } | null;
   training: { jobId: string; trainingFile: string; validationFile: string; examples: number; status: string; checkpoints: Checkpoint[]; fineTunedModel: string | null; minutes: number | null } | null;
   deployment: { name: string; status: string; baseUrl: string } | null;
   decision: { ship: boolean; reason: string } | null;
@@ -65,6 +70,8 @@ export interface RunOptions {
   perType?: number;
   /** Seconds between fine-tune status polls (Token Factory asks for no more than one every 15 s). */
   pollSeconds?: number;
+  /** Defaults to APPRENTICE_METHOD, else playbook when live (Token Factory serves tuned weights only on dedicated endpoints) and weights in stub mode. */
+  method?: Method;
   emit: (e: RunEvent) => void;
 }
 
@@ -82,13 +89,16 @@ export class Run {
   private dir: string;
 
   constructor(private o: RunOptions) {
-    const student = modelFor('student');
+    const method: Method = o.method ?? ((process.env.APPRENTICE_METHOD as Method | undefined) || (o.tf.live ? 'playbook' : 'weights'));
+    // The playbook specialist is NVIDIA Nemotron 3 Nano, served per token; weights mode trains a Qwen3 student.
+    const student = method === 'playbook' && !process.env.APPRENTICE_STUDENT?.trim() ? modelFor('student', { APPRENTICE_STUDENT: 'nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B' }) : modelFor('student');
     const teacher = modelFor('teacher');
     const grader = modelFor('grader');
     this.dir = join(o.runsDir, o.id);
     mkdirSync(this.dir, { recursive: true });
     this.state = {
       id: o.id,
+      method,
       number: o.number,
       createdAt: new Date().toISOString(),
       finishedAt: null,
@@ -104,6 +114,7 @@ export class Run {
       failures: [],
       fixed: [],
       teach: null,
+      playbook: null,
       training: null,
       deployment: null,
       decision: null,
@@ -145,8 +156,13 @@ export class Run {
       await this.intake();
       await this.baseline();
       await this.teachStage();
-      await this.train();
-      await this.prove();
+      if (this.state.method === 'playbook') {
+        const playbook = await this.writePlaybook();
+        await this.proveWith(playbook);
+      } else {
+        await this.train();
+        await this.prove();
+      }
       await this.ship();
     } catch (err) {
       const msg = (err as Error).message;
@@ -250,6 +266,44 @@ export class Run {
     this.set('teach', { status: 'done', title: `${String(res.kept.length)} new cases`, detail: `${String(failures.length)} failure types`, progress: null });
   }
 
+  /** Playbook method: the taught rules and a few agreed cases go into the student's instructions. */
+  private async writePlaybook(): Promise<string> {
+    this.set('train', { status: 'live', detail: 'Writing the playbook', progress: 0 });
+    const kept = (this.state.teach?.kept ?? 0) > 0 ? readJsonl(join(this.dir, 'synthetic.jsonl')) : [];
+    const playbook = buildPlaybook(this.state.failures, kept);
+    writeFileSync(join(this.dir, 'playbook.txt'), playbook);
+    const rules = this.state.failures.length;
+    const examples = (playbook.match(/^Ticket: /gm) ?? []).length;
+    this.state.playbook = { rules, examples, chars: playbook.length, text: playbook };
+    this.log('train', `Wrote a playbook for ${this.state.models.studentLabel}: ${String(rules)} house rules and ${String(examples)} worked examples from the agreed cases.`);
+    this.set('train', { status: 'done', title: 'Playbook', detail: `${String(rules)} rules, ${String(examples)} examples`, progress: null });
+    return playbook;
+  }
+
+  private async proveWith(playbook: string): Promise<void> {
+    const { tf, task } = this.o;
+    const m = this.state.models;
+    this.set('prove', { status: 'live', detail: 'Testing the taught model on the held-out tickets', progress: 0 });
+    const tuned = await evaluate(tf, {
+      task,
+      examples: task.test,
+      model: m.student,
+      label: `Taught ${m.studentLabel}`,
+      step: 'prove',
+      role: 'student',
+      playbook,
+      onProgress: (d, c) => this.set('prove', { progress: d / task.test.length, detail: `${String(c)} of ${String(d)} right so far` }),
+    });
+    this.save('eval-tuned.json', tuned);
+    this.state.tuned = summary(tuned);
+    this.state.fixed = fixedTypes(this.state.failures, tuned);
+    // The specialist is the same served model with the playbook as its instructions: nothing to deploy.
+    this.state.deployment = { name: `${m.student} + playbook`, status: 'active', baseUrl: tf.live ? 'https://api.tokenfactory.nebius.com/v1' : 'stub' };
+    this.save('specialist.json', { model: m.student, system: studentMessages(task, '', playbook)[0]!.content });
+    this.log('prove', `Taught ${m.studentLabel} got ${String(tuned.correct)} of ${String(tuned.total)} right (${pct(tuned.accuracy)}), up from ${pct(this.state.baseline!.accuracy)}.`);
+    this.set('prove', { status: 'done', title: `Taught: ${pct(tuned.accuracy)}`, detail: 'The same held-out tickets', progress: null });
+  }
+
   private async train(): Promise<void> {
     const { tf, task } = this.o;
     const m = this.state.models;
@@ -331,15 +385,7 @@ export class Run {
     });
     this.save('eval-tuned.json', tuned);
     this.state.tuned = summary(tuned);
-    // A failure type is fixed when the tuned model now gets most of its test cases right.
-    const tunedOk = new Map(tuned.predictions.map((p) => [p.id, p]));
-    this.state.fixed = this.state.failures
-      .filter((f) => {
-        const related = tuned.predictions.filter((p) => p.gold === f.gold);
-        const ok = related.filter((p) => tunedOk.get(p.id)?.ok).length;
-        return related.length > 0 && ok / related.length >= 0.85;
-      })
-      .map((f) => f.id);
+    this.state.fixed = fixedTypes(this.state.failures, tuned);
     this.log('prove', `Tuned ${m.studentLabel} got ${String(tuned.correct)} of ${String(tuned.total)} right (${pct(tuned.accuracy)}), up from ${pct(this.state.baseline!.accuracy)}.`);
     this.set('prove', { status: 'done', title: `Tuned: ${pct(tuned.accuracy)}`, detail: 'The same held-out tickets', progress: null });
   }
@@ -350,14 +396,40 @@ export class Run {
     this.set('ship', { status: 'live', detail: 'Comparing tuned with base' });
     const gain = tuned.correct - base.correct;
     const ship = gain > 0;
+    const word = this.state.method === 'playbook' ? 'Taught' : 'Tuned';
     const reason = ship
-      ? `Tuned beats base by ${String(gain)} of ${String(tuned.total)} held-out tickets (${pct(base.accuracy)} to ${pct(tuned.accuracy)}).`
-      : `Tuned did not beat base (${pct(base.accuracy)} to ${pct(tuned.accuracy)}), so nothing ships.`;
+      ? `${word} beats base by ${String(gain)} of ${String(tuned.total)} held-out tickets (${pct(base.accuracy)} to ${pct(tuned.accuracy)}).`
+      : `${word} did not beat base (${pct(base.accuracy)} to ${pct(tuned.accuracy)}), so nothing ships.`;
     this.state.decision = { ship, reason };
     this.state.status = ship ? 'shipped' : 'not_shipped';
     this.log('ship', ship ? `Shipped. ${reason} Endpoint: ${this.state.deployment!.name}.` : `Not shipped. ${reason}`);
-    this.set('ship', ship ? { status: 'done', title: 'Shipped', detail: this.state.deployment!.name } : { status: 'skipped', title: 'Not shipped', detail: 'Tuned did not win' });
+    this.set('ship', ship ? { status: 'done', title: 'Shipped', detail: this.state.deployment!.name } : { status: 'skipped', title: 'Not shipped', detail: 'It did not win' });
   }
+}
+
+/** A failure type is fixed when the taught model now gets most of the test tickets of its true label right. */
+function fixedTypes(failures: FailureType[], tuned: EvalResult): string[] {
+  return failures
+    .filter((f) => {
+      const related = tuned.predictions.filter((p) => p.gold === f.gold);
+      return related.length > 0 && related.filter((p) => p.ok).length / related.length >= 0.85;
+    })
+    .map((f) => f.id);
+}
+
+/** House rules from the failure types, then up to two agreed teacher cases per rule as worked examples. */
+export function buildPlaybook(failures: FailureType[], kept: Array<{ text: string; label: string }>): string {
+  const rules = failures.map((f) => `- ${f.description.replace(/\.?$/, '.')} These go to ${f.gold}, not ${f.confusedWith}.`);
+  const used = new Set<string>();
+  const examples: Array<{ text: string; label: string }> = [];
+  for (const f of failures) {
+    for (const c of kept.filter((k) => k.label === f.gold && !used.has(k.text)).slice(0, 2)) {
+      used.add(c.text);
+      examples.push(c);
+    }
+  }
+  const shown = examples.slice(0, 16);
+  return [PLAYBOOK_HEADING, ...rules, ...(shown.length ? ['', 'Worked examples:', ...shown.map((e) => `Ticket: ${e.text}\nLabel: ${e.label}`)] : [])].join('\n');
 }
 
 function readJsonl(path: string): Array<{ text: string; label: string }> {

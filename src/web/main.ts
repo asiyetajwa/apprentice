@@ -14,10 +14,11 @@ interface Run {
   baseline: Evals | null; reference: Evals | null; tuned: Evals | null; failures: Failure[]; fixed: string[];
   teach: { written: number; kept: number; rejected: number; web: { query: string; results: number; live: boolean } | null } | null;
   training: { jobId: string; examples: number; status: string; checkpoints: Ckpt[]; fineTunedModel: string | null; minutes: number | null } | null;
+  method?: 'playbook' | 'weights'; playbook?: { rules: number; examples: number; chars: number; text: string } | null;
   deployment: { name: string; status: string; baseUrl: string } | null; decision: { ship: boolean; reason: string } | null; costUsd: number; error: string | null;
 }
 interface Call { id: string; at: string; step: string; role: string; model: string; tokensIn: number; tokensOut: number; latencyMs: number; costUsd: number; stub: boolean; ok: boolean; error?: string }
-interface Config { mode: 'live' | 'stub'; tavily: boolean; models: Record<'student' | 'teacher' | 'grader', { id: string; label: string; price: { in: number; out: number } }>; running: string[] }
+interface Config { mode: 'live' | 'stub'; method: 'playbook' | 'weights'; tavily: boolean; models: Record<'student' | 'teacher' | 'grader', { id: string; label: string; price: { in: number; out: number } }>; running: string[] }
 interface Sample { name: string; description: string; labels: string[]; labelHelp: Record<string, string>; counts: { train: number; dev: number; test: number } }
 interface LogEvent { at: string; kind: string; stage?: StageId; text?: string; call?: Call; run?: Run }
 
@@ -46,6 +47,8 @@ const pretty = (l: string) => {
   return short[l] ?? l.replace(/_/g, ' ').replace(/^./, (c) => c.toUpperCase());
 };
 const titleCase = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+/** "Taught" for a playbook run, "Tuned" for a fine-tune. */
+const word = (r: Run) => (r.method === 'playbook' ? 'Taught' : 'Tuned');
 const runNo = (r: Run) => `Run ${String(r.number).padStart(2, '0')}`;
 const statusText: Record<Status, string> = { running: 'Running', shipped: 'Shipped', not_shipped: 'Not shipped', failed: 'Stopped' };
 
@@ -140,19 +143,23 @@ function results(r: Run | null): string {
 
   return `${top(day(r.createdAt), `${runNo(r)} · ${hhmm(r.createdAt)} UTC`, true)}${stubBanner(r)}
   <section class="hero">
-    <div class="dials" aria-label="Tuned ${pct(tuned?.accuracy)}, base ${pct(base?.accuracy)}">
-      ${dome('d1', tuned?.accuracy ?? null, pct(tuned?.accuracy), 'Tuned', true)}
+    <div class="dials" aria-label="${word(r)} ${pct(tuned?.accuracy)}, base ${pct(base?.accuracy)}">
+      ${dome('d1', tuned?.accuracy ?? null, pct(tuned?.accuracy), word(r), true)}
       ${ICON.target}
       ${dome('d2', base?.accuracy ?? null, pct(base?.accuracy), 'Base', false, true)}
     </div>
     <div class="headline">
-      <div class="kick">Tuned ${esc(r.models.studentLabel)}</div>
+      <div class="kick">${word(r)} ${esc(r.models.studentLabel)}</div>
       <h1>${esc(r.task.name)}</h1>
       <div class="when">${esc(whenLine)}</div>
       <div class="nums">
         <div class="num"><span>Held-out test</span><b>${tuned ? `<em>${String(tuned.correct)} / </em>${String(tuned.total)}` : '...'}</b><small>${base ? `Up from ${String(base.correct)} right` : 'Not scored yet'}</small></div>
         <div class="num"><span>Per 1,000 calls</span><b>${tuned ? twoTone(money(tuned.costPer1k)) : '...'}</b><small>${ref ? `${esc(r.models.teacherLabel)}: ${money(ref.costPer1k)}` : `Against ${esc(r.models.teacherLabel)}`}</small></div>
-        <div class="num"><span>Training</span><b>${mins != null ? `${mins < 10 ? '<em>0</em>' : ''}${String(mins)} min` : '...'}</b><small>LoRA on Token Factory</small></div>
+        ${
+          r.method === 'playbook'
+            ? `<div class="num"><span>Playbook</span><b>${r.playbook ? `${String(r.playbook.rules)} rules` : '...'}</b><small>${r.playbook ? `${String(r.playbook.examples)} worked examples, no deploy` : 'Written at the Train stage'}</small></div>`
+            : `<div class="num"><span>Training</span><b>${mins != null ? `${mins < 10 ? '<em>0</em>' : ''}${String(mins)} min` : '...'}</b><small>LoRA on Token Factory</small></div>`
+        }
       </div>
       ${verdict}
     </div>
@@ -164,12 +171,12 @@ function results(r: Run | null): string {
   <h2>What Changed <small>${String(r.task.counts.test)} held-out examples, never trained on</small></h2>
   <div class="grid">
     <div class="panel raised">
-      <h3>Accuracy by label<span class="legend"><span><i style="background:#c6c6c3"></i>Base</span><span><i style="background:var(--lit)"></i>Tuned</span></span></h3>
+      <h3>Accuracy by label<span class="legend"><span><i style="background:#c6c6c3"></i>Base</span><span><i style="background:var(--lit)"></i>${word(r)}</span></span></h3>
       <div class="bars well" role="img" aria-label="Accuracy by label, base against tuned">${labels.map((l) => `<div class="col" title="${esc(l)}: ${pct(base ? acc(base, l) : 0)} to ${pct(tuned ? acc(tuned, l) : 0)}"><i class="b" style="height:${String((base ? acc(base, l) : 0) * 100)}%"></i><i class="t" style="height:${String((tuned ? acc(tuned, l) : 0) * 100)}%"></i></div>`).join('')}</div>
       <div class="lbls">${labels.map((l) => `<span title="${esc(l)}">${esc(pretty(l))}</span>`).join('')}</div>
       ${base && tuned && biggest ? `<p class="tip">Biggest change: <b>${esc(pretty(biggest))}</b>, ${pct(acc(base, biggest))} to ${pct(acc(tuned, biggest))}</p>` : ''}
     </div>
-    <div class="panel raised"><h3>Training loss</h3>${lossWindow(r)}</div>
+    <div class="panel raised"><h3>${r.method === 'playbook' ? 'The playbook' : 'Training loss'}</h3>${lossWindow(r)}</div>
     <div class="panel raised"><h3>Failure types</h3>${
       r.failures.length
         ? `<div class="fails">${r.failures
@@ -200,11 +207,13 @@ function results(r: Run | null): string {
 
 function curl(r: Run): string {
   const url = r.deployment?.baseUrl === 'stub' ? 'https://api.tokenfactory.nebius.com/v1' : (r.deployment?.baseUrl ?? '');
+  const model = r.method === 'playbook' ? r.models.student : (r.deployment?.name ?? '');
+  const system = r.method === 'playbook' ? '{"role": "system", "content": "<specialist.json: system>"},\n                    ' : '';
   return `curl ${url}/chat/completions \\
   -H "Authorization: Bearer $NEBIUS_API_KEY" \\
   -H "Content-Type: application/json" \\
-  -d '{"model": "${r.deployment?.name ?? ''}", "temperature": 0,
-       "messages": [{"role": "user", "content": "..."}]}'`;
+  -d '{"model": "${model}", "temperature": 0,
+       "messages": [${system}{"role": "user", "content": "..."}]}'`;
 }
 
 function emptyState(): string {
@@ -215,7 +224,7 @@ function emptyState(): string {
       <div class="kick">Apprentice</div>
       <h1>Make a small model a specialist</h1>
       <p>Give Apprentice a narrow job and some labelled examples. An agent tests a small open model, has NVIDIA Nemotron teach it from its own mistakes, fine-tunes it on Nebius Token Factory, and ships it only if it beats the original on examples it has never seen.</p>
-      <div class="steps3"><div class="raised"><b>1. Test</b><span>Score the small model as it is</span></div><div class="raised"><b>2. Teach and train</b><span>Nemotron writes cases for its mistakes, then a LoRA fine-tune</span></div><div class="raised"><b>3. Prove and ship</b><span>Same held-out test, deploy only if it wins</span></div></div>
+      <div class="steps3"><div class="raised"><b>1. Test</b><span>Score the small model as it is</span></div><div class="raised"><b>2. Teach</b><span>Nemotron writes cases for its mistakes, then a playbook or a LoRA fine-tune</span></div><div class="raised"><b>3. Prove and ship</b><span>Same held-out test, deploy only if it wins</span></div></div>
       <a class="btn" href="#/new">Start a Run</a>
     </div>
   </section>`;
@@ -249,12 +258,12 @@ async function newRun(): Promise<string> {
   </div>
   <h2>The Models <small>Step 2 of 3 · set in .env</small></h2>
   <div class="models">
-    <div class="panel raised model"><div class="role">Student</div><div class="mn">${esc(m.student.label)}</div><p>The one that learns the job: LoRA fine-tuned on Token Factory, then deployed.</p><code class="well">${esc(m.student.id)}</code></div>
+    <div class="panel raised model"><div class="role">Student</div><div class="mn">${esc(m.student.label)}</div><p>${config.method === 'playbook' ? 'The one that learns the job: taught through a playbook in its instructions, served per token on Token Factory.' : 'The one that learns the job: LoRA fine-tuned on Token Factory.'}</p><code class="well">${esc(m.student.id)}</code></div>
     <div class="panel raised model"><div class="role">Teacher</div><div class="mn">${esc(m.teacher.label)}</div><p>Writes new training cases aimed at the student's mistakes${config.tavily ? ', with real wording found on the web by Tavily' : ''}.</p><code class="well">${esc(m.teacher.id)}</code></div>
     <div class="panel raised model"><div class="role">Grader</div><div class="mn">${esc(m.grader.label)}</div><p>Names the failure types, then labels every teacher case blind. Only agreed cases are kept.</p><code class="well">${esc(m.grader.id)}</code></div>
   </div>
   <h2>Go <small>Step 3 of 3</small></h2>
-  <div class="panel raised go"><div class="est"><b id="est">${estimate(s.counts.test, s.counts.dev)}</b><span>Model calls on Token Factory, plus the fine-tuning job. Ships only if the tuned model beats the base model on the held-out test.</span></div>
+  <div class="panel raised go"><div class="est"><b id="est">${estimate(s.counts.test, s.counts.dev)}</b><span>${config.method === 'playbook' ? 'Model calls on Token Factory. Ships only if the taught model beats the base model on the held-out test.' : 'Model calls on Token Factory, plus the fine-tuning job. Ships only if the tuned model beats the base model on the held-out test.'}</span></div>
   ${running ? `<a class="btn ghost" href="#/run/${running.id}">See the Run in Progress</a>` : `<button class="btn" id="start">Start the Run</button>`}</div>
   <p class="err" id="err" hidden></p>`;
 }
@@ -327,7 +336,7 @@ function loop(r: Run): string {
   <div class="livegrid">
     <div class="panel raised"><h3>What the agent is doing</h3><div class="feed well" id="feed" aria-live="polite">${feedHtml()}</div></div>
     <div class="side-stack">
-      <div class="panel raised"><h3>Training loss</h3><div id="loss">${lossWindow(r)}</div></div>
+      <div class="panel raised"><h3>${r.method === 'playbook' ? 'The playbook' : 'Training loss'}</h3><div id="loss">${lossWindow(r)}</div></div>
       <div class="panel raised"><h3>Every call, with its receipt</h3><div class="scroll" id="calls">${callsTable(liveCalls.slice(-8).reverse())}</div><p class="note"><span id="call-count">${String(liveCalls.length)}</span> calls so far · <a class="link" href="#/calls/${r.id}">See All</a></p></div>
     </div>
   </div>`;
@@ -359,6 +368,11 @@ function feedHtml(): string {
 }
 
 function lossWindow(r: Run): string {
+  if (r.method === 'playbook') {
+    if (!r.playbook) return `<div class="window"><span class="empty-cap">Written at the Train stage</span></div>`;
+    const rules = r.playbook.text.split('\n').filter((l) => l.startsWith('- ')).slice(0, 4);
+    return `<div class="window playbook"><div class="cap"><span>${String(r.playbook.rules)} house rules</span><span>${String(r.playbook.examples)} examples</span></div><ul>${rules.map((l) => `<li>${esc(l.slice(2))}</li>`).join('')}</ul></div>`;
+  }
   const c = r.training?.checkpoints ?? [];
   if (!c.length) return `<div class="window"><span class="empty-cap">${r.training ? 'Waiting for the first epoch' : 'Starts at the Train stage'}</span></div>`;
   const vals = c.flatMap((k) => [k.trainLoss ?? 0, k.validLoss ?? 0]);
@@ -373,7 +387,7 @@ function lossWindow(r: Run): string {
 
 function callsTable(calls: Call[]): string {
   if (!calls.length) return '<p class="note" style="margin:0">No calls yet.</p>';
-  const label = (c: Call) => (c.role === 'student' ? (c.step === 'prove' ? 'Tuned student' : 'Base student') : c.role === 'teacher' ? config.models.teacher.label : config.models.grader.label);
+  const label = (c: Call) => (c.role === 'student' ? (c.step === 'prove' ? (config.method === 'playbook' ? 'Taught student' : 'Tuned student') : 'Base student') : c.role === 'teacher' ? config.models.teacher.label : config.models.grader.label);
   return `<table class="calls"><thead><tr><th>Model</th><th class="hide-sm">Step</th><th>Tokens</th><th>Time</th><th>Cost</th></tr></thead><tbody>${calls
     .map((c) => `<tr><td>${esc(label(c))}${c.ok ? '' : ' <span class="bad">failed</span>'}</td><td class="hide-sm">${esc(titleCase(c.step))}</td><td>${(c.tokensIn + c.tokensOut).toLocaleString('en-US')}</td><td>${ms(c.latencyMs)}</td><td>${money(c.costUsd)}</td></tr>`)
     .join('')}</tbody></table>`;
@@ -446,7 +460,7 @@ function about(): string {
   return `${top('About Apprentice', 'How the loop works')}
   <div class="panel raised prose" style="margin-top:34px">
     <h3>The job</h3><p>Frontier models are accurate but expensive for narrow, repetitive work. Small open models are cheap but not accurate enough out of the box. Apprentice closes the gap for one job at a time, and proves it.</p>
-    <h3>The loop</h3><p><b>Baseline</b> scores the small model on held-out examples, and scores ${esc(config.models.teacher.label)} on the same examples as the bar to chase. <b>Teach</b>: ${esc(config.models.grader.label)} groups the small model's mistakes into failure types, ${esc(config.models.teacher.label)} writes new cases aimed at each one${config.tavily ? ', using real wording found on the web with Tavily' : ''}, and the grader labels every case blind so only agreed cases are kept. <b>Train</b>: a LoRA fine-tune on Nebius Token Factory. <b>Prove</b>: the tuned model takes the same held-out test. <b>Ship</b>: the endpoint is kept only if the tuned model wins.</p>
+    <h3>The loop</h3><p><b>Baseline</b> scores the small model on held-out examples, and scores ${esc(config.models.teacher.label)} on the same examples as the bar to chase. <b>Teach</b>: ${esc(config.models.grader.label)} groups the small model's mistakes into failure types, ${esc(config.models.teacher.label)} writes new cases aimed at each one${config.tavily ? ', using real wording found on the web with Tavily' : ''}, and the grader labels every case blind so only agreed cases are kept. <b>Train</b>, one of two ways: a <b>playbook</b>, the taught rules and worked examples written into the student's instructions, so the specialist is served per token on Token Factory with nothing to deploy; or <b>weights</b>, a LoRA fine-tune on Token Factory whose adapter you download. <b>Prove</b>: the taught model takes the same held-out test. <b>Ship</b>: only if it wins.</p>
     <h3>The guarantees</h3><p>Held-out examples are never used to teach or train. Every model call is logged with its tokens, time and cost. The eval runs at temperature 0 with the same prompt, so scores are repeatable.</p>
     <h3>Mode</h3><p>${config.mode === 'live' ? 'Live: calls go to Nebius Token Factory.' : 'Stub mode: no NEBIUS_API_KEY, so answers are simulated to show the loop. Add a key to .env to run it for real.'}</p>
   </div>`;

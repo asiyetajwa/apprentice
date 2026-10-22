@@ -40,10 +40,13 @@ export function createApp(o: AppOptions) {
 
   app.get('/api/config', (_req, res) => {
     const probe = createTokenFactory({ respond: stubRespond });
+    const method = (process.env.APPRENTICE_METHOD as 'playbook' | 'weights' | undefined) || (probe.live ? 'playbook' : 'weights');
+    const student = method === 'playbook' && !process.env.APPRENTICE_STUDENT?.trim() ? modelFor('student', { APPRENTICE_STUDENT: 'nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B' }) : modelFor('student');
     res.json({
       mode: probe.live ? 'live' : 'stub',
+      method,
       tavily: Boolean(process.env.TAVILY_API_KEY?.trim()),
-      models: { student: modelFor('student'), teacher: modelFor('teacher'), grader: modelFor('grader') },
+      models: { student, teacher: modelFor('teacher'), grader: modelFor('grader') },
       running: [...live.keys()],
     });
   });

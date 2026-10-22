@@ -28,7 +28,7 @@ export interface EvalResult {
 
 export async function evaluate(
   tf: TokenFactory,
-  args: { task: Task; examples: Example[]; model: string; label: string; step: string; role: string; priceAs?: string; extraBody?: Record<string, unknown>; concurrency?: number; onProgress?: (done: number, correct: number) => void },
+  args: { task: Task; examples: Example[]; model: string; label: string; step: string; role: string; priceAs?: string; extraBody?: Record<string, unknown>; playbook?: string; concurrency?: number; onProgress?: (done: number, correct: number) => void },
 ): Promise<EvalResult> {
   const { task, examples } = args;
   const predictions: Prediction[] = new Array(examples.length);
@@ -43,7 +43,7 @@ export async function evaluate(
     while (next < examples.length) {
       const i = next++;
       const ex = examples[i]!;
-      const out = await tf.chat({ step: args.step, role: args.role, model: args.model, messages: studentMessages(task, ex.text), temperature: 0, maxTokens: 12, priceAs: args.priceAs, extraBody: args.extraBody });
+      const out = await tf.chat({ step: args.step, role: args.role, model: args.model, messages: studentMessages(task, ex.text, args.playbook), temperature: 0, maxTokens: 12, priceAs: args.priceAs, extraBody: args.extraBody });
       const pred = parseLabel(task, out.text);
       const ok = pred === ex.label;
       predictions[i] = { id: ex.id, text: ex.text, gold: ex.label, pred, ok };

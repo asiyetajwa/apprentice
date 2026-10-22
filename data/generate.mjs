@@ -1,8 +1,9 @@
 // Builds the bundled demo task: support tickets for a fictional app ("Lumen"), each labelled with one of
 // eight queues. Deterministic (fixed seed), so every run and every test sees the same train, dev and test
 // splits. Run: node data/generate.mjs
-// The tickets are composed from hand-written phrasings, with confusable cases on purpose (a refund that
-// mentions billing, a cancellation that mentions the account), so a small base model makes real mistakes.
+// The tickets are composed from hand-written phrasings. Most are hard on purpose: mixed intents, misleading
+// keywords and Lumen's house routing rules (below), so even a strong general model makes real mistakes that
+// labelled examples can teach away.
 
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -39,23 +40,34 @@ const SLOTS = {
   sign: ['', '', '', ' Thanks.', ' Thanks!', ' Please help.', ' Cheers', ' Appreciate it.'],
 };
 
-// Each label: plain phrasings, plus hard ones that borrow another queue's words.
+// Each label: plain phrasings, plus hard ones. Hard tickets follow Lumen's house rules, which a generic model
+// does not know but can learn from labelled examples:
+// - anything that blocks signing in is account_access, even when an error code shows;
+// - an error on the payment or checkout page is billing (the payments team owns it);
+// - "fix the charge" is billing, "send the money back" is refund;
+// - "stop charging me" or "do not renew" is cancellation, even when it sounds like a billing complaint;
+// - a damaged or wrong physical item is shipping when they want a replacement, refund when they want money;
+// - "will you add X" or "please add X" is feedback, even when phrased as a question;
+// - a question about how a plan change would be billed, asked before changing, is product_question;
+// - a complaint about price with no request is feedback.
 const LABELS = {
   billing: {
     plain: [
-      'I was charged {amount} twice {date} for the same {plan} plan.',
-      'Why did my card get charged {amount} {date}? I thought I was on the free tier.',
+      'I was charged {amount} twice {date} for the same {plan} plan, can you correct it?',
       'Can you send me an invoice for the {amount} payment {date}? Our accountant needs it.',
       'My payment keeps failing when I try to update my card details.',
-      'The price on my statement is {amount} but the site said less for the {plan} plan.',
       'I need to change the billing address on my invoices.',
       'How do I switch from monthly to annual billing?',
-      'There is a charge of {amount} I do not recognise from {date}.',
     ],
     hard: [
       'Not asking for money back, I just want to understand the {amount} charge from {date}.',
-      'I upgraded to {plan} and was charged the full {amount} instead of the prorated amount, can you fix the charge?',
-      'My account says {plan} but I am being billed for a different plan.',
+      'I upgraded to {plan} and was charged the full {amount} instead of the prorated amount, please fix the charge.',
+      'The checkout page shows {error} when I try to pay for the {plan} plan.',
+      'Your payment page on my {device} shows {error} after I enter my card.',
+      'My account says {plan} but the invoice is for a different plan, please correct the invoice.',
+      'Please add our VAT number to the {amount} invoice from {date}.',
+      'The card on file expired and the app keeps showing {error} when I try to replace it.',
+      'I see a pending charge of {amount} from {date}, is that right or a mistake on your side?',
     ],
   },
   refund: {
@@ -63,14 +75,17 @@ const LABELS = {
       'I would like a refund for the {amount} charge {date}, I never used the {plan} plan.',
       'Please refund my last payment. The app did not work for me.',
       'I returned {item} {date}, when will I get my money back?',
-      'Can I get my {amount} back? I bought the wrong plan by mistake.',
       'I was promised a refund {date} and still have not received it.',
-      'Requesting a full refund for the {plan} subscription, it is not what was advertised.',
     ],
     hard: [
       'You charged me twice {date}, please send one of the {amount} payments back to my card.',
       'I cancelled within the trial but was still billed {amount}, I want that money returned.',
       '{item} arrived broken, I do not want a replacement, just the money back.',
+      'The {plan} plan never synced on my {device}, I would rather have the {amount} back than more troubleshooting.',
+      'Billing took {amount} after I had already closed my account, put it back on my card please.',
+      'I do not want to cancel, I just want the {amount} from {date} reversed because I was charged for a plan I never chose.',
+      'Your app crashed during my exam week and the {plan} plan was useless, I expect my {amount} returned.',
+      'Can the {amount} go back to my card? {item} was the wrong size and I already sent it back.',
     ],
   },
   shipping: {
@@ -79,12 +94,16 @@ const LABELS = {
       'The tracking for {item} has not updated in a week, {carrier} says nothing.',
       'Can I change the delivery address for {item}? It has not shipped yet.',
       'My package was marked delivered {date} but it is not here.',
-      'Do you ship {item} to Canada and how long does it take?',
-      '{carrier} lost my package, what happens now?',
     ],
     hard: [
-      'I paid for express shipping on {item} and it still took ten days, can you look into the delivery?',
+      'I paid {amount} for express shipping on {item} and it still took ten days, can you look into the delivery?',
+      '{item} arrived cracked, please send a new one.',
+      'You sent me the wrong item instead of {item}, I need the right one shipped.',
       'Order says shipped {date} but {carrier} has no record, is it actually on the way?',
+      'My account shows {item} as delivered but I never got it, the app must be wrong or {carrier} is.',
+      'Billing went through for {item} {date} but there is still no tracking number.',
+      'Can {carrier} leave {item} with my neighbour? I will be away when it arrives.',
+      'The box for {item} was empty when it arrived {date}, please send what I ordered.',
     ],
   },
   technical: {
@@ -92,15 +111,17 @@ const LABELS = {
       'The app shows {error} every time I open it on my {device}.',
       'Sync stopped working on my {device} {date}, my notes are not updating.',
       '{feature} does not work after the latest update.',
-      'I get {error} when I try to upload a file larger than 10 MB.',
       'The app is extremely slow on my {device}, it takes a minute to load.',
-      'Notifications stopped arriving on my {device}.',
-      'Export to PDF produces an empty file.',
     ],
     hard: [
-      'I cannot log in because the app shows {error} right after I enter my password.',
-      'The checkout page shows {error} so I cannot pay for the {plan} plan.',
-      'Since the update my account settings page shows {error}.',
+      'I am signed in fine but {feature} shows {error} on my {device}.',
+      'Is {feature} broken or am I using it wrong? Nothing happens when I tap it.',
+      'I pay for {plan} and {feature} still says it is locked, even though everything else works.',
+      'Since the update my account settings page shows {error}, I can still sign in.',
+      'Export from my {plan} account produces an empty file on my {device}.',
+      'I love the app but {feature} drains my {device} battery in an hour since {date}.',
+      'Notes I wrote {date} on my {device} disappeared after the sync, I am still logged in.',
+      'Printing from the app on my {device} gives {error}.',
     ],
   },
   account_access: {
@@ -108,23 +129,17 @@ const LABELS = {
       'I forgot my password and the reset email never arrives.',
       'My account is locked after too many login attempts.',
       'I lost my phone and cannot get past two-factor authentication.',
-      'How do I change the email address on my account?',
       'Someone else logged into my account {date}, I think I was hacked.',
-      'I signed up with Google and now cannot log in with email.',
-      'The password reset link from {date} says it has expired.',
-      'I get logged out every few minutes on my {device}.',
-      'My {device} keeps asking for a verification code I never receive.',
-      'I need to move my account to a new email address, the old one is gone.',
-      'There was a sign-in from a {device} I do not own {date}, please secure my account.',
-      'My account got locked {date} after I typed the wrong password a few times.',
-      'Face ID login stopped working on my {device}.',
-      'I set up two-factor on a {device} I sold, how do I get back in?',
     ],
     hard: [
+      'I cannot log in because the app shows {error} right after I enter my password.',
       'I want to keep my subscription but I cannot get into the account to manage it.',
-      'The login code goes to my old email, how do I update it so I can sign in?',
       'I need to update my card but I cannot sign in to my account since {date}.',
       'Sign in on my {device} says my account does not exist, but I pay for {plan}.',
+      'The login screen on my {device} gives {error} so I cannot reach my notes.',
+      'I want to cancel but first I need to get back into my account, the reset link is broken.',
+      'The verification code text never arrives on my {device}, so I am stuck at sign in.',
+      'There was a sign-in from a {device} I do not own {date}, please secure my account.',
     ],
   },
   cancellation: {
@@ -132,59 +147,90 @@ const LABELS = {
       'Please cancel my {plan} subscription, I no longer need it.',
       'How do I stop my plan from renewing next month?',
       'I want to close my account and delete my data.',
-      'Cancel my membership effective today please.',
       'I am switching to another app, please end my subscription.',
     ],
     hard: [
-      'Please cancel my {plan} plan before it charges me again on the 1st.',
-      'I cannot find the cancel button in my account settings, please end the subscription for me.',
       'Stop charging my card, I am done with the service.',
+      'Please do not renew the {plan} plan on the 1st, I will not need it after this month.',
+      'I cannot find the cancel button in my account settings, please end the subscription for me.',
+      'No more {amount} payments please, the {plan} plan ends with me today.',
+      'My company stopped using Lumen, turn off the auto renewal on our {plan} account.',
+      'I do not want a refund, I just want to make sure I am not billed again next month.',
+      'Remove my card and shut down the account, the app is fine but I do not use it.',
+      'Downgrade me to nothing, I mean end the subscription, before the next billing date.',
     ],
   },
   product_question: {
     plain: [
       'Does the {plan} plan include {feature}?',
       'Can I use the app on my {device} and my laptop at the same time?',
-      'Is there a student discount?',
       'What is the difference between the Pro and Team plans?',
-      'Does {feature} work without an internet connection?',
       'How many people can share a Family plan?',
     ],
     hard: [
       'If I move to the {plan} plan, will I be billed again or is it prorated?',
       'Does {feature} come with the {plan} plan or do I need to pay extra?',
+      'Before I buy the {plan} plan, does it work offline on a {device}?',
+      'If I cancel the trial early, do I keep {feature} until the end of the month?',
+      'Is the {amount} price for {plan} per person or for the whole team?',
+      'Will my notes still sync to a {device} if I stay on the free tier?',
+      'Can I pay for the {plan} plan with a gift card, or only a credit card?',
+      'Do you ship {item} to Canada, and is shipping included in the {plan} plan?',
     ],
   },
   feedback: {
     plain: [
       'Love the new {feature}, it saves me so much time.',
-      'Suggestion: please add {feature} to the mobile app.',
       'The redesign is confusing, I preferred the old layout.',
       'Just wanted to say your support team was great last week.',
       'It would be great if {feature} supported more file types.',
     ],
     hard: [
+      'Will you add {feature} to the {device} app? It is the one thing I miss.',
+      'Please add {feature} to the {plan} plan, my whole team would use it.',
+      'Honestly the {plan} plan is too expensive for what it offers.',
       'Not a bug report, but {feature} feels slow compared to before.',
-      'Honestly the {plan} plan is too expensive for what it offers, consider a cheaper tier.',
+      'Any plans to support {device}? I would switch my whole team over.',
+      'The {amount} price went up again {date}, that is a lot for a notes app.',
+      'Shipping on {item} was quick and the packaging was lovely, thank you.',
+      'Can you bring back the old {feature}? The new one is harder to use.',
     ],
   },
 };
 
-function noise(text) {
+// Background a customer adds that names other queues without asking for anything from them.
+// Each aside lists the queues it would contradict, so it is never added to those.
+const ASIDES = [
+  ['I have been on the {plan} plan for two years.', []],
+  ['Your app is usually great.', []],
+  ['My last order arrived fine.', ['shipping']],
+  ['Billing has never been an issue before.', ['billing', 'refund']],
+  ['I use it on my {device} every day.', []],
+  ['I already tried logging out and back in.', []],
+  ['I am not trying to cancel.', ['cancellation']],
+  ['I recommended Lumen to my whole office.', []],
+];
+
+function noise(text, label) {
   let t = text;
+  if (rand() < 0.4) {
+    const [aside, not] = pick(ASIDES);
+    if (!not.includes(label)) t = `${fill(aside)} ${t}`;
+  }
   if (rand() < 0.15) t = t.toLowerCase();
   if (rand() < 0.1) t = t.replace(/\./g, '');
   if (rand() < 0.08) t = t.replace(/ the /, ' teh ');
-  if (rand() < 0.1) t = `${t} This is the ${pick(['second', 'third'])} time I am writing.`;
   return t;
 }
 
-// The last plain and the last hard phrasing of every label never appear in training: dev and test draw half
+// The reserved phrasings of every label (below) never appear in training: dev and test draw half
 // their tickets from them, so a tuned model is scored on wording it has not seen, not on memorised frames.
 function pool(label, hard, split) {
   const all = hard ? LABELS[label].hard : LABELS[label].plain;
-  const reserved = all.slice(-1);
-  const open = all.slice(0, -1);
+  // Plain: the last phrasing is reserved. Hard: the last two, so held-out tickets test the house rules on new wording.
+  const keep = hard ? 2 : 1;
+  const reserved = all.slice(-keep);
+  const open = all.slice(0, -keep);
   if (split === 'train') return open;
   return rand() < 0.5 ? reserved : open;
 }
@@ -194,10 +240,10 @@ function make(label, hard, split) {
   let body = fill(pick(pool(label, hard, split)));
   if (greet.endsWith(', ')) body = body[0].toLowerCase() + body.slice(1);
   const core = `${greet}${body}${pick(SLOTS.sign)}`.trim();
-  return { body: body.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim(), core, text: noise(core) };
+  return { body: body.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim(), core, text: noise(core, label) };
 }
 
-// Per label: 30 train, 8 dev, 15 test; about a third of each split is hard.
+// Per label: 30 train, 8 dev, 15 test; about two thirds of each split is hard.
 const sizes = { test: 15, dev: 8, train: 30 };
 const seen = new Set();
 const owner = new Map();
@@ -208,7 +254,7 @@ for (const label of Object.keys(LABELS)) {
     let tries = 0;
     while (made < n && tries < 5000) {
       tries++;
-      const hard = made < Math.round(n / 3);
+      const hard = made < Math.round((n * 2) / 3);
       // A sentence belongs to one split only: test and tuning checks never reuse a training sentence, even
       // with a different greeting. Within a split, tickets are unique before noise is added.
       const { body, core, text } = make(label, hard, split);

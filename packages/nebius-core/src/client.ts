@@ -3,7 +3,7 @@
 // interface is served by a stub transport, so the whole app runs offline and never blocks on the key.
 
 import { Telemetry } from './telemetry.js';
-import { costUsd, priceOf } from './models.js';
+import { costUsd, priceOf, requestStyle } from './models.js';
 
 export interface ChatMessage {
   role: 'system' | 'user' | 'assistant';
@@ -62,6 +62,10 @@ export interface Hyperparameters {
   lora_alpha: number;
   lora_dropout: number;
   warmup_ratio?: number;
+  weight_decay?: number;
+  max_grad_norm?: number;
+  /** Pack short examples into full-length sequences (Token Factory's default), so cost follows real tokens. */
+  packing?: boolean;
   context_length?: number;
 }
 
@@ -137,14 +141,22 @@ export class HttpTransport implements Transport {
 
   async chat(req: ChatRequest): Promise<ChatResult> {
     const started = Date.now();
+    const style = requestStyle(req.model);
+    let messages = req.messages;
+    if (req.schema && style.schemaInPrompt) {
+      // No structured outputs listed for this model: put the schema in the instructions and parse the reply.
+      const rule = `Reply with only a JSON object, no other text, matching this JSON schema:\n${JSON.stringify(req.schema.schema)}`;
+      messages = messages[0]?.role === 'system' ? [{ role: 'system', content: `${messages[0].content}\n\n${rule}` }, ...messages.slice(1)] : [{ role: 'system', content: rule }, ...messages];
+    }
     const body: Record<string, unknown> = {
       model: req.model,
-      messages: req.messages,
+      messages,
       temperature: req.temperature ?? 0,
       max_tokens: req.maxTokens ?? 512,
     };
+    if (style.noThinking) body.chat_template_kwargs = { enable_thinking: false };
     if (req.extraBody) Object.assign(body, req.extraBody);
-    if (req.schema) body.response_format = { type: 'json_schema', json_schema: { name: req.schema.name, schema: req.schema.schema, strict: true } };
+    if (req.schema && !style.schemaInPrompt) body.response_format = { type: 'json_schema', json_schema: { name: req.schema.name, schema: req.schema.schema, strict: true } };
     const out = await this.request<{ choices: Array<{ message: { content: string | null } }>; usage?: { prompt_tokens: number; completion_tokens: number } }>(
       `${this.baseUrl}/chat/completions`,
       { method: 'POST', body: JSON.stringify(body) },

@@ -4,7 +4,7 @@
 // labelled stub everywhere in the app; they show the loop's shape, not a result.
 
 import type { ChatRequest } from '@apprentice/nebius-core';
-import { hash } from './task.js';
+import { hash, PLAYBOOK_HEADING } from './task.js';
 
 type Rule = [string, RegExp];
 
@@ -48,8 +48,8 @@ function noisy(model: string, text: string, label: string, rate: number): string
   return LABELS[(h >>> 10) % LABELS.length]!;
 }
 
-export function studentAnswer(model: string, text: string): string {
-  const tuned = /^apprentice-|^ft:/i.test(model);
+export function studentAnswer(model: string, text: string, taught = false): string {
+  const tuned = taught || /^apprentice-|^ft:/i.test(model);
   const teacher = /ultra|super/i.test(model);
   if (teacher) return noisy(model, text, classify(text, CAREFUL), 0.04);
   if (tuned) return noisy(model, text, classify(text, CAREFUL), 0.07);
@@ -125,5 +125,5 @@ export function stubRespond(req: ChatRequest): string {
   if (req.schema?.name === 'failure_types') return failureTypes(content);
   if (req.schema?.name === 'training_cases') return teacherCases(content, req);
   if (req.schema?.name === 'labels') return blindLabels(content);
-  return studentAnswer(req.model, user);
+  return studentAnswer(req.model, user, req.messages[0]?.content.includes(PLAYBOOK_HEADING) ?? false);
 }

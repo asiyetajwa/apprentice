@@ -60,6 +60,21 @@ test('the full loop runs in stub mode and only ships a real win', async () => {
   assert.ok(events.some((e) => e.kind === 'log' && /Shipped|Not shipped/.test(e.text ?? '')));
 });
 
+test('the playbook method teaches through instructions and only ships a real win', async () => {
+  const runsDir = mkdtempSync(join(tmpdir(), 'apprentice-'));
+  const task = sampleTask(dataDir);
+  const run = new Run({ tf: stubTf(), task, runsDir, id: 'run-pb', number: 1, pollSeconds: 0, perType: 10, method: 'playbook', emit: () => undefined });
+  const s = await run.go();
+  assert.equal(s.error, null, s.error ?? '');
+  assert.equal(s.method, 'playbook');
+  assert.equal(s.training, null);
+  assert.ok(s.playbook && s.playbook.rules > 0);
+  const playbook = readFileSync(join(runsDir, 'run-pb', 'playbook.txt'), 'utf8');
+  for (const t of task.test) assert.ok(!playbook.includes(t.text), `test ticket leaked into the playbook: ${t.id}`);
+  assert.ok(s.baseline && s.tuned);
+  assert.equal(s.decision?.ship, s.tuned.correct > s.baseline.correct);
+});
+
 test('uploads are split by label, deterministically', () => {
   const rows = Array.from({ length: 80 }, (_, i) => JSON.stringify({ text: `ticket number ${String(i)} about ${i % 2 ? 'cats' : 'dogs'}`, label: i % 2 ? 'cats' : 'dogs' })).join('\n');
   const a = taskFromUpload('Pets', 'Label the pet.', rows);
