@@ -3,3 +3,4 @@ dist/
 runs/
 .env
 *.log
+demo-dist/

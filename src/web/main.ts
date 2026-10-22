@@ -380,11 +380,15 @@ function callsTable(calls: Call[]): string {
 }
 
 let pending = 0;
-function scheduleLive(r: Run): void {
-  // Calls can arrive dozens a second; repaint at most every 250 ms.
+let liveRun: Run | null = null;
+function scheduleLive(next: Run): void {
+  // Calls can arrive dozens a second; repaint at most every 250 ms, always from the newest state.
+  liveRun = next;
   if (pending) return;
   pending = window.setTimeout(() => {
     pending = 0;
+    const r = liveRun;
+    if (!r) return;
     const stages = document.getElementById('stages');
     if (!stages) return;
     stages.innerHTML = stagesHtml(r);

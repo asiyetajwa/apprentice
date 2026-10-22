@@ -13,7 +13,8 @@
     "dev": "npm run build && tsx watch src/server/index.ts",
     "test": "node --import tsx --test test/*.test.ts",
     "typecheck": "tsc -p . --noEmit",
-    "data": "node data/generate.mjs"
+    "data": "node data/generate.mjs",
+    "demo": "node scripts/build-demo.mjs"
   },
   "engines": {
     "node": ">=22"
