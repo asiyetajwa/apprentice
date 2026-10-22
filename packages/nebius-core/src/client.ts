@@ -21,6 +21,8 @@ export interface ChatRequest {
   schema?: { name: string; schema: Record<string, unknown> };
   /** For pricing a fine-tuned student by its base model. */
   priceAs?: string;
+  /** Extra request fields passed through as is, e.g. { chat_template_kwargs: { enable_thinking: false } }. */
+  extraBody?: Record<string, unknown>;
 }
 
 export interface ChatResult {
@@ -80,6 +82,8 @@ export interface Transport {
   deployLora(args: { name: string; baseModel: string; source: string }): Promise<DeployedModel>;
   getDeployed(name: string): Promise<DeployedModel>;
   listModels(): Promise<string[]>;
+  /** Published price per 1M tokens, when the transport knows it (the live guard does). */
+  priceFor?(model: string): { in: number; out: number } | null;
 }
 
 export class TokenFactoryError extends Error {
@@ -139,6 +143,7 @@ export class HttpTransport implements Transport {
       temperature: req.temperature ?? 0,
       max_tokens: req.maxTokens ?? 512,
     };
+    if (req.extraBody) Object.assign(body, req.extraBody);
     if (req.schema) body.response_format = { type: 'json_schema', json_schema: { name: req.schema.name, schema: req.schema.schema, strict: true } };
     const out = await this.request<{ choices: Array<{ message: { content: string | null } }>; usage?: { prompt_tokens: number; completion_tokens: number } }>(
       `${this.baseUrl}/chat/completions`,
@@ -251,9 +256,9 @@ export class TokenFactory {
   }
 
   async chat(req: ChatRequest): Promise<ChatResult> {
-    const price = priceOf(req.priceAs ?? req.model, req.priceAs);
     try {
       const out = await this.transport.chat(req);
+      const price = this.transport.priceFor?.(req.model) ?? priceOf(req.priceAs ?? req.model, req.priceAs);
       this.telemetry.record({
         step: req.step,
         role: req.role,

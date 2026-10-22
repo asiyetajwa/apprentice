@@ -25,6 +25,8 @@ With no `NEBIUS_API_KEY` the app runs in **stub mode**: answers are simulated so
 
 ## Guarantees
 
+- Live spending is capped. Every paid call goes through a spend guard that uses Token Factory's published prices, reserves each call's worst case before sending it, keeps a ledger, and stops at `APPRENTICE_BUDGET_USD`. A billing error halts all calls. Fine-tuning needs an approved quote, and deploying to a dedicated endpoint is refused.
+
 - Held-out examples never reach teaching or training. The tests check this on every run.
 - The eval runs at temperature 0 with a fixed prompt, and labels are parsed strictly, so scores repeat.
 - Shipping follows the numbers: the tuned model must get more held-out examples right than the base model.

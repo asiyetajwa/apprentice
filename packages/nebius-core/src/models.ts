@@ -16,12 +16,15 @@ const CATALOGUE: Record<string, ModelChoice> = {
   'nvidia/Nemotron-3_5-Lightning': { id: 'nvidia/Nemotron-3_5-Lightning', label: 'Nemotron 3.5 Lightning', price: { in: 0.06, out: 0.24 } },
   'meta-llama/Meta-Llama-3.1-8B-Instruct': { id: 'meta-llama/Meta-Llama-3.1-8B-Instruct', label: 'Llama 3.1 8B', price: { in: 0.02, out: 0.06 } },
   'Qwen/Qwen3-1.7B': { id: 'Qwen/Qwen3-1.7B', label: 'Qwen3 1.7B', price: { in: 0.02, out: 0.06 } },
+  'Qwen/Qwen3-30B-A3B-Instruct-2507': { id: 'Qwen/Qwen3-30B-A3B-Instruct-2507', label: 'Qwen3 30B-A3B', price: { in: 0.1, out: 0.3 } },
+  'nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B': { id: 'nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B', label: 'Nemotron 3 Nano', price: { in: 0.06, out: 0.24 } },
 };
 
 const DEFAULTS: Record<Role, string> = {
   teacher: 'nvidia/Nemotron-3-Ultra-550b-a55b',
   grader: 'nvidia/nemotron-3-super-120b-a12b',
-  student: 'meta-llama/Meta-Llama-3.1-8B-Instruct',
+  // Served per token on Token Factory and listed as LoRA-tunable (Llama 3.1 8B is tunable but not served per token).
+  student: 'Qwen/Qwen3-30B-A3B-Instruct-2507',
 };
 
 const ENV: Record<Role, string> = { teacher: 'APPRENTICE_TEACHER', grader: 'APPRENTICE_GRADER', student: 'APPRENTICE_STUDENT' };
