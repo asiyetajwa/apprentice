@@ -4,3 +4,8 @@ runs/
 .env
 *.log
 demo-dist/
+film/node_modules
+film/out/
+film/public/music/
+film/public/voiceover/
+film/public/sfx/

@@ -1,0 +1,642 @@
+{
+  "width": 1600,
+  "new:start": {
+    "x": 1215,
+    "y": 1132,
+    "w": 151,
+    "h": 52
+  },
+  "new:job": {
+    "x": 326,
+    "y": 236,
+    "w": 1068,
+    "h": 434
+  },
+  "new:models": {
+    "x": 326,
+    "y": 775,
+    "w": 1068,
+    "h": 224
+  },
+  "new:go": {
+    "x": 326,
+    "y": 1104,
+    "w": 1068,
+    "h": 109
+  },
+  "loop-baseline:stages": {
+    "x": 326,
+    "y": 309,
+    "w": 1068,
+    "h": 152
+  },
+  "loop-baseline:feed": {
+    "x": 354,
+    "y": 569,
+    "w": 501,
+    "h": 640
+  },
+  "loop-baseline:loss": {
+    "x": 937,
+    "y": 569,
+    "w": 429,
+    "h": 200
+  },
+  "loop-baseline:calls": {
+    "x": 937,
+    "y": 897,
+    "w": 429,
+    "h": 370
+  },
+  "loop-baseline:top": {
+    "x": 326,
+    "y": 76,
+    "w": 1068,
+    "h": 55
+  },
+  "loop-teach:stages": {
+    "x": 326,
+    "y": 309,
+    "w": 1068,
+    "h": 132
+  },
+  "loop-teach:feed": {
+    "x": 354,
+    "y": 549,
+    "w": 501,
+    "h": 640
+  },
+  "loop-teach:loss": {
+    "x": 937,
+    "y": 549,
+    "w": 429,
+    "h": 200
+  },
+  "loop-teach:calls": {
+    "x": 937,
+    "y": 877,
+    "w": 429,
+    "h": 370
+  },
+  "loop-teach:top": {
+    "x": 326,
+    "y": 76,
+    "w": 1068,
+    "h": 55
+  },
+  "loop-train:stages": {
+    "x": 326,
+    "y": 309,
+    "w": 1068,
+    "h": 132
+  },
+  "loop-train:feed": {
+    "x": 354,
+    "y": 549,
+    "w": 501,
+    "h": 640
+  },
+  "loop-train:loss": {
+    "x": 937,
+    "y": 549,
+    "w": 429,
+    "h": 200
+  },
+  "loop-train:calls": {
+    "x": 937,
+    "y": 877,
+    "w": 429,
+    "h": 370
+  },
+  "loop-train:top": {
+    "x": 326,
+    "y": 76,
+    "w": 1068,
+    "h": 55
+  },
+  "loop-prove:stages": {
+    "x": 326,
+    "y": 309,
+    "w": 1068,
+    "h": 152
+  },
+  "loop-prove:feed": {
+    "x": 354,
+    "y": 569,
+    "w": 501,
+    "h": 640
+  },
+  "loop-prove:loss": {
+    "x": 937,
+    "y": 569,
+    "w": 429,
+    "h": 200
+  },
+  "loop-prove:calls": {
+    "x": 937,
+    "y": 897,
+    "w": 429,
+    "h": 370
+  },
+  "loop-prove:top": {
+    "x": 326,
+    "y": 76,
+    "w": 1068,
+    "h": 55
+  },
+  "loop-done:stages": {
+    "x": 326,
+    "y": 309,
+    "w": 1068,
+    "h": 132
+  },
+  "loop-done:feed": {
+    "x": 354,
+    "y": 659,
+    "w": 501,
+    "h": 640
+  },
+  "loop-done:loss": {
+    "x": 937,
+    "y": 659,
+    "w": 429,
+    "h": 200
+  },
+  "loop-done:calls": {
+    "x": 937,
+    "y": 987,
+    "w": 429,
+    "h": 370
+  },
+  "loop-done:top": {
+    "x": 326,
+    "y": 76,
+    "w": 1068,
+    "h": 55
+  },
+  "loop-done:done": {
+    "x": 326,
+    "y": 471,
+    "w": 1068,
+    "h": 80
+  },
+  "loop-done:results": {
+    "x": 1212,
+    "y": 485,
+    "w": 168,
+    "h": 52
+  },
+  "results:dials": {
+    "x": 326,
+    "y": 238,
+    "w": 440,
+    "h": 470
+  },
+  "results:headline": {
+    "x": 806,
+    "y": 257,
+    "w": 588,
+    "h": 431
+  },
+  "results:nums": {
+    "x": 806,
+    "y": 502,
+    "w": 588,
+    "h": 105
+  },
+  "results:verdict": {
+    "x": 806,
+    "y": 641,
+    "w": 483,
+    "h": 48
+  },
+  "results:stages": {
+    "x": 326,
+    "y": 813,
+    "w": 1068,
+    "h": 132
+  },
+  "results:grid": {
+    "x": 326,
+    "y": 1050,
+    "w": 1068,
+    "h": 994
+  },
+  "results:bars": {
+    "x": 326,
+    "y": 1050,
+    "w": 568,
+    "h": 369
+  },
+  "results:loss": {
+    "x": 920,
+    "y": 1050,
+    "w": 474,
+    "h": 369
+  },
+  "results:fails": {
+    "x": 326,
+    "y": 1445,
+    "w": 568,
+    "h": 599
+  },
+  "results:receipt": {
+    "x": 920,
+    "y": 1445,
+    "w": 474,
+    "h": 599
+  },
+  "results:runs": {
+    "x": 326,
+    "y": 2149,
+    "w": 1068,
+    "h": 68
+  },
+  "calls:costs": {
+    "x": 326,
+    "y": 309,
+    "w": 1068,
+    "h": 99
+  },
+  "calls:table": {
+    "x": 354,
+    "y": 539,
+    "w": 1012,
+    "h": 17036
+  },
+  "sizes": {
+    "new": {
+      "w": 1600,
+      "h": 1307
+    },
+    "loop-baseline": {
+      "w": 1600,
+      "h": 1418
+    },
+    "loop-teach": {
+      "w": 1600,
+      "h": 1398
+    },
+    "loop-train": {
+      "w": 1600,
+      "h": 1398
+    },
+    "loop-prove": {
+      "w": 1600,
+      "h": 1418
+    },
+    "loop-done": {
+      "w": 1600,
+      "h": 1508
+    },
+    "results": {
+      "w": 1600,
+      "h": 2311
+    },
+    "calls": {
+      "w": 1600,
+      "h": 1390
+    }
+  },
+  "run": {
+    "id": "run-001",
+    "number": 1,
+    "createdAt": "2026-10-22T14:56:23.189Z",
+    "finishedAt": "2026-10-22T14:57:17.119Z",
+    "mode": "stub",
+    "status": "shipped",
+    "stage": "ship",
+    "stages": {
+      "intake": {
+        "status": "done",
+        "title": "240 examples",
+        "detail": "8 labels, 120 held out",
+        "progress": null
+      },
+      "baseline": {
+        "status": "done",
+        "title": "Base: 73%",
+        "detail": "32 mistakes to learn from",
+        "progress": null
+      },
+      "teach": {
+        "status": "done",
+        "title": "76 new cases",
+        "detail": "6 failure types",
+        "progress": null
+      },
+      "train": {
+        "status": "done",
+        "title": "LoRA, 3 epochs",
+        "detail": "1 min on Token Factory",
+        "progress": null
+      },
+      "prove": {
+        "status": "done",
+        "title": "Tuned: 89%",
+        "detail": "The same held-out tickets",
+        "progress": null
+      },
+      "ship": {
+        "status": "done",
+        "title": "Shipped",
+        "detail": "apprentice-run-001",
+        "progress": null
+      }
+    },
+    "task": {
+      "name": "Support ticket routing",
+      "description": "Route each customer support ticket for the Lumen notes app to exactly one queue.",
+      "labels": [
+        "billing",
+        "refund",
+        "shipping",
+        "technical",
+        "account_access",
+        "cancellation",
+        "product_question",
+        "feedback"
+      ],
+      "counts": {
+        "train": 240,
+        "dev": 64,
+        "test": 120
+      }
+    },
+    "models": {
+      "student": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+      "studentLabel": "Llama 3.1 8B",
+      "teacher": "nvidia/Nemotron-3-Ultra-550b-a55b",
+      "teacherLabel": "Nemotron 3 Ultra",
+      "grader": "nvidia/nemotron-3-super-120b-a12b",
+      "graderLabel": "Nemotron 3 Super"
+    },
+    "baseline": {
+      "model": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+      "label": "Base Llama 3.1 8B",
+      "correct": 88,
+      "total": 120,
+      "accuracy": 0.7333333333333333,
+      "perLabel": {
+        "billing": {
+          "correct": 13,
+          "total": 15
+        },
+        "refund": {
+          "correct": 9,
+          "total": 15
+        },
+        "shipping": {
+          "correct": 15,
+          "total": 15
+        },
+        "technical": {
+          "correct": 13,
+          "total": 15
+        },
+        "account_access": {
+          "correct": 12,
+          "total": 15
+        },
+        "cancellation": {
+          "correct": 3,
+          "total": 15
+        },
+        "product_question": {
+          "correct": 10,
+          "total": 15
+        },
+        "feedback": {
+          "correct": 13,
+          "total": 15
+        }
+      },
+      "medianLatencyMs": 61,
+      "costUsd": 0.0004949,
+      "costPer1k": 0.004124166666666667,
+      "mistakes": 32
+    },
+    "reference": {
+      "model": "nvidia/Nemotron-3-Ultra-550b-a55b",
+      "label": "Nemotron 3 Ultra",
+      "correct": 107,
+      "total": 120,
+      "accuracy": 0.8916666666666667,
+      "perLabel": {
+        "billing": {
+          "correct": 12,
+          "total": 15
+        },
+        "refund": {
+          "correct": 14,
+          "total": 15
+        },
+        "shipping": {
+          "correct": 15,
+          "total": 15
+        },
+        "technical": {
+          "correct": 11,
+          "total": 15
+        },
+        "account_access": {
+          "correct": 13,
+          "total": 15
+        },
+        "cancellation": {
+          "correct": 14,
+          "total": 15
+        },
+        "product_question": {
+          "correct": 15,
+          "total": 15
+        },
+        "feedback": {
+          "correct": 13,
+          "total": 15
+        }
+      },
+      "medianLatencyMs": 912,
+      "costUsd": 0.02479,
+      "costPer1k": 0.20658333333333334,
+      "mistakes": 13
+    },
+    "tuned": {
+      "model": "apprentice-run-001",
+      "label": "Tuned Llama 3.1 8B",
+      "correct": 107,
+      "total": 120,
+      "accuracy": 0.8916666666666667,
+      "perLabel": {
+        "billing": {
+          "correct": 12,
+          "total": 15
+        },
+        "refund": {
+          "correct": 15,
+          "total": 15
+        },
+        "shipping": {
+          "correct": 15,
+          "total": 15
+        },
+        "technical": {
+          "correct": 12,
+          "total": 15
+        },
+        "account_access": {
+          "correct": 13,
+          "total": 15
+        },
+        "cancellation": {
+          "correct": 12,
+          "total": 15
+        },
+        "product_question": {
+          "correct": 15,
+          "total": 15
+        },
+        "feedback": {
+          "correct": 13,
+          "total": 15
+        }
+      },
+      "medianLatencyMs": 61,
+      "costUsd": 0.0004956799999999999,
+      "costPer1k": 0.004130666666666666,
+      "mistakes": 13
+    },
+    "failures": [
+      {
+        "id": "ft-1",
+        "name": "Refund asked as a billing complaint",
+        "description": "Asks for money back but mentions a charge, so the model says billing.",
+        "gold": "refund",
+        "confusedWith": "billing",
+        "exampleIds": [
+          "dev-008",
+          "dev-024",
+          "dev-027",
+          "dev-057"
+        ],
+        "count": 4
+      },
+      {
+        "id": "ft-2",
+        "name": "Cancel read as an account issue",
+        "description": "Wants to end the subscription but mentions the account.",
+        "gold": "cancellation",
+        "confusedWith": "account_access",
+        "exampleIds": [
+          "dev-003",
+          "dev-020",
+          "dev-061"
+        ],
+        "count": 3
+      },
+      {
+        "id": "ft-3",
+        "name": "product question read as technical",
+        "description": "Tickets that are product_question get labelled technical.",
+        "gold": "product_question",
+        "confusedWith": "technical",
+        "exampleIds": [
+          "dev-028",
+          "dev-044",
+          "dev-048"
+        ],
+        "count": 3
+      },
+      {
+        "id": "ft-4",
+        "name": "billing read as cancellation",
+        "description": "Tickets that are billing get labelled cancellation.",
+        "gold": "billing",
+        "confusedWith": "cancellation",
+        "exampleIds": [
+          "dev-012",
+          "dev-017"
+        ],
+        "count": 2
+      },
+      {
+        "id": "ft-5",
+        "name": "Cancel before renewal",
+        "description": "Wants to stop the plan before the next charge, so the model says billing.",
+        "gold": "cancellation",
+        "confusedWith": "billing",
+        "exampleIds": [
+          "dev-031",
+          "dev-038"
+        ],
+        "count": 2
+      },
+      {
+        "id": "ft-6",
+        "name": "Plan question with prices",
+        "description": "A question before buying that mentions billing or prices.",
+        "gold": "product_question",
+        "confusedWith": "billing",
+        "exampleIds": [
+          "dev-040",
+          "dev-055"
+        ],
+        "count": 2
+      }
+    ],
+    "fixed": [
+      "ft-1",
+      "ft-3",
+      "ft-6"
+    ],
+    "teach": {
+      "written": 160,
+      "kept": 76,
+      "rejected": 84,
+      "web": null
+    },
+    "training": {
+      "jobId": "ftjob-stub-3",
+      "trainingFile": "file-stub-1",
+      "validationFile": "file-stub-2",
+      "examples": 316,
+      "status": "succeeded",
+      "checkpoints": [
+        {
+          "id": "ckpt-1",
+          "step": 30,
+          "model": "meta-llama/Meta-Llama-3.1-8B-Instruct:ckpt-step-30",
+          "trainLoss": 0.57,
+          "validLoss": 0.688
+        },
+        {
+          "id": "ckpt-2",
+          "step": 60,
+          "model": "meta-llama/Meta-Llama-3.1-8B-Instruct:ckpt-step-60",
+          "trainLoss": 0.262,
+          "validLoss": 0.367
+        },
+        {
+          "id": "ckpt-3",
+          "step": 90,
+          "model": "meta-llama/Meta-Llama-3.1-8B-Instruct:ckpt-step-90",
+          "trainLoss": 0.165,
+          "validLoss": 0.249
+        }
+      ],
+      "fineTunedModel": "ft:Meta-Llama-3.1-8B-Instruct:apprentice:ub-3",
+      "minutes": 1
+    },
+    "deployment": {
+      "name": "apprentice-run-001",
+      "status": "active",
+      "baseUrl": "stub"
+    },
+    "decision": {
+      "ship": true,
+      "reason": "Tuned beats base by 19 of 120 held-out tickets (73% to 89%)."
+    },
+    "costUsd": 0.04196666000000004,
+    "error": null
+  }
+}

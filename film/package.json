@@ -1,0 +1,24 @@
+{
+  "name": "@apprentice/film",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "description": "The Apprentice product film (Remotion), built the way the Pawzoo film is",
+  "scripts": {
+    "capture": "node scripts/capture.mjs",
+    "studio": "remotion studio src/index.ts",
+    "voiceover": "node scripts/voiceover.mjs apprentice",
+    "render": "node scripts/render.mjs ApprenticeLandscape"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.536",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "remotion": "4.0.536"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.12",
+    "playwright": "1.56.1",
+    "typescript": "5.9.2"
+  }
+}

@@ -36,6 +36,10 @@ With no `NEBIUS_API_KEY` the app runs in **stub mode**: answers are simulated so
 - `src/web`: the web app.
 - `data`: a deterministic support ticket dataset (`npm run data` regenerates it).
 
+## Demo film
+
+Built with Remotion in [`film/`](film), the same way as the Pawzoo film: stills of the running app (`npm run capture`), narrated by the ElevenLabs voice Eric over an ElevenLabs Music bed, ending on an ElevenLabs Sound Effects chime. The lines live in [`film/src/apprentice/script.ts`](film/src/apprentice/script.ts); `npm run voiceover` regenerates them (with `ELEVENLABS_API_KEY` set) and `npm run render` cuts the film, each scene stretched to its line. The current cut is recorded in stub mode, and it says so on screen.
+
 ## License
 
 MIT
