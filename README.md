@@ -4,7 +4,7 @@ An agent that teaches a small open model one job, proves it learned on examples 
 
 Give Apprentice a narrow job and some labelled examples. It tests a small model, has NVIDIA Nemotron teach it from its own mistakes, and checks the result on the same held-out test. Everything runs on Nebius Token Factory, and every model call comes with a receipt: tokens, time and cost.
 
-**Our challenge: prove it all on $1 of credit.** Three live teaching runs, a LoRA fine-tune of Qwen3 4B and every test cost **$0.29** in total. See [`docs/RESULTS.md`](docs/RESULTS.md).
+**Our hackathon hack: prove it all on $1 of credit.** Three live teaching runs, a LoRA fine-tune of Qwen3 4B and every test cost **$0.29** in total, with spending capped in code. The budget shaped the design: a specialist taught through instructions and served per token, and no hourly endpoints. See [`docs/RESULTS.md`](docs/RESULTS.md).
 
 ## Results, live on Nebius Token Factory
 

@@ -18,7 +18,7 @@ Apprentice
 
 ## Tagline
 
-An agent that teaches a small model one job, proves it on tickets it never saw, and ships it only if it wins. On a $1 budget.
+Our hack: prove an agent can teach a small model one job, test it on tickets it never saw, and ship it only if it wins, all on a $1 budget.
 
 ## Built with
 
@@ -26,13 +26,21 @@ TypeScript, Node.js, Express, Nebius Token Factory, NVIDIA Nemotron 3 Ultra, NVI
 
 ## Description
 
+### Our hack: $1
+
+This is a hackathon, so we gave our project a hack of its own: **prove that Apprentice works on a one dollar budget.** No big credit grants, no hourly GPUs: one dollar of Nebius Token Factory trial credit for everything, with spending capped in code.
+
+That one constraint shaped everything you will see:
+- **The live specialist teaches through instructions.** Token Factory serves a fine-tuned model only from an hourly dedicated endpoint, which a dollar cannot buy. So the shipped specialist, NVIDIA Nemotron 3 Nano, is taught through a playbook and served per token.
+- **The fine-tune is small and its adapter is tested on our own CPU.** For the same reason, the Qwen3 4B LoRA fine-tune was sized to fit, and we downloaded its adapter to score it ourselves.
+- **Reasoning is switched off for short answers.** Nemotron's thinking would otherwise eat tokens on one-word labels.
+- **Every call is priced before it is sent.**
+
+Three full live teaching runs, a LoRA fine-tune and every test came to **$0.29**. Nothing was charged to a card.
+
 ### Inspiration
 
-Most of what teams ask a large model to do every day is one narrow job: route a ticket, tag a document, pick a category. Frontier models do these jobs well and cost a lot at volume; small models are cheap and miss. Closing that gap by hand means writing training data, fine-tuning, and hoping it helped. We wanted an agent that does the whole job and proves the result, and we wanted to show it can be done on almost no money.
-
-### Our challenge: $1
-
-We set ourselves one dollar of Nebius Token Factory credit for everything: three full live teaching runs, a LoRA fine-tune, and every test. The total came to **$0.29**. Every paid call went through a spend guard with a hard stop, and nothing was charged to a card.
+Most of what teams ask a large model to do every day is one narrow job: route a ticket, tag a document, pick a category. Frontier models do these jobs well and cost a lot at volume; small models are cheap and miss. Closing that gap by hand means writing training data, fine-tuning, and hoping it helped. We wanted an agent that does the whole job and proves the result. And if it can be done for under a dollar, any team can afford to try it on their own narrow jobs.
 
 ### What it does
 
@@ -73,7 +81,7 @@ Every call is shown with its tokens, time and cost.
 ### Accomplishments that we're proud of
 
 - A taught NVIDIA Nemotron 3 Nano that gets within four tickets of Nemotron 3 Ultra at a fifth of the cost, proven on held-out tickets.
-- The whole thing, three live runs and a fine-tune included, for 29 cents of a one-dollar budget, with spending capped in code.
+- Our hack held: three live runs, a fine-tune and every test for 29 cents of a one-dollar budget, with spending capped in code.
 - Honest numbers: every run reported, held-out data guarded by tests, and the method chosen on the dev split.
 
 ### What we learned
