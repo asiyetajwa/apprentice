@@ -33,6 +33,24 @@ def parse_label(task, reply):
     return found[0][1] if found else f"(unclear: {reply.strip()[:40]})"
 
 
+def peft_ready(adapter_dir):
+    """Token Factory saves adapter weights as "model.layers.N...lora_A.weight"; PEFT expects the
+    "base_model.model." prefix. Without it PEFT matches nothing and, because the config says
+    init_lora_weights false, leaves random LoRA weights in place: garbage output. Returns a directory
+    PEFT can load, writing a renamed copy next to the original when needed."""
+    from safetensors.torch import load_file, save_file
+
+    src = Path(adapter_dir)
+    weights = load_file(str(src / "adapter_model.safetensors"))
+    if all(k.startswith("base_model.model.") for k in weights):
+        return str(src)
+    out = src.parent / f"{src.name}-peft"
+    out.mkdir(exist_ok=True)
+    save_file({f"base_model.model.{k}": v for k, v in weights.items()}, str(out / "adapter_model.safetensors"))
+    (out / "adapter_config.json").write_text((src / "adapter_config.json").read_text())
+    return str(out)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", required=True)
@@ -56,7 +74,7 @@ def main():
     if a.adapter:
         from peft import PeftModel
 
-        model = PeftModel.from_pretrained(model, a.adapter)
+        model = PeftModel.from_pretrained(model, peft_ready(a.adapter))
         model = model.merge_and_unload()
     model.eval()
 
