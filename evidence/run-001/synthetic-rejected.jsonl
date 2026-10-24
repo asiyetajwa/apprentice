@@ -1,0 +1,7 @@
+{"id":"syn-023","text":"Are there any limits on the number of tags or nested notebooks I can create?","label":"product_question","source":"teacher","reason":"grader said \"shipping\""}
+{"id":"syn-025","text":"Billing went through for the hardware key on the 5th but there is still no tracking info. Can you check the delivery status?","label":"shipping","source":"teacher","reason":"grader said \"\""}
+{"id":"syn-096","text":"If I upgrade to the Pro plan, will I be charged again immediately or is it prorated?","label":"product_question","source":"teacher","reason":"grader said \"billing\""}
+{"id":"syn-110","text":"My credit card expired and I need to update the payment method on file.","label":"billing","source":"teacher","reason":"grader said \"account_access\""}
+{"id":"syn-112","text":"The annual renewal charged me but I wanted to cancel, can you help?","label":"billing","source":"teacher","reason":"grader said \"cancellation\""}
+{"id":"syn-115","text":"My corporate card was declined, how do I provide a new one before service stops?","label":"billing","source":"teacher","reason":"grader said \"account_access\""}
+{"id":"syn-119","text":"If I upgrade mid-cycle, is the charge prorated or full price?","label":"product_question","source":"teacher","reason":"grader said \"billing\""}

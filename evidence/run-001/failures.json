@@ -1,0 +1,62 @@
+[
+  {
+    "id": "ft-1",
+    "name": "Feedback misclassified as Product Question",
+    "description": "Model confuses feature requests or general praise/feedback with specific product inquiries due to overlapping language about features.",
+    "gold": "feedback",
+    "confusedWith": "product_question",
+    "exampleIds": [
+      "dev-015",
+      "dev-047",
+      "dev-049",
+      "dev-051"
+    ],
+    "count": 4
+  },
+  {
+    "id": "ft-2",
+    "name": "Shipping misclassified as Billing",
+    "description": "Model mistakes shipping-related queries (tracking, delivery) for billing issues when text mentions payment or charges alongside shipping context.",
+    "gold": "shipping",
+    "confusedWith": "billing",
+    "exampleIds": [
+      "dev-013",
+      "dev-023"
+    ],
+    "count": 2
+  },
+  {
+    "id": "ft-3",
+    "name": "Feedback misclassified as Shipping",
+    "description": "Model incorrectly labels positive feedback about fast shipping or packaging as a shipping issue instead of general feedback.",
+    "gold": "feedback",
+    "confusedWith": "shipping",
+    "exampleIds": [
+      "dev-011",
+      "dev-055"
+    ],
+    "count": 2
+  },
+  {
+    "id": "ft-4",
+    "name": "Product Question misclassified as Technical",
+    "description": "Model treats general product capability questions (device compatibility, features) as technical support issues due to mention of devices or platforms.",
+    "gold": "product_question",
+    "confusedWith": "technical",
+    "exampleIds": [
+      "dev-020"
+    ],
+    "count": 1
+  },
+  {
+    "id": "ft-5",
+    "name": "Product Question misclassified as Billing",
+    "description": "Model confuses plan upgrade or feature questions with billing when text mentions plan changes or pricing.",
+    "gold": "product_question",
+    "confusedWith": "billing",
+    "exampleIds": [
+      "dev-034"
+    ],
+    "count": 1
+  }
+]

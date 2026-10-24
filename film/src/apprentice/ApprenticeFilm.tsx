@@ -1,6 +1,6 @@
 import { createFilm } from '../components/Film';
 import { SCENES } from './script';
-import { BaselineScene, IntroScene, JobScene, OutroScene, ProveScene, ReceiptsScene, TeachScene, TrainScene } from './scenes';
+import { BaselineScene, BudgetScene, IntroScene, JobScene, OutroScene, ProveScene, ReceiptsScene, TeachScene, TrainScene } from './scenes';
 
 export const apprenticeFilm = createFilm('apprentice', SCENES, {
   intro: IntroScene,
@@ -10,5 +10,6 @@ export const apprenticeFilm = createFilm('apprentice', SCENES, {
   train: TrainScene,
   prove: ProveScene,
   receipts: ReceiptsScene,
+  budget: BudgetScene,
   outro: OutroScene,
 });

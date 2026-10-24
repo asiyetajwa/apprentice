@@ -1,0 +1,78 @@
+{"id":"syn-001","text":"Love the new dark theme, it's so easy on the eyes during late night sessions!","label":"feedback","source":"teacher"}
+{"id":"syn-002","text":"The search speed improvement in v3.2 is noticeable, great work on that optimization.","label":"feedback","source":"teacher"}
+{"id":"syn-003","text":"Really appreciate the keyboard shortcuts addition, my workflow is much faster now.","label":"feedback","source":"teacher"}
+{"id":"syn-004","text":"The new tagging system is a game changer for organizing my research notes.","label":"feedback","source":"teacher"}
+{"id":"syn-005","text":"Please consider adding a focus mode timer, would help with deep work sessions.","label":"feedback","source":"teacher"}
+{"id":"syn-006","text":"It would be amazing if the mobile app had a widget for quick capture.","label":"feedback","source":"teacher"}
+{"id":"syn-007","text":"The export to markdown feature saved me hours last week, thank you!","label":"feedback","source":"teacher"}
+{"id":"syn-008","text":"Could you look into supporting .epub imports? My library is mostly in that format.","label":"feedback","source":"teacher"}
+{"id":"syn-009","text":"The collaboration comments are okay but threading would make discussions clearer.","label":"feedback","source":"teacher"}
+{"id":"syn-010","text":"Big fan of the voice-to-text accuracy improvements, it's finally usable for me.","label":"feedback","source":"teacher"}
+{"id":"syn-011","text":"Would love to see a graph view for linked notes, similar to what Obsidian offers.","label":"feedback","source":"teacher"}
+{"id":"syn-012","text":"The new template gallery is nice but custom categories would help organization.","label":"feedback","source":"teacher"}
+{"id":"syn-013","text":"Does the Pro plan include API access for custom integrations?","label":"product_question","source":"teacher"}
+{"id":"syn-014","text":"What's the maximum file size for attachments on the Team plan?","label":"product_question","source":"teacher"}
+{"id":"syn-015","text":"Can I share a workspace with someone on the Free tier?","label":"product_question","source":"teacher"}
+{"id":"syn-016","text":"Is end-to-end encryption available on the Business plan?","label":"product_question","source":"teacher"}
+{"id":"syn-017","text":"How many team members can I add before hitting the plan limit?","label":"product_question","source":"teacher"}
+{"id":"syn-018","text":"Does the student discount apply to annual billing only?","label":"product_question","source":"teacher"}
+{"id":"syn-019","text":"Are there any limits on the number of workspaces per account?","label":"product_question","source":"teacher"}
+{"id":"syn-020","text":"Can I try the Pro features for a week before committing?","label":"product_question","source":"teacher"}
+{"id":"syn-021","text":"Is offline sync automatic or manual on mobile?","label":"product_question","source":"teacher"}
+{"id":"syn-022","text":"What happens to my data if I downgrade from Team to Personal?","label":"product_question","source":"teacher"}
+{"id":"syn-023","text":"Do you offer volume discounts for 50+ seats?","label":"product_question","source":"teacher"}
+{"id":"syn-024","text":"Is the calendar integration two-way or read-only?","label":"product_question","source":"teacher"}
+{"id":"syn-025","text":"I was charged twice for my Pro subscription this month. Can you look into the duplicate charge on my latest invoice?","label":"billing","source":"teacher"}
+{"id":"syn-026","text":"The starter kit arrived quickly and the packaging was lovely, but I still need a corrected receipt for the charge on my credit card.","label":"billing","source":"teacher"}
+{"id":"syn-028","text":"I received the welcome box yesterday. The invoice PDF you emailed doesn't match the amount actually charged. Please fix the invoice.","label":"billing","source":"teacher"}
+{"id":"syn-029","text":"Shipping on the starter kit was quick and the packaging was lovely, thank you. However, I was billed for the Pro plan instead of the Starter plan. Can you correct the charge?","label":"billing","source":"teacher"}
+{"id":"syn-030","text":"I want to confirm the price for the Team plan before I upgrade. Is it per user or a flat fee?","label":"product_question","source":"teacher"}
+{"id":"syn-031","text":"The physical notebook I ordered hasn't arrived yet. Tracking number LN-8822 shows no updates since last week.","label":"shipping","source":"teacher"}
+{"id":"syn-032","text":"I was charged for the annual Pro plan but meant to stay monthly. Can I get a refund for the difference?","label":"refund","source":"teacher"}
+{"id":"syn-033","text":"My starter kit shipment was delayed and the box arrived damaged. I'd like a replacement sent.","label":"shipping","source":"teacher"}
+{"id":"syn-034","text":"I see a $19.99 charge from Lumen on my statement but I'm on the free tier. What is this for?","label":"billing","source":"teacher"}
+{"id":"syn-035","text":"The app crashes every time I try to export a PDF. It's been happening since the last update.","label":"technical","source":"teacher"}
+{"id":"syn-036","text":"I recommended Lumen to my whole office. Shipping on the starter kit was quick and the packaging was lovely, thank you. Cheers","label":"feedback","source":"teacher"}
+{"id":"syn-038","text":"I use it on my Windows laptop every day. Hey team, shipping on teh starter kit was quick and the packaging was lovely, thank you.","label":"feedback","source":"teacher"}
+{"id":"syn-039","text":"The tracking link for my hardware order returns a 404 error. Can you resend the correct tracking info?","label":"shipping","source":"teacher"}
+{"id":"syn-042","text":"The starter kit box was empty when it arrived. No notebook, no pen, just packing material.","label":"shipping","source":"teacher"}
+{"id":"syn-043","text":"I'd like to cancel my subscription before the next renewal date. What's the process?","label":"cancellation","source":"teacher"}
+{"id":"syn-044","text":"Can you explain the difference between the Pro and Team plans? I'm deciding which to buy.","label":"product_question","source":"teacher"}
+{"id":"syn-045","text":"I was charged VAT on my invoice but my company is VAT-exempt. Please adjust future invoices and credit the tax back.","label":"billing","source":"teacher"}
+{"id":"syn-046","text":"The delivery driver left my starter kit in the rain and the box is soaked. Need a replacement shipment ASAP.","label":"shipping","source":"teacher"}
+{"id":"syn-047","text":"Why does my invoice show a different currency than my bank statement? The conversion rate seems off.","label":"billing","source":"teacher"}
+{"id":"syn-048","text":"Love the new dark mode! The app feels much faster now. Great work.","label":"feedback","source":"teacher"}
+{"id":"syn-049","text":"I was billed for the gift card on the 3rd but there's still no tracking number.","label":"shipping","source":"teacher"}
+{"id":"syn-050","text":"Payment processed for the notebook bundle on Monday yet no shipment confirmation email arrived.","label":"shipping","source":"teacher"}
+{"id":"syn-052","text":"Invoice paid for the leather cover add-on, however tracking hasn't updated in five days.","label":"shipping","source":"teacher"}
+{"id":"syn-053","text":"Subscription renewal fee posted yesterday, still no dispatch notification for the physical welcome kit.","label":"shipping","source":"teacher"}
+{"id":"syn-054","text":"Charge appeared for the limited edition stickers, yet the carrier shows no pickup scan.","label":"shipping","source":"teacher"}
+{"id":"syn-055","text":"Paid for the gift subscription box on the 1st, tracking number never generated.","label":"shipping","source":"teacher"}
+{"id":"syn-056","text":"Credit card debited for the accessory pack, order stuck in processing for a week.","label":"shipping","source":"teacher"}
+{"id":"syn-057","text":"Billing completed for the annual plan's physical notebook, but shipping label never created.","label":"shipping","source":"teacher"}
+{"id":"syn-058","text":"Money taken for the premium paper refill, no tracking link in the account portal.","label":"shipping","source":"teacher"}
+{"id":"syn-059","text":"Transaction cleared for the branded pen set, delivery estimate keeps sliding.","label":"shipping","source":"teacher"}
+{"id":"syn-060","text":"Receipt shows payment for the desktop stand, yet warehouse hasn't released the parcel.","label":"shipping","source":"teacher"}
+{"id":"syn-061","text":"I see a $49.99 charge on my statement but can't find any invoice or receipt in the app.","label":"billing","source":"teacher"}
+{"id":"syn-062","text":"Why was I billed twice this month for the same Pro subscription?","label":"billing","source":"teacher"}
+{"id":"syn-063","text":"The price on my invoice doesn't match the annual plan advertised on the website.","label":"billing","source":"teacher"}
+{"id":"syn-065","text":"VAT number missing from the last three invoices, finance team needs it for records.","label":"billing","source":"teacher"}
+{"id":"syn-066","text":"Switching from monthly to yearly billing, want confirmation the proration is correct.","label":"billing","source":"teacher"}
+{"id":"syn-067","text":"Received a charge for 500 extra storage credits I never authorized.","label":"billing","source":"teacher"}
+{"id":"syn-069","text":"Payment retry logic charged me three times in one hour for the same renewal.","label":"billing","source":"teacher"}
+{"id":"syn-070","text":"Annual receipt shows wrong currency, should be EUR not USD for my region.","label":"billing","source":"teacher"}
+{"id":"syn-071","text":"Need a detailed breakdown of the $14.99 line item on last month's statement.","label":"billing","source":"teacher"}
+{"id":"syn-072","text":"Auto-renewal charged the old expired card instead of the new one on file.","label":"billing","source":"teacher"}
+{"id":"syn-076","text":"The app crashes every time I try to export a PDF with more than 20 pages. iPhone 14, iOS 17.2. Reinstall didnt fix it.","label":"technical","source":"teacher"}
+{"id":"syn-077","text":"I can't log in. The magic link email never arrives, not in spam either. Tried 3 different browsers. My email is correct.","label":"account_access","source":"teacher"}
+{"id":"syn-078","text":"Please cancel my Team plan immediately. I don't need the collaborative features anymore and I don't want to be charged next month.","label":"cancellation","source":"teacher"}
+{"id":"syn-079","text":"Does the Student plan include the handwriting-to-text conversion feature? Also, is there a limit on notebooks or pages?","label":"product_question","source":"teacher"}
+{"id":"syn-080","text":"Love the new dark mode! The sepia theme is easier on my eyes during late-night study sessions. Keep up the great work.","label":"feedback","source":"teacher"}
+{"id":"syn-081","text":"Why does my invoice show tax now? I've been billed $12/month for a year and this month it's $13.08. My address hasn't changed.","label":"billing","source":"teacher"}
+{"id":"syn-082","text":"I accidentally bought the yearly plan instead of monthly. I realized 10 minutes later. Can I get my money back and switch to monthly?","label":"refund","source":"teacher"}
+{"id":"syn-083","text":"The limited edition leather cover I ordered for my sister's birthday shows 'delivered' but it's not at my door. Porch pirates maybe?","label":"shipping","source":"teacher"}
+{"id":"syn-084","text":"Sync is broken between my iPad and Android phone. Notes I write on one don't show up on the other for hours, sometimes never. Both on latest app version.","label":"technical","source":"teacher"}
+{"id":"syn-085","text":"I lost access to my authenticator app when I switched phones. Can't get the 2FA code to sign in. Backup codes don't work either.","label":"account_access","source":"teacher"}
+{"id":"syn-086","text":"I want to delete my account and all my data permanently. Not just cancel the subscription — wipe everything. GDPR right to erasure.","label":"cancellation","source":"teacher"}
+{"id":"syn-087","text":"Can I pay with PayPal or Apple Pay? My corporate card blocks recurring SaaS charges and I need an alternative payment method.","label":"product_question","source":"teacher"}
+{"id":"syn-088","text":"The new toolbar layout is terrible. You hid the highlighter behind two taps now. Who asked for this? At least make it customizable.","label":"feedback","source":"teacher"}

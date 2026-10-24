@@ -1,0 +1,8 @@
+{"id":"syn-023","text":"What are the differences between the Pro and Team plans for a group of five?","label":"product_question","source":"teacher","reason":"grader said \"feedback\""}
+{"id":"syn-025","text":"Loving the new dark mode on desktop. Also the welcome kit shipped fast and the recycled packaging is a nice touch.","label":"feedback","source":"teacher","reason":"grader said \"\""}
+{"id":"syn-050","text":"My card was charged on Tuesday for the premium kit, but there's still no tracking link in the order details.","label":"shipping","source":"teacher","reason":"grader said \"\""}
+{"id":"syn-060","text":"My corporate card was declined, yet the subscription renewed; need to update the payment method before next cycle.","label":"billing","source":"teacher","reason":"grader said \"account_access\""}
+{"id":"syn-065","text":"Payment failed due to expired card, but the retry logic didn't trigger; now I have a past-due notice.","label":"billing","source":"teacher","reason":"grader said \"account_access\""}
+{"id":"syn-106","text":"My credit card on file expired and the renewal failed; I need to update the payment method.","label":"billing","source":"teacher","reason":"grader said \"account_access\""}
+{"id":"syn-109","text":"Please change the billing email address from my old work address to my personal one.","label":"billing","source":"teacher","reason":"grader said \"account_access\""}
+{"id":"syn-115","text":"My bank blocked the subscription charge as suspected fraud; I need a new payment link.","label":"billing","source":"teacher","reason":"grader said \"account_access\""}

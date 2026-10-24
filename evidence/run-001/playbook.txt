@@ -1,0 +1,28 @@
+House rules, learned from labelled examples:
+- Model confuses feature requests or general praise/feedback with specific product inquiries due to overlapping language about features. These go to feedback, not product_question.
+- Model mistakes shipping-related queries (tracking, delivery) for billing issues when text mentions payment or charges alongside shipping context. These go to shipping, not billing.
+- Model incorrectly labels positive feedback about fast shipping or packaging as a shipping issue instead of general feedback. These go to feedback, not shipping.
+- Model treats general product capability questions (device compatibility, features) as technical support issues due to mention of devices or platforms. These go to product_question, not technical.
+- Model confuses plan upgrade or feature questions with billing when text mentions plan changes or pricing. These go to product_question, not billing.
+
+Worked examples:
+Ticket: The new dark mode looks fantastic — much easier on the eyes during late-night sessions. Great work!
+Label: feedback
+Ticket: I love how the tagging system auto-suggests related notes. It saves me so much time organizing research.
+Label: feedback
+Ticket: My credit card was charged $29.99 on March 3rd for the gift card but I still have no tracking number or shipping confirmation.
+Label: shipping
+Ticket: I paid for the Family plan renewal and the physical security key was supposed to ship last week. No tracking email yet.
+Label: shipping
+Ticket: The voice-to-text accuracy has improved noticeably since the last update. Keep refining it!
+Label: feedback
+Ticket: It would be amazing if the mobile app had a quick-capture widget for the lock screen. Just a thought.
+Label: feedback
+Ticket: What file formats does the Pro plan import? I need to bring in .docx and .epub files from my old system.
+Label: product_question
+Ticket: Does the Team tier include SSO/SAML integration, or is that Enterprise-only?
+Label: product_question
+Ticket: Can I buy additional storage a la carte, or do I have to upgrade my whole plan?
+Label: product_question
+Ticket: Is there a student discount for the annual Personal plan? I'm on a tight budget.
+Label: product_question

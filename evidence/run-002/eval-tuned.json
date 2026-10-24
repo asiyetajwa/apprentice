@@ -1,0 +1,886 @@
+{
+  "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+  "label": "Taught Nemotron 3 Nano",
+  "correct": 90,
+  "total": 120,
+  "accuracy": 0.75,
+  "perLabel": {
+    "billing": {
+      "correct": 12,
+      "total": 15
+    },
+    "refund": {
+      "correct": 12,
+      "total": 15
+    },
+    "shipping": {
+      "correct": 13,
+      "total": 15
+    },
+    "technical": {
+      "correct": 14,
+      "total": 15
+    },
+    "account_access": {
+      "correct": 13,
+      "total": 15
+    },
+    "cancellation": {
+      "correct": 13,
+      "total": 15
+    },
+    "product_question": {
+      "correct": 10,
+      "total": 15
+    },
+    "feedback": {
+      "correct": 3,
+      "total": 15
+    }
+  },
+  "predictions": [
+    {
+      "id": "test-001",
+      "text": "I already tried logging out and back in. Your app crashed during my exam week and the annual plan was useless, I expect my $119 returned. Thanks!",
+      "gold": "refund",
+      "pred": "refund",
+      "ok": true
+    },
+    {
+      "id": "test-002",
+      "text": "Hello, can you bring back the old export to PDF? The new one is harder to use.",
+      "gold": "feedback",
+      "pred": "product_question",
+      "ok": false
+    },
+    {
+      "id": "test-003",
+      "text": "Shipping on the printed planner was quick and the packaging was lovely, thank you. Thanks.",
+      "gold": "feedback",
+      "pred": "feedback",
+      "ok": true
+    },
+    {
+      "id": "test-004",
+      "text": "Good morning. My company stopped using Lumen, turn off the auto renewal on our Starter account. Cheers",
+      "gold": "cancellation",
+      "pred": "cancellation",
+      "ok": true
+    },
+    {
+      "id": "test-005",
+      "text": "Good morning. Can I change the delivery address for the gift card? It has not shipped yet. Thanks.",
+      "gold": "shipping",
+      "pred": "shipping",
+      "ok": true
+    },
+    {
+      "id": "test-006",
+      "text": "I already tried logging out and back in. I lost my phone and cannot get past two-factor authentication. Cheers",
+      "gold": "account_access",
+      "pred": "account_access",
+      "ok": true
+    },
+    {
+      "id": "test-007",
+      "text": "Hi, not asking for money back, I just want to understand the $4.50 charge from this morning. Thanks!",
+      "gold": "billing",
+      "pred": "billing",
+      "ok": true
+    },
+    {
+      "id": "test-008",
+      "text": "my package was marked delivered yesterday but it is not here. appreciate it.",
+      "gold": "shipping",
+      "pred": "shipping",
+      "ok": true
+    },
+    {
+      "id": "test-009",
+      "text": "Any plans to support MacBook? I would switch my whole team over. Thanks!",
+      "gold": "feedback",
+      "pred": "product_question",
+      "ok": false
+    },
+    {
+      "id": "test-010",
+      "text": "Hello, can the post office leave the gift card with my neighbour? I will be away when it arrives. Cheers",
+      "gold": "shipping",
+      "pred": "shipping",
+      "ok": true
+    },
+    {
+      "id": "test-011",
+      "text": "I am not trying to cancel. Your app crashed during my exam week and the Team plan was useless, I expect my $119 returned.",
+      "gold": "refund",
+      "pred": "refund",
+      "ok": true
+    },
+    {
+      "id": "test-012",
+      "text": "Good morning. Do you ship the printed planner to Canada, and is shipping included in the Pro plan? Please help.",
+      "gold": "product_question",
+      "pred": "shipping",
+      "ok": false
+    },
+    {
+      "id": "test-013",
+      "text": "good morning. love the new two-way sync, it saves me so much time. please help.",
+      "gold": "feedback",
+      "pred": "feedback",
+      "ok": true
+    },
+    {
+      "id": "test-014",
+      "text": "your app is usually great. does the family plan include offline mode? thanks.",
+      "gold": "product_question",
+      "pred": "product_question",
+      "ok": true
+    },
+    {
+      "id": "test-015",
+      "text": "Hey team, can I pay for the Pro plan with a gift card, or only a credit card? Thanks.",
+      "gold": "product_question",
+      "pred": "product_question",
+      "ok": true
+    },
+    {
+      "id": "test-016",
+      "text": "Good morning. I returned the printed planner yesterday, when will I get my money back?",
+      "gold": "refund",
+      "pred": "refund",
+      "ok": true
+    },
+    {
+      "id": "test-017",
+      "text": "hi, you charged me twice on march 12, please send one of the $14 payments back to my card. thanks.",
+      "gold": "refund",
+      "pred": "billing",
+      "ok": false
+    },
+    {
+      "id": "test-018",
+      "text": "Hi, the redesign is confusing, I preferred the old layout.",
+      "gold": "feedback",
+      "pred": "feedback",
+      "ok": true
+    },
+    {
+      "id": "test-019",
+      "text": "Good morning. I do not want a refund, I just want to make sure I am not billed again next month.",
+      "gold": "cancellation",
+      "pred": "billing",
+      "ok": false
+    },
+    {
+      "id": "test-020",
+      "text": "The app is extremely slow on my Windows laptop, it takes a minute to load.",
+      "gold": "technical",
+      "pred": "technical",
+      "ok": true
+    },
+    {
+      "id": "test-021",
+      "text": "Do you ship my hardware key to Canada, and is shipping included in the Starter plan? Appreciate it.",
+      "gold": "product_question",
+      "pred": "shipping",
+      "ok": false
+    },
+    {
+      "id": "test-022",
+      "text": "Your app is usually great. Hi, the checkout page shows a blank white screen when I try to pay for the Pro plan. Thanks!",
+      "gold": "billing",
+      "pred": "technical",
+      "ok": false
+    },
+    {
+      "id": "test-023",
+      "text": "Remove my card and shut down the account, the app is fine but I do not use it. Please help.",
+      "gold": "cancellation",
+      "pred": "cancellation",
+      "ok": true
+    },
+    {
+      "id": "test-024",
+      "text": "The Family plan never synced on my Pixel 8, I would rather have the $14 back than more troubleshooting. Appreciate it.",
+      "gold": "refund",
+      "pred": "refund",
+      "ok": true
+    },
+    {
+      "id": "test-025",
+      "text": "hey team, i cannot find the cancel button in my account settings, please end the subscription for me.",
+      "gold": "cancellation",
+      "pred": "cancellation",
+      "ok": true
+    },
+    {
+      "id": "test-026",
+      "text": "I already tried logging out and back in. Hello, you charged me twice two weeks ago, please send one of the $9.99 payments back to my card.",
+      "gold": "refund",
+      "pred": "billing",
+      "ok": false
+    },
+    {
+      "id": "test-027",
+      "text": "I already tried logging out and back in. Hello, can you send me an invoice for the $59.88 payment last Tuesday? Our accountant needs it.",
+      "gold": "billing",
+      "pred": "billing",
+      "ok": true
+    },
+    {
+      "id": "test-028",
+      "text": "i use it on my windows laptop every day. hey team, there was a sign-in from a galaxy s23 i do not own yesterday, please secure my account.",
+      "gold": "account_access",
+      "pred": "account_access",
+      "ok": true
+    },
+    {
+      "id": "test-029",
+      "text": "hi, the box for the desk stand was empty when it arrived this morning, please send what i ordered.",
+      "gold": "shipping",
+      "pred": "shipping",
+      "ok": true
+    },
+    {
+      "id": "test-030",
+      "text": "You sent me the wrong item instead of the printed planner, I need the right one shipped.",
+      "gold": "shipping",
+      "pred": "shipping",
+      "ok": true
+    },
+    {
+      "id": "test-031",
+      "text": "Hey team, it would be great if export to PDF supported more file types. Appreciate it.",
+      "gold": "feedback",
+      "pred": "product_question",
+      "ok": false
+    },
+    {
+      "id": "test-032",
+      "text": "I recommended Lumen to my whole office. Good morning. If I cancel the trial early, do I keep offline mode until the end of the month? Thanks!",
+      "gold": "product_question",
+      "pred": "product_question",
+      "ok": true
+    },
+    {
+      "id": "test-033",
+      "text": "I am switching to another app, please end my subscription.",
+      "gold": "cancellation",
+      "pred": "cancellation",
+      "ok": true
+    },
+    {
+      "id": "test-034",
+      "text": "i recommended lumen to my whole office. hi, the box for the starter kit was empty when it arrived on march 12, please send what i ordered.",
+      "gold": "shipping",
+      "pred": "shipping",
+      "ok": true
+    },
+    {
+      "id": "test-035",
+      "text": "I recommended Lumen to my whole office. Hey team, not asking for money back, I just want to understand the $14 charge from yesterday. Thanks!",
+      "gold": "billing",
+      "pred": "billing",
+      "ok": true
+    },
+    {
+      "id": "test-036",
+      "text": "hey team, how do i switch from monthly to annual billing? please help.",
+      "gold": "billing",
+      "pred": "billing",
+      "ok": true
+    },
+    {
+      "id": "test-037",
+      "text": "Hello, your app crashed during my exam week and the annual plan was useless, I expect my $119 returned.",
+      "gold": "refund",
+      "pred": "refund",
+      "ok": true
+    },
+    {
+      "id": "test-038",
+      "text": "I paid $14 for express shipping on the desk stand and it still took ten days, can you look into the delivery? Appreciate it.",
+      "gold": "shipping",
+      "pred": "shipping",
+      "ok": true
+    },
+    {
+      "id": "test-039",
+      "text": "Notes I wrote last Tuesday on my MacBook disappeared after the sync, I am still logged in.",
+      "gold": "technical",
+      "pred": "technical",
+      "ok": true
+    },
+    {
+      "id": "test-040",
+      "text": "Hey team, printing from the app on my Pixel 8 gives \"something went wrong\". Thanks.",
+      "gold": "technical",
+      "pred": "technical",
+      "ok": true
+    },
+    {
+      "id": "test-041",
+      "text": "Someone else logged into my account yesterday, I think I was hacked.",
+      "gold": "account_access",
+      "pred": "account_access",
+      "ok": true
+    },
+    {
+      "id": "test-042",
+      "text": "I have been on the Pro plan for two years. Hi, my account shows my hardware key as delivered but I never got it, the app must be wrong or USPS is.",
+      "gold": "shipping",
+      "pred": "account_access",
+      "ok": false
+    },
+    {
+      "id": "test-043",
+      "text": "I have been on the Starter plan for two years. Hey team, how do I stop my plan from renewing next month? Appreciate it.",
+      "gold": "cancellation",
+      "pred": "cancellation",
+      "ok": true
+    },
+    {
+      "id": "test-044",
+      "text": "hello, stop charging my card, i am done with the service. thanks!",
+      "gold": "cancellation",
+      "pred": "cancellation",
+      "ok": true
+    },
+    {
+      "id": "test-045",
+      "text": "My last order arrived fine. Hi, i upgraded to Pro and was charged the full $14 instead of the prorated amount, please fix the charge. Appreciate it.",
+      "gold": "billing",
+      "pred": "billing",
+      "ok": true
+    },
+    {
+      "id": "test-046",
+      "text": "I have been on the monthly plan for two years. Billing went through for the gift card yesterday but there is still no tracking number. Thanks!",
+      "gold": "shipping",
+      "pred": "billing",
+      "ok": false
+    },
+    {
+      "id": "test-047",
+      "text": "Hello, i forgot my password and the reset email never arrives. Thanks.",
+      "gold": "account_access",
+      "pred": "account_access",
+      "ok": true
+    },
+    {
+      "id": "test-048",
+      "text": "your app is usually great hey team, printing from the app on my windows laptop gives \"something went wrong\" thanks",
+      "gold": "technical",
+      "pred": "technical",
+      "ok": true
+    },
+    {
+      "id": "test-049",
+      "text": "please refund my last payment. the app did not work for me. please help.",
+      "gold": "refund",
+      "pred": "refund",
+      "ok": true
+    },
+    {
+      "id": "test-050",
+      "text": "Can you send me an invoice for the $119 payment last Tuesday? Our accountant needs it.",
+      "gold": "billing",
+      "pred": "billing",
+      "ok": true
+    },
+    {
+      "id": "test-051",
+      "text": "i am not trying to cancel. printing from the app on my macbook gives \"something went wrong\". thanks!",
+      "gold": "technical",
+      "pred": "technical",
+      "ok": true
+    },
+    {
+      "id": "test-052",
+      "text": "Good morning The verification code text never arrives on my Chromebook, so I am stuck at sign in",
+      "gold": "account_access",
+      "pred": "account_access",
+      "ok": true
+    },
+    {
+      "id": "test-053",
+      "text": "Billing has never been an issue before. Good morning. Shipping on the printed planner was quick and the packaging was lovely, thank you. Thanks.",
+      "gold": "feedback",
+      "pred": "billing",
+      "ok": false
+    },
+    {
+      "id": "test-054",
+      "text": "i pay for starter and two-way sync still says it is locked, even though everything else works. appreciate it.",
+      "gold": "technical",
+      "pred": "product_question",
+      "ok": false
+    },
+    {
+      "id": "test-055",
+      "text": "Is the widget broken or am I using it wrong? Nothing happens when I tap it.",
+      "gold": "technical",
+      "pred": "technical",
+      "ok": true
+    },
+    {
+      "id": "test-056",
+      "text": "Honestly the monthly plan is too expensive for what it offers. Appreciate it.",
+      "gold": "feedback",
+      "pred": "product_question",
+      "ok": false
+    },
+    {
+      "id": "test-057",
+      "text": "How do I stop my plan from renewing next month? Please help.",
+      "gold": "cancellation",
+      "pred": "cancellation",
+      "ok": true
+    },
+    {
+      "id": "test-058",
+      "text": "Hello, shipping on my hardware key was quick and the packaging was lovely, thank you.",
+      "gold": "feedback",
+      "pred": "shipping",
+      "ok": false
+    },
+    {
+      "id": "test-059",
+      "text": "I use it on my iPhone 15 every day. Hey team, the login screen on my iPhone 15 gives a spinning wheel so I cannot reach my notes. Please help.",
+      "gold": "account_access",
+      "pred": "technical",
+      "ok": false
+    },
+    {
+      "id": "test-060",
+      "text": "My last order arrived fine. Does the Starter plan include offline mode?",
+      "gold": "product_question",
+      "pred": "product_question",
+      "ok": true
+    },
+    {
+      "id": "test-061",
+      "text": "hey team, i do not want a refund, i just want to make sure i am not billed again next month.",
+      "gold": "cancellation",
+      "pred": "billing",
+      "ok": false
+    },
+    {
+      "id": "test-062",
+      "text": "I use it on my MacBook every day I see a pending charge of $29 from last Tuesday, is that right or a mistake on your side? Thanks!",
+      "gold": "billing",
+      "pred": "billing",
+      "ok": true
+    },
+    {
+      "id": "test-063",
+      "text": "Your app is usually great. My payment keeps failing when I try to update my card details.",
+      "gold": "billing",
+      "pred": "billing",
+      "ok": true
+    },
+    {
+      "id": "test-064",
+      "text": "I have been on the Starter plan for two years. Do you ship the starter kit to Canada, and is shipping included in the Pro plan? Appreciate it.",
+      "gold": "product_question",
+      "pred": "product_question",
+      "ok": true
+    },
+    {
+      "id": "test-065",
+      "text": "Good morning. I need to update my card but I cannot sign in to my account since this morning. Appreciate it.",
+      "gold": "account_access",
+      "pred": "account_access",
+      "ok": true
+    },
+    {
+      "id": "test-066",
+      "text": "Hey team, the checkout page shows error code E42 when I try to pay for the Family plan. Thanks!",
+      "gold": "billing",
+      "pred": "technical",
+      "ok": false
+    },
+    {
+      "id": "test-067",
+      "text": "Can I pay for the Team plan with a gift card, or only a credit card?",
+      "gold": "product_question",
+      "pred": "product_question",
+      "ok": true
+    },
+    {
+      "id": "test-068",
+      "text": "hi, i am switching to another app, please end my subscription. thanks!",
+      "gold": "cancellation",
+      "pred": "cancellation",
+      "ok": true
+    },
+    {
+      "id": "test-069",
+      "text": "Billing has never been an issue before. It would be great if two-way sync supported more file types. Please help.",
+      "gold": "feedback",
+      "pred": "product_question",
+      "ok": false
+    },
+    {
+      "id": "test-070",
+      "text": "Is the $9.99 price for Family per person or for the whole team? Thanks!",
+      "gold": "product_question",
+      "pred": "product_question",
+      "ok": true
+    },
+    {
+      "id": "test-071",
+      "text": "Your app is usually great. How many people can share a Family plan? Please help.",
+      "gold": "product_question",
+      "pred": "product_question",
+      "ok": true
+    },
+    {
+      "id": "test-072",
+      "text": "I have been on the annual plan for two years. Hello, i need to update my card but I cannot sign in to my account since on the 3rd. Cheers",
+      "gold": "account_access",
+      "pred": "account_access",
+      "ok": true
+    },
+    {
+      "id": "test-073",
+      "text": "I was promised a refund on the 3rd and still have not received it.",
+      "gold": "refund",
+      "pred": "refund",
+      "ok": true
+    },
+    {
+      "id": "test-074",
+      "text": "Billing has never been an issue before. Hello, the app shows a blank white screen every time I open it on my Pixel 8.",
+      "gold": "technical",
+      "pred": "technical",
+      "ok": true
+    },
+    {
+      "id": "test-075",
+      "text": "Good morning. I am switching to another app, please end my subscription. Appreciate it.",
+      "gold": "cancellation",
+      "pred": "cancellation",
+      "ok": true
+    },
+    {
+      "id": "test-076",
+      "text": "Hey team, remove my card and shut down the account, the app is fine but I do not use it. Thanks.",
+      "gold": "cancellation",
+      "pred": "cancellation",
+      "ok": true
+    },
+    {
+      "id": "test-077",
+      "text": "Hey team, do you ship the starter kit to Canada, and is shipping included in the annual plan? Cheers",
+      "gold": "product_question",
+      "pred": "shipping",
+      "ok": false
+    },
+    {
+      "id": "test-078",
+      "text": "Hey team, billing took $4.50 after I had already closed my account, put it back on my card please. Thanks.",
+      "gold": "refund",
+      "pred": "billing",
+      "ok": false
+    },
+    {
+      "id": "test-079",
+      "text": "I use it on my iPad every day. Good morning. Please add shared folders to the monthly plan, my whole team would use it. Thanks!",
+      "gold": "feedback",
+      "pred": "product_question",
+      "ok": false
+    },
+    {
+      "id": "test-080",
+      "text": "Hello, the login screen on my Windows laptop gives a crash on launch so I cannot reach my notes. Please help.",
+      "gold": "account_access",
+      "pred": "technical",
+      "ok": false
+    },
+    {
+      "id": "test-081",
+      "text": "Hello, your app crashed during my exam week and the Family plan was useless, I expect my $119 returned. Thanks!",
+      "gold": "refund",
+      "pred": "refund",
+      "ok": true
+    },
+    {
+      "id": "test-082",
+      "text": "Billing has never been an issue before. The app is extremely slow on my Pixel 8, it takes a minute to load.",
+      "gold": "technical",
+      "pred": "technical",
+      "ok": true
+    },
+    {
+      "id": "test-083",
+      "text": "Sign in on my MacBook says my account does not exist, but I pay for Starter.",
+      "gold": "account_access",
+      "pred": "account_access",
+      "ok": true
+    },
+    {
+      "id": "test-084",
+      "text": "Hi, i love the app but the calendar sync drains my Chromebook battery in an hour since two weeks ago. Appreciate it.",
+      "gold": "technical",
+      "pred": "technical",
+      "ok": true
+    },
+    {
+      "id": "test-085",
+      "text": "I use it on my Windows laptop every day. I would like a refund for the $59.88 charge on March 12, I never used the Family plan. Thanks.",
+      "gold": "refund",
+      "pred": "refund",
+      "ok": true
+    },
+    {
+      "id": "test-086",
+      "text": "I recommended Lumen to my whole office. Can you send me an invoice for teh $4.50 payment last Tuesday? Our accountant needs it. Thanks!",
+      "gold": "billing",
+      "pred": "billing",
+      "ok": true
+    },
+    {
+      "id": "test-087",
+      "text": "I have been on the Team plan for two years. Good morning. Please add our VAT number to the $4.50 invoice from last Tuesday. Cheers",
+      "gold": "billing",
+      "pred": "billing",
+      "ok": true
+    },
+    {
+      "id": "test-088",
+      "text": "I already tried logging out and back in. Remove my card and shut down the account, the app is fine but I do not use it.",
+      "gold": "cancellation",
+      "pred": "cancellation",
+      "ok": true
+    },
+    {
+      "id": "test-089",
+      "text": "Good morning. Where is my order? my hardware key was supposed to arrive on March 12. Please help.",
+      "gold": "shipping",
+      "pred": "shipping",
+      "ok": true
+    },
+    {
+      "id": "test-090",
+      "text": "I use it on my Chromebook every day. Please add our VAT number to the $4.50 invoice from two weeks ago.",
+      "gold": "billing",
+      "pred": "billing",
+      "ok": true
+    },
+    {
+      "id": "test-091",
+      "text": "I use it on my Chromebook every day. Hey team, printing from the app on my Chromebook gives a crash on launch. Cheers",
+      "gold": "technical",
+      "pred": "technical",
+      "ok": true
+    },
+    {
+      "id": "test-092",
+      "text": "Good morning. Since the update my account settings page shows error code E42, I can still sign in. Please help.",
+      "gold": "technical",
+      "pred": "technical",
+      "ok": true
+    },
+    {
+      "id": "test-093",
+      "text": "Hi, downgrade me to nothing, I mean end the subscription, before the next billing date.",
+      "gold": "cancellation",
+      "pred": "cancellation",
+      "ok": true
+    },
+    {
+      "id": "test-094",
+      "text": "The checkout page shows a blank white screen when I try to pay for teh Starter plan. Cheers",
+      "gold": "billing",
+      "pred": "technical",
+      "ok": false
+    },
+    {
+      "id": "test-095",
+      "text": "Shipping on the desk stand was quick and the packaging was lovely, thank you.",
+      "gold": "feedback",
+      "pred": "shipping",
+      "ok": false
+    },
+    {
+      "id": "test-096",
+      "text": "shipping on the printed planner was quick and the packaging was lovely, thank you. please help.",
+      "gold": "feedback",
+      "pred": "shipping",
+      "ok": false
+    },
+    {
+      "id": "test-097",
+      "text": "I recommended Lumen to my whole office. Someone else logged into my account last Tuesday, I think I was hacked. Please help.",
+      "gold": "account_access",
+      "pred": "account_access",
+      "ok": true
+    },
+    {
+      "id": "test-098",
+      "text": "Order says shipped this morning but FedEx has no record, is it actually on teh way? Thanks!",
+      "gold": "shipping",
+      "pred": "shipping",
+      "ok": true
+    },
+    {
+      "id": "test-099",
+      "text": "Billing has never been an issue before. My package was marked delivered on the 3rd but it is not here. Please help.",
+      "gold": "shipping",
+      "pred": "shipping",
+      "ok": true
+    },
+    {
+      "id": "test-100",
+      "text": "Please do not renew the Team plan on the 1st, I will not need it after this month. Cheers",
+      "gold": "cancellation",
+      "pred": "cancellation",
+      "ok": true
+    },
+    {
+      "id": "test-101",
+      "text": "where is my order? the gift card was supposed to arrive on the 3rd. cheers",
+      "gold": "shipping",
+      "pred": "shipping",
+      "ok": true
+    },
+    {
+      "id": "test-102",
+      "text": "I was promised a refund yesterday and still have not received it",
+      "gold": "refund",
+      "pred": "refund",
+      "ok": true
+    },
+    {
+      "id": "test-103",
+      "text": "Hi, i do not want to cancel, I just want the $9.99 from on March 12 reversed because I was charged for a plan I never chose. Please help.",
+      "gold": "refund",
+      "pred": "refund",
+      "ok": true
+    },
+    {
+      "id": "test-104",
+      "text": "Billing has never been an issue before. Good morning. I paid $59.88 for express shipping on the gift card and it still took ten days, can you look into the delivery?",
+      "gold": "shipping",
+      "pred": "shipping",
+      "ok": true
+    },
+    {
+      "id": "test-105",
+      "text": "Good morning. If I move to the annual plan, will I be billed again or is it prorated?",
+      "gold": "product_question",
+      "pred": "billing",
+      "ok": false
+    },
+    {
+      "id": "test-106",
+      "text": "I use it on my Pixel 8 every day Hi, teh verification code text never arrives on my iPhone 15, so I am stuck at sign in Cheers",
+      "gold": "account_access",
+      "pred": "account_access",
+      "ok": true
+    },
+    {
+      "id": "test-107",
+      "text": "the box for the printed planner was empty when it arrived on march 12, please send what i ordered. thanks!",
+      "gold": "shipping",
+      "pred": "shipping",
+      "ok": true
+    },
+    {
+      "id": "test-108",
+      "text": "My last order arrived fine Can teh $29 go back to my card? the printed planner was the wrong size and I already sent it back Thanks!",
+      "gold": "refund",
+      "pred": "refund",
+      "ok": true
+    },
+    {
+      "id": "test-109",
+      "text": "Your app is usually great. Hi, any plans to support iPad? I would switch my whole team over. Thanks!",
+      "gold": "feedback",
+      "pred": "product_question",
+      "ok": false
+    },
+    {
+      "id": "test-110",
+      "text": "Your app is usually great. There was a sign-in from a Windows laptop I do not own last Tuesday, please secure my account. Thanks.",
+      "gold": "account_access",
+      "pred": "account_access",
+      "ok": true
+    },
+    {
+      "id": "test-111",
+      "text": "Good morning. Can I use the app on my Windows laptop and my laptop at the same time?",
+      "gold": "product_question",
+      "pred": "product_question",
+      "ok": true
+    },
+    {
+      "id": "test-112",
+      "text": "My last order arrived fine. Hi, it would be great if export to PDF supported more file types. Appreciate it.",
+      "gold": "feedback",
+      "pred": "product_question",
+      "ok": false
+    },
+    {
+      "id": "test-113",
+      "text": "the app shows error code e42 every time i open it on my macbook.",
+      "gold": "technical",
+      "pred": "technical",
+      "ok": true
+    },
+    {
+      "id": "test-114",
+      "text": "Do you ship the printed planner to Canada, and is shipping included in the Family plan?",
+      "gold": "product_question",
+      "pred": "shipping",
+      "ok": false
+    },
+    {
+      "id": "test-115",
+      "text": "i forgot my password and the reset email never arrives. please help.",
+      "gold": "account_access",
+      "pred": "account_access",
+      "ok": true
+    },
+    {
+      "id": "test-116",
+      "text": "I recommended Lumen to my whole office. Hello, the app is extremely slow on my iPad, it takes a minute to load.",
+      "gold": "technical",
+      "pred": "technical",
+      "ok": true
+    },
+    {
+      "id": "test-117",
+      "text": "Your app is usually great. Good morning. I want to cancel but first I need to get back into my account, the reset link is broken.",
+      "gold": "account_access",
+      "pred": "account_access",
+      "ok": true
+    },
+    {
+      "id": "test-118",
+      "text": "I already tried logging out and back in. Hi, i see a pending charge of $29 from yesterday, is that right or a mistake on your side?",
+      "gold": "billing",
+      "pred": "billing",
+      "ok": true
+    },
+    {
+      "id": "test-119",
+      "text": "Printing from the app on my Windows laptop gives a blank white screen. Thanks!",
+      "gold": "technical",
+      "pred": "technical",
+      "ok": true
+    },
+    {
+      "id": "test-120",
+      "text": "Hello, how many people can share a Family plan? Appreciate it.",
+      "gold": "product_question",
+      "pred": "product_question",
+      "ok": true
+    }
+  ],
+  "medianLatencyMs": 388,
+  "costUsd": 0.0034133400000000004,
+  "costPer1k": 0.0284445
+}

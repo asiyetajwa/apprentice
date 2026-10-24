@@ -1,0 +1,27 @@
+{
+  "job": {
+    "id": "ftjob-f724b71da587406ba724ce294a0285e8",
+    "model": "Qwen/Qwen3-4B",
+    "status": "running",
+    "fineTunedModel": null,
+    "createdAt": "2026-10-22T22:53:51.000Z",
+    "finishedAt": null,
+    "error": null,
+    "trainedTokens": 0
+  },
+  "hyperparameters": {
+    "n_epochs": 3,
+    "learning_rate": 0.0001,
+    "batch_size": 8,
+    "lora": true,
+    "lora_r": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "warmup_ratio": 0.05,
+    "weight_decay": 0,
+    "max_grad_norm": 1,
+    "packing": true,
+    "context_length": 8192
+  },
+  "model": "Qwen/Qwen3-4B"
+}

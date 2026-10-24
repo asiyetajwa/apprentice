@@ -1,0 +1,10 @@
+{"id":"syn-027","text":"My payment method failed and now my account shows a past due balance. How do I update the card on file?","label":"billing","source":"teacher","reason":"grader said \"account_access\""}
+{"id":"syn-037","text":"If I move to the Pro plan, will I be billed again or is it prorated? Appreciate it.","label":"billing","source":"teacher","reason":"grader said \"product_question\""}
+{"id":"syn-040","text":"I need to update the billing email on my account so invoices go to finance@ instead of my personal address.","label":"billing","source":"teacher","reason":"grader said \"account_access\""}
+{"id":"syn-041","text":"My team's shared workspace shows 'payment failed' banner but the card works everywhere else. What's going on?","label":"billing","source":"teacher","reason":"grader said \"account_access\""}
+{"id":"syn-051","text":"My card was charged for the premium planner set but the order status still shows unfulfilled.","label":"shipping","source":"teacher","reason":"grader said \"billing\""}
+{"id":"syn-064","text":"My corporate card was declined, need to update the payment method before next cycle.","label":"billing","source":"teacher","reason":"grader said \"account_access\""}
+{"id":"syn-068","text":"Invoice PDF download fails with a 404 error, need a copy for expense reporting.","label":"billing","source":"teacher","reason":"grader said \"technical\""}
+{"id":"syn-073","text":"I was charged twice for my Pro subscription this month. Invoice #LUM-4482 and #LUM-4491 are for the exact same amount on the same day. Please check.","label":"billing","source":"teacher","reason":"grader said \"refund\""}
+{"id":"syn-074","text":"I cancelled my subscription last week but you still charged my card today. I want a full refund for this latest charge since I'm not using the app anymore.","label":"refund","source":"teacher","reason":"grader said \"shipping\""}
+{"id":"syn-075","text":"Where is my notebook? Order #LUM-7721 was supposed to arrive Friday. Tracking hasn't updated since 'label created' three days ago.","label":"shipping","source":"teacher","reason":"grader said \"\""}

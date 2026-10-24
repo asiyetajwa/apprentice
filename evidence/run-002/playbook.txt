@@ -1,0 +1,18 @@
+House rules, learned from labelled examples:
+- Model confuses feature requests or general praise (feedback) with specific product inquiries due to overlapping language about features. These go to feedback, not product_question.
+- Model incorrectly assigns billing queries to shipping when text includes both payment and delivery terms, failing to prioritize intent. These go to billing, not shipping.
+- Model mislabels shipping-related issues as billing when text mentions payment or charges alongside delivery, due to weak contextual disambiguation. These go to shipping, not billing.
+
+Worked examples:
+Ticket: Love the new dark theme, it's so easy on the eyes during late night sessions!
+Label: feedback
+Ticket: The search speed improvement in v3.2 is noticeable, great work on that optimization.
+Label: feedback
+Ticket: I was charged twice for my Pro subscription this month. Can you look into the duplicate charge on my latest invoice?
+Label: billing
+Ticket: The starter kit arrived quickly and the packaging was lovely, but I still need a corrected receipt for the charge on my credit card.
+Label: billing
+Ticket: The physical notebook I ordered hasn't arrived yet. Tracking number LN-8822 shows no updates since last week.
+Label: shipping
+Ticket: My starter kit shipment was delayed and the box arrived damaged. I'd like a replacement sent.
+Label: shipping

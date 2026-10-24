@@ -1,0 +1,14 @@
+{"at":"2026-10-24T02:45:05.964Z","kind":"log","stage":"intake","text":"230 examples to learn from, 64 checks for tuning, 120 held out for the test. 8 labels."}
+{"at":"2026-10-24T02:45:05.964Z","kind":"log","stage":"intake","text":"Running live on Nebius Token Factory."}
+{"at":"2026-10-24T02:45:15.376Z","kind":"log","stage":"baseline","text":"Base Nemotron 3 Nano got 89 of 120 held-out tickets right (74%)."}
+{"at":"2026-10-24T02:45:29.034Z","kind":"log","stage":"baseline","text":"Nemotron 3 Ultra scored 90% at $0.196 per 1,000 calls: the bar to chase."}
+{"at":"2026-10-24T02:45:37.228Z","kind":"log","stage":"teach","text":"Nemotron 3 Super found 5 failure types in 9 mistakes on the tuning checks."}
+{"at":"2026-10-24T02:45:37.228Z","kind":"log","stage":"teach","text":"Feedback misclassified as product question: Model confuses feature requests or general praise/feedback with specific product inquiries due to overlapping keywords like 'add', 'support', 'plan'."}
+{"at":"2026-10-24T02:45:37.228Z","kind":"log","stage":"teach","text":"Feedback misclassified as shipping: Model incorrectly tags positive feedback about shipping speed/packaging as a shipping issue instead of general feedback."}
+{"at":"2026-10-24T02:45:37.228Z","kind":"log","stage":"teach","text":"Shipping confused with billing: Model mislabels shipping-related queries (tracking, delivery) as billing when payment timing or transaction context is mentioned."}
+{"at":"2026-10-24T02:45:37.228Z","kind":"log","stage":"teach","text":"Shipping misclassified as account access: Model confuses delivery instructions (e.g., neighbor drop-off) with account management due to user authentication context."}
+{"at":"2026-10-24T02:45:37.228Z","kind":"log","stage":"teach","text":"Tavily skipped: no TAVILY_API_KEY."}
+{"at":"2026-10-24T02:46:00.958Z","kind":"log","stage":"teach","text":"Nemotron 3 Ultra wrote 131 cases; Nemotron 3 Super agreed with 123. 8 dropped."}
+{"at":"2026-10-24T02:46:00.961Z","kind":"log","stage":"train","text":"Wrote a playbook for Nemotron 3 Nano: 5 house rules and 10 worked examples from the agreed cases."}
+{"at":"2026-10-24T02:46:09.428Z","kind":"log","stage":"prove","text":"Taught Nemotron 3 Nano got 104 of 120 right (87%), up from 74%."}
+{"at":"2026-10-24T02:46:09.431Z","kind":"log","stage":"ship","text":"Shipped. Taught beats base by 15 of 120 held-out tickets (74% to 87%). Endpoint: nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B + playbook."}

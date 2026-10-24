@@ -1,0 +1,301 @@
+{
+  "id": "run-003",
+  "method": "playbook",
+  "number": 3,
+  "createdAt": "2026-10-24T02:45:05.962Z",
+  "finishedAt": "2026-10-24T02:46:09.433Z",
+  "mode": "live",
+  "status": "shipped",
+  "stage": "ship",
+  "stages": {
+    "intake": {
+      "status": "done",
+      "title": "230 examples",
+      "detail": "8 labels, 120 held out",
+      "progress": null
+    },
+    "baseline": {
+      "status": "done",
+      "title": "Base: 74%",
+      "detail": "31 mistakes to learn from",
+      "progress": null
+    },
+    "teach": {
+      "status": "done",
+      "title": "123 new cases",
+      "detail": "5 failure types",
+      "progress": null
+    },
+    "train": {
+      "status": "done",
+      "title": "Playbook",
+      "detail": "5 rules, 10 examples",
+      "progress": null
+    },
+    "prove": {
+      "status": "done",
+      "title": "Taught: 87%",
+      "detail": "The same held-out tickets",
+      "progress": null
+    },
+    "ship": {
+      "status": "done",
+      "title": "Shipped",
+      "detail": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B + playbook",
+      "progress": null
+    }
+  },
+  "task": {
+    "name": "Support ticket routing",
+    "description": "Route each customer support ticket for the Lumen notes app to exactly one queue.",
+    "labels": [
+      "billing",
+      "refund",
+      "shipping",
+      "technical",
+      "account_access",
+      "cancellation",
+      "product_question",
+      "feedback"
+    ],
+    "counts": {
+      "train": 230,
+      "dev": 64,
+      "test": 120
+    }
+  },
+  "models": {
+    "student": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "studentLabel": "Nemotron 3 Nano",
+    "teacher": "nvidia/Nemotron-3-Ultra-550b-a55b",
+    "teacherLabel": "Nemotron 3 Ultra",
+    "grader": "nvidia/nemotron-3-super-120b-a12b",
+    "graderLabel": "Nemotron 3 Super"
+  },
+  "baseline": {
+    "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "label": "Base Nemotron 3 Nano",
+    "correct": 89,
+    "total": 120,
+    "accuracy": 0.7416666666666667,
+    "perLabel": {
+      "billing": {
+        "correct": 11,
+        "total": 15
+      },
+      "refund": {
+        "correct": 14,
+        "total": 15
+      },
+      "shipping": {
+        "correct": 13,
+        "total": 15
+      },
+      "technical": {
+        "correct": 15,
+        "total": 15
+      },
+      "account_access": {
+        "correct": 12,
+        "total": 15
+      },
+      "cancellation": {
+        "correct": 15,
+        "total": 15
+      },
+      "product_question": {
+        "correct": 9,
+        "total": 15
+      },
+      "feedback": {
+        "correct": 0,
+        "total": 15
+      }
+    },
+    "medianLatencyMs": 427,
+    "costUsd": 0.0014345400000000002,
+    "costPer1k": 0.011954500000000002,
+    "mistakes": 31
+  },
+  "reference": {
+    "model": "nvidia/Nemotron-3-Ultra-550b-a55b",
+    "label": "Nemotron 3 Ultra",
+    "correct": 108,
+    "total": 120,
+    "accuracy": 0.9,
+    "perLabel": {
+      "billing": {
+        "correct": 12,
+        "total": 15
+      },
+      "refund": {
+        "correct": 15,
+        "total": 15
+      },
+      "shipping": {
+        "correct": 15,
+        "total": 15
+      },
+      "technical": {
+        "correct": 15,
+        "total": 15
+      },
+      "account_access": {
+        "correct": 13,
+        "total": 15
+      },
+      "cancellation": {
+        "correct": 15,
+        "total": 15
+      },
+      "product_question": {
+        "correct": 10,
+        "total": 15
+      },
+      "feedback": {
+        "correct": 13,
+        "total": 15
+      }
+    },
+    "medianLatencyMs": 508,
+    "costUsd": 0.023515,
+    "costPer1k": 0.19595833333333332,
+    "mistakes": 12
+  },
+  "tuned": {
+    "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "label": "Taught Nemotron 3 Nano",
+    "correct": 104,
+    "total": 120,
+    "accuracy": 0.8666666666666667,
+    "perLabel": {
+      "billing": {
+        "correct": 11,
+        "total": 15
+      },
+      "refund": {
+        "correct": 14,
+        "total": 15
+      },
+      "shipping": {
+        "correct": 14,
+        "total": 15
+      },
+      "technical": {
+        "correct": 14,
+        "total": 15
+      },
+      "account_access": {
+        "correct": 13,
+        "total": 15
+      },
+      "cancellation": {
+        "correct": 15,
+        "total": 15
+      },
+      "product_question": {
+        "correct": 9,
+        "total": 15
+      },
+      "feedback": {
+        "correct": 14,
+        "total": 15
+      }
+    },
+    "medianLatencyMs": 392,
+    "costUsd": 0.004390619999999996,
+    "costPer1k": 0.03658849999999997,
+    "mistakes": 16
+  },
+  "failures": [
+    {
+      "id": "ft-1",
+      "name": "Feedback misclassified as product question",
+      "description": "Model confuses feature requests or general praise/feedback with specific product inquiries due to overlapping keywords like 'add', 'support', 'plan'.",
+      "gold": "feedback",
+      "confusedWith": "product_question",
+      "exampleIds": [
+        "dev-015",
+        "dev-047",
+        "dev-049",
+        "dev-051"
+      ],
+      "count": 4
+    },
+    {
+      "id": "ft-3",
+      "name": "Feedback misclassified as shipping",
+      "description": "Model incorrectly tags positive feedback about shipping speed/packaging as a shipping issue instead of general feedback.",
+      "gold": "feedback",
+      "confusedWith": "shipping",
+      "exampleIds": [
+        "dev-011",
+        "dev-055"
+      ],
+      "count": 2
+    },
+    {
+      "id": "ft-2",
+      "name": "Shipping confused with billing",
+      "description": "Model mislabels shipping-related queries (tracking, delivery) as billing when payment timing or transaction context is mentioned.",
+      "gold": "shipping",
+      "confusedWith": "billing",
+      "exampleIds": [
+        "dev-013"
+      ],
+      "count": 1
+    },
+    {
+      "id": "ft-4",
+      "name": "Shipping misclassified as account access",
+      "description": "Model confuses delivery instructions (e.g., neighbor drop-off) with account management due to user authentication context.",
+      "gold": "shipping",
+      "confusedWith": "account_access",
+      "exampleIds": [
+        "dev-023"
+      ],
+      "count": 1
+    },
+    {
+      "id": "ft-5",
+      "name": "Product question misclassified as billing",
+      "description": "Model treats plan change or feature availability questions as billing issues when pricing or plan names are mentioned.",
+      "gold": "product_question",
+      "confusedWith": "billing",
+      "exampleIds": [
+        "dev-034"
+      ],
+      "count": 1
+    }
+  ],
+  "fixed": [
+    "ft-1",
+    "ft-3",
+    "ft-2",
+    "ft-4"
+  ],
+  "teach": {
+    "written": 131,
+    "kept": 123,
+    "rejected": 8,
+    "web": null
+  },
+  "playbook": {
+    "rules": 5,
+    "examples": 10,
+    "chars": 1948,
+    "text": "House rules, learned from labelled examples:\n- Model confuses feature requests or general praise/feedback with specific product inquiries due to overlapping keywords like 'add', 'support', 'plan'. These go to feedback, not product_question.\n- Model incorrectly tags positive feedback about shipping speed/packaging as a shipping issue instead of general feedback. These go to feedback, not shipping.\n- Model mislabels shipping-related queries (tracking, delivery) as billing when payment timing or transaction context is mentioned. These go to shipping, not billing.\n- Model confuses delivery instructions (e.g., neighbor drop-off) with account management due to user authentication context. These go to shipping, not account_access.\n- Model treats plan change or feature availability questions as billing issues when pricing or plan names are mentioned. These go to product_question, not billing.\n\nWorked examples:\nTicket: Hey team, it would be great if offline mode supported more file types. Cheers\nLabel: feedback\nTicket: Can you bring back the old widget? The new one is harder to use. Thanks.\nLabel: feedback\nTicket: Please add export to PDF to the Team plan, my whole team would use it. Thanks.\nLabel: feedback\nTicket: Good morning. Any plans to support Galaxy S23? I would switch my whole team over. Appreciate it.\nLabel: feedback\nTicket: My order #LUM-8842 shows delivered but nothing at my door. Need tracking help.\nLabel: shipping\nTicket: My replacement device hasn't moved in 5 days — tracking stuck at 'label created'.\nLabel: shipping\nTicket: Parcel marked delivered but received empty padded mailer. Need investigation.\nLabel: shipping\nTicket: Need a return label for the defective dock — RMA approved but no email yet.\nLabel: shipping\nTicket: What file formats does the Pro plan export support right now?\nLabel: product_question\nTicket: Does the Team plan include admin analytics or is that a separate add-on?\nLabel: product_question"
+  },
+  "training": null,
+  "deployment": {
+    "name": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B + playbook",
+    "status": "active",
+    "baseUrl": "https://api.tokenfactory.nebius.com/v1"
+  },
+  "decision": {
+    "ship": true,
+    "reason": "Taught beats base by 15 of 120 held-out tickets (74% to 87%)."
+  },
+  "costUsd": 0.04939035999999999,
+  "error": null
+}

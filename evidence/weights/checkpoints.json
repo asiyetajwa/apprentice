@@ -1,0 +1,68 @@
+{
+  "object": "list",
+  "data": [
+    {
+      "id": "ftckpt_7da19ecc-5c24-4da8-9ab5-ad295f723324",
+      "created_at": 1792750226,
+      "fine_tuned_model_checkpoint": "ft:Qwen/Qwen3-4B-2026-10-23:org_placeholder:apprentice-lumen-tickets:IDPlaceholder:ckpt-step-2",
+      "fine_tuning_job_id": "ftjob-f724b71da587406ba724ce294a0285e8",
+      "metrics": {
+        "train_loss": 9.476334571838379,
+        "valid_loss": 1.0411245822906494
+      },
+      "object": "fine_tuning.job.checkpoint",
+      "step_number": 2,
+      "result_files": [
+        "file-997138570a275a739233f938e1b3a8a6",
+        "file-35dd8f5774fe5128928456e103de4ed7",
+        "file-02bf9f70d83054aab091a69e9183a776",
+        "file-a31d12c74c2a5073800d3a9b3efdbd55",
+        "file-11df3a2602a657bdb75427396bd29a37",
+        "file-79a96cf262285111b8f5ab9833a4f80a"
+      ]
+    },
+    {
+      "id": "ftckpt_0648e459-e42b-4e9c-81d4-43c8191edc73",
+      "created_at": 1792750253,
+      "fine_tuned_model_checkpoint": "ft:Qwen/Qwen3-4B-2026-10-23:org_placeholder:apprentice-lumen-tickets:IDPlaceholder:ckpt-step-4",
+      "fine_tuning_job_id": "ftjob-f724b71da587406ba724ce294a0285e8",
+      "metrics": {
+        "train_loss": 8.53976821899414,
+        "valid_loss": 1.1200627088546753
+      },
+      "object": "fine_tuning.job.checkpoint",
+      "step_number": 4,
+      "result_files": [
+        "file-74f92d4aba3a55e5bafee215c35ff79f",
+        "file-397b83c21f6753daa10a184ea1e76834",
+        "file-9f124bc499a45fac8015e496d12936e3",
+        "file-97f7400fd35459b0ab845ef08b5ea5dd",
+        "file-34337563bc775e14b37dbbeac5834d43",
+        "file-14521c2d18525185a9a4a29e8ed92fb2"
+      ]
+    },
+    {
+      "id": "ftckpt_462d02fe-0f41-42e9-b015-453f3417b006",
+      "created_at": 1792750275,
+      "fine_tuned_model_checkpoint": "ft:Qwen/Qwen3-4B-2026-10-23:org_placeholder:apprentice-lumen-tickets:IDPlaceholder:ckpt-step-6",
+      "fine_tuning_job_id": "ftjob-f724b71da587406ba724ce294a0285e8",
+      "metrics": {
+        "train_loss": 7.798750400543213,
+        "valid_loss": 0.11994259059429169
+      },
+      "object": "fine_tuning.job.checkpoint",
+      "step_number": 6,
+      "result_files": [
+        "file-bba7fa35fa815116942ef5dd2042e81c",
+        "file-e561cf72e0925db382118fb971ce0261",
+        "file-5b38829dde685cc0aa09efe7d160e840",
+        "file-b74b62a1edc050e3afd14968347317b7",
+        "file-067b7fcc902750d38acceb027f021af8",
+        "file-4675c56708d9595488968182e30368c8"
+      ]
+    }
+  ],
+  "first_id": "ftckpt_7da19ecc-5c24-4da8-9ab5-ad295f723324",
+  "last_id": "ftckpt_462d02fe-0f41-42e9-b015-453f3417b006",
+  "has_more": false
+}

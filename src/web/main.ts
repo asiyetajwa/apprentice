@@ -80,6 +80,8 @@ function top(title: string, sub: string, search = false): string {
 }
 
 function stubBanner(r: Run | null): string {
+  // The browser demo replays a recorded live run instead of calling Token Factory (src/web/demo.ts).
+  if ((window as unknown as { APPRENTICE_REPLAY?: string }).APPRENTICE_REPLAY) return `<p class="banner well"><b>Replay.</b> ${esc((window as unknown as { APPRENTICE_REPLAY: string }).APPRENTICE_REPLAY)}</p>`;
   return r?.mode === 'stub' ? `<p class="banner well"><b>Stub mode.</b> Simulated answers, so these numbers show how the loop works, not a real result. Add a Token Factory key to run it for real.</p>` : '';
 }
 
@@ -219,7 +221,7 @@ function curl(r: Run): string {
 function emptyState(): string {
   return `${top(day(new Date().toISOString()), 'Teach a small model one job')}
   <section class="welcome">
-    <div class="dials">${dome('d1', 1, '424', 'Tickets')}</div>
+    <div class="dials">${dome('d1', 1, '414', 'Tickets')}</div>
     <div class="headline">
       <div class="kick">Apprentice</div>
       <h1>Make a small model a specialist</h1>

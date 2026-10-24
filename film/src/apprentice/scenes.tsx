@@ -179,7 +179,7 @@ export const BaselineScene: React.FC<SceneProps> = ({ duration }) => {
         <Window states={[{ src: 'loop-baseline', at: 0, scroll: [[feedAt - 30, 0], [feedAt + 30, down]] }]} />
       </Camera>
       <Callout text="120 tickets held out, never trained on" at={110} outAt={feedAt - 20} />
-      <Callout text="Base 73%. The bar to chase: Nemotron 3 Ultra" at={feedAt + 60} outAt={duration - 20} />
+      <Callout text="Nano 74%. The bar: Nemotron 3 Ultra at 90%" at={feedAt + 60} outAt={duration - 20} />
     </>
   );
 };
@@ -193,20 +193,20 @@ export const TeachScene: React.FC<SceneProps> = ({ duration }) => {
       <Camera keys={cam}>
         <Window states={[{ src: 'loop-teach', at: 0, scroll: [[feedAt - 40, 0], [feedAt + 40, down]] }]} />
       </Camera>
-      <Callout text="Six failure types, found in its mistakes" at={feedAt + 70} outAt={560} />
-      <Callout text="Kept only where both agree: 76 of 160" at={590} outAt={duration - 20} />
+      <Callout text="Five failure types, found in its mistakes" at={feedAt + 70} outAt={560} />
+      <Callout text="Kept only where both agree: 123 of 131" at={590} outAt={duration - 20} />
     </>
   );
 };
 
 export const TrainScene: React.FC<SceneProps> = ({ duration }) => {
-  const cam: CamKey[] = [readKey(0, 'loop-train:stages', 0, 1.5), readKey(60, 'loop-train:stages', 0, 1.5), readKey(150, 'loop-train:loss', 0, 2.0), readKey(duration, 'loop-train:loss', 0, 2.0, 0.08)];
+  const cam: CamKey[] = [readKey(0, 'loop-prove:stages', 0, 1.5), readKey(60, 'loop-prove:stages', 0, 1.5), readKey(150, 'loop-prove:loss', 0, 1.9), readKey(duration, 'loop-prove:loss', 0, 1.9, 0.08)];
   return (
     <>
       <Camera keys={cam}>
-        <Window states={[{ src: 'loop-train', at: 0 }]} />
+        <Window states={[{ src: 'loop-prove', at: 0 }]} />
       </Camera>
-      <Callout text="LoRA fine-tune on Nebius Token Factory" at={170} outAt={duration - 20} />
+      <Callout text="A playbook, served per token on Token Factory" at={170} outAt={duration - 20} />
     </>
   );
 };
@@ -215,7 +215,7 @@ export const ProveScene: React.FC<SceneProps> = ({ duration }) => {
   const done = 40;
   const click = 104;
   const results = click + 8;
-  const hero: Box = { x: 326, y: 238, w: 1068, h: 470 };
+  const hero: Box = { ...B('results:dials'), w: 1068 };
   const cam: CamKey[] = [readKey(0, 'loop-prove:stages', 0, 1.5), readKey(done, 'loop-prove:stages', 0, 1.5), readKey(done + 40, 'loop-done:done', 0, 1.45), readKey(click + 6, 'loop-done:done', 0, 1.45), read(results + 40, hero, 0, 1.4), read(duration, hero, 0, 1.4, 0.05)];
   const cursor: CursorKey[] = [cur(done + 20, 1000, 640), cur(click - 12, ...center('loop-done:results')), clickOn(click, 'loop-done:results'), cur(click + 40, 1100, 700)];
   return (
@@ -230,16 +230,65 @@ export const ProveScene: React.FC<SceneProps> = ({ duration }) => {
 };
 
 export const ReceiptsScene: React.FC<SceneProps> = ({ duration }) => {
-  const swap = 190;
-  const cam: CamKey[] = [WIDE(0), readKey(50, 'calls:costs', 0, 1.35), read(swap - 20, { ...B('calls:costs'), h: 420 }, 0, 1.35), read(swap + 50, B('results:nums'), 0, 1.75), read(duration, B('results:nums'), 0, 1.75, 0.06)];
+  // Cuts follow the line: costs at "under four cents" (about 1.9 s), the runs at "every run is kept" (about 8.2 s).
+  const swap = 120;
+  const runsAt = 480;
+  const down = maxScroll('results');
+  const cam: CamKey[] = [
+    WIDE(0),
+    readKey(50, 'calls:costs', 0, 1.35),
+    read(swap - 20, { ...B('calls:costs'), h: 420 }, 0, 1.35),
+    read(swap + 50, B('results:nums'), 0, 1.75),
+    read(runsAt - 20, B('results:nums'), 0, 1.75, 0.04),
+    // The runs list sits at the foot of the page: frame it so the page still fills the screen below it.
+    { f: runsAt + 50, ...w(860, 2010, down), z: 1.35 },
+    { f: duration, ...w(860, 2010, down), z: 1.4 },
+  ];
   return (
     <>
       <Camera keys={cam}>
-        <Window states={[{ src: 'calls', at: 0 }, { src: 'results', at: swap }]} />
+        <Window states={[{ src: 'calls', at: 0 }, { src: 'results', at: swap, scroll: [[runsAt - 20, 0], [runsAt + 40, down]] }]} />
       </Camera>
-      <Callout text="Every call, with its receipt" at={40} outAt={swap - 10} />
-      <Callout text="$0.0041 per 1,000 calls, against $0.207" at={swap + 70} outAt={duration - 20} />
+      <Callout text="Every call, with its receipt" at={30} outAt={swap - 10} />
+      <Callout text="$0.037 per 1,000 tickets, against $0.196" at={swap + 70} outAt={runsAt - 30} />
     </>
+  );
+};
+
+/** The $1 challenge: what everything cost, set as one big two-tone number against the dollar. */
+export const BudgetScene: React.FC<SceneProps> = ({ duration }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const p = popAt(frame, fps, 8, 14);
+  const fill = interpolate(frame, [40, 160], [0, 0.29], { ...clamp, easing: easeOut });
+  const rows: Array<[string, string]> = [
+    ['Three live runs, Nemotron teaching Nano', '$0.14'],
+    ['LoRA fine-tune, Qwen3 4B', '$0.08'],
+    ['Base tests and checks', '$0.07'],
+  ];
+  return (
+    <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center', fontFamily: theme.font, color: theme.text }}>
+      <div style={{ opacity: p, transform: `translateY(${String((1 - p) * 20)}px)`, textAlign: 'center' }}>
+        <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: theme.faint }}>The challenge: one dollar</div>
+        <div style={{ fontSize: 210, fontWeight: 800, letterSpacing: '-0.05em', lineHeight: 1.05, marginTop: 10 }}>
+          <span style={{ color: '#a2a29f' }}>$0.</span>
+          {String(Math.round(fill * 100)).padStart(2, '0')}
+          <span style={{ fontSize: 70, color: theme.faint, letterSpacing: '-0.02em' }}> of $1.00</span>
+        </div>
+        <div style={{ width: 900, height: 22, borderRadius: 11, margin: '26px auto 0', background: '#dededb', boxShadow: 'inset 4px 4px 9px rgba(0,0,0,0.13), inset -4px -4px 9px rgba(255,255,255,0.85)' }}>
+          <div style={{ width: `${String(fill * 100)}%`, height: '100%', borderRadius: 11, background: `linear-gradient(90deg, ${theme.litLight}, ${theme.lit})` }} />
+        </div>
+        <div style={{ display: 'grid', gap: 12, marginTop: 44, width: 900, marginLeft: 'auto', marginRight: 'auto' }}>
+          {rows.map(([k, v], i) => (
+            <div key={k} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 34, opacity: interpolate(frame, [90 + i * 30, 110 + i * 30], [0, 1], clamp), color: theme.muted }}>
+              <span>{k}</span>
+              <b style={{ color: theme.text }}>{v}</b>
+            </div>
+          ))}
+        </div>
+        <div style={{ marginTop: 30, fontSize: 22, color: theme.faint, opacity: interpolate(frame, [duration - 120, duration - 90], [0, 1], clamp) }}>Every paid call went through a spend guard with a hard stop. $0 on the card.</div>
+      </div>
+    </AbsoluteFill>
   );
 };
 
@@ -249,7 +298,7 @@ export const OutroScene: React.FC<SceneProps> = () => {
   const p = popAt(frame, fps, 2, 13);
   const words = ['Test.', 'Teach.', 'Prove.', 'Ship.'];
   // Each word lands as it is said, after the pause on "Apprentice" (frames at 60 fps, from the outro take).
-  const wordAt = [85, 124, 162, 199];
+  const wordAt = [71, 102, 130, 160];
   return (
     <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center', fontFamily: theme.font, color: theme.text }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 30, opacity: p, transform: `translateY(${String((1 - p) * 20)}px)` }}>
@@ -265,7 +314,7 @@ export const OutroScene: React.FC<SceneProps> = () => {
         NVIDIA Nemotron 3 Ultra and Super  ·  Nebius Token Factory  ·  LoRA fine-tuning  ·  Llama 3.1 8B
       </div>
       <div style={{ position: 'absolute', bottom: 40, opacity: interpolate(frame, [270, 300], [0, 1], clamp), fontSize: 18, color: theme.muted }}>
-        Recorded in stub mode: model answers in this film are simulated. Live runs use Token Factory.
+        Recorded live on Nebius Token Factory, October 24, 2026. Every run, including the weaker ones: docs/RESULTS.md.
       </div>
     </AbsoluteFill>
   );

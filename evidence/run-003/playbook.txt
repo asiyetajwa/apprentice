@@ -1,0 +1,28 @@
+House rules, learned from labelled examples:
+- Model confuses feature requests or general praise/feedback with specific product inquiries due to overlapping keywords like 'add', 'support', 'plan'. These go to feedback, not product_question.
+- Model incorrectly tags positive feedback about shipping speed/packaging as a shipping issue instead of general feedback. These go to feedback, not shipping.
+- Model mislabels shipping-related queries (tracking, delivery) as billing when payment timing or transaction context is mentioned. These go to shipping, not billing.
+- Model confuses delivery instructions (e.g., neighbor drop-off) with account management due to user authentication context. These go to shipping, not account_access.
+- Model treats plan change or feature availability questions as billing issues when pricing or plan names are mentioned. These go to product_question, not billing.
+
+Worked examples:
+Ticket: Hey team, it would be great if offline mode supported more file types. Cheers
+Label: feedback
+Ticket: Can you bring back the old widget? The new one is harder to use. Thanks.
+Label: feedback
+Ticket: Please add export to PDF to the Team plan, my whole team would use it. Thanks.
+Label: feedback
+Ticket: Good morning. Any plans to support Galaxy S23? I would switch my whole team over. Appreciate it.
+Label: feedback
+Ticket: My order #LUM-8842 shows delivered but nothing at my door. Need tracking help.
+Label: shipping
+Ticket: My replacement device hasn't moved in 5 days — tracking stuck at 'label created'.
+Label: shipping
+Ticket: Parcel marked delivered but received empty padded mailer. Need investigation.
+Label: shipping
+Ticket: Need a return label for the defective dock — RMA approved but no email yet.
+Label: shipping
+Ticket: What file formats does the Pro plan export support right now?
+Label: product_question
+Ticket: Does the Team plan include admin analytics or is that a separate add-on?
+Label: product_question

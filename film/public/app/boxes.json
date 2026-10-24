@@ -2,7 +2,7 @@
   "width": 1600,
   "new:start": {
     "x": 1215,
-    "y": 1132,
+    "y": 1146,
     "w": 151,
     "h": 52
   },
@@ -16,35 +16,35 @@
     "x": 326,
     "y": 775,
     "w": 1068,
-    "h": 224
+    "h": 238
   },
   "new:go": {
     "x": 326,
-    "y": 1104,
+    "y": 1118,
     "w": 1068,
     "h": 109
   },
   "loop-baseline:stages": {
     "x": 326,
-    "y": 309,
+    "y": 236,
     "w": 1068,
-    "h": 152
+    "h": 132
   },
   "loop-baseline:feed": {
     "x": 354,
-    "y": 569,
+    "y": 476,
     "w": 501,
     "h": 640
   },
   "loop-baseline:loss": {
     "x": 937,
-    "y": 569,
+    "y": 476,
     "w": 429,
     "h": 200
   },
   "loop-baseline:calls": {
     "x": 937,
-    "y": 897,
+    "y": 804,
     "w": 429,
     "h": 370
   },
@@ -56,25 +56,25 @@
   },
   "loop-teach:stages": {
     "x": 326,
-    "y": 309,
+    "y": 236,
     "w": 1068,
     "h": 132
   },
   "loop-teach:feed": {
     "x": 354,
-    "y": 549,
+    "y": 476,
     "w": 501,
     "h": 640
   },
   "loop-teach:loss": {
     "x": 937,
-    "y": 549,
+    "y": 476,
     "w": 429,
     "h": 200
   },
   "loop-teach:calls": {
     "x": 937,
-    "y": 877,
+    "y": 804,
     "w": 429,
     "h": 370
   },
@@ -84,57 +84,27 @@
     "w": 1068,
     "h": 55
   },
-  "loop-train:stages": {
+  "loop-prove:stages": {
     "x": 326,
-    "y": 309,
+    "y": 236,
     "w": 1068,
     "h": 132
   },
-  "loop-train:feed": {
-    "x": 354,
-    "y": 549,
-    "w": 501,
-    "h": 640
-  },
-  "loop-train:loss": {
-    "x": 937,
-    "y": 549,
-    "w": 429,
-    "h": 200
-  },
-  "loop-train:calls": {
-    "x": 937,
-    "y": 877,
-    "w": 429,
-    "h": 370
-  },
-  "loop-train:top": {
-    "x": 326,
-    "y": 76,
-    "w": 1068,
-    "h": 55
-  },
-  "loop-prove:stages": {
-    "x": 326,
-    "y": 309,
-    "w": 1068,
-    "h": 152
-  },
   "loop-prove:feed": {
     "x": 354,
-    "y": 569,
+    "y": 476,
     "w": 501,
     "h": 640
   },
   "loop-prove:loss": {
     "x": 937,
-    "y": 569,
+    "y": 476,
     "w": 429,
-    "h": 200
+    "h": 328
   },
   "loop-prove:calls": {
     "x": 937,
-    "y": 897,
+    "y": 931,
     "w": 429,
     "h": 370
   },
@@ -146,25 +116,25 @@
   },
   "loop-done:stages": {
     "x": 326,
-    "y": 309,
+    "y": 236,
     "w": 1068,
     "h": 132
   },
   "loop-done:feed": {
     "x": 354,
-    "y": 659,
+    "y": 586,
     "w": 501,
     "h": 640
   },
   "loop-done:loss": {
     "x": 937,
-    "y": 659,
+    "y": 586,
     "w": 429,
-    "h": 200
+    "h": 328
   },
   "loop-done:calls": {
     "x": 937,
-    "y": 987,
+    "y": 1041,
     "w": 429,
     "h": 370
   },
@@ -176,171 +146,168 @@
   },
   "loop-done:done": {
     "x": 326,
-    "y": 471,
+    "y": 398,
     "w": 1068,
     "h": 80
   },
   "loop-done:results": {
     "x": 1212,
-    "y": 485,
+    "y": 412,
     "w": 168,
     "h": 52
   },
   "results:dials": {
     "x": 326,
-    "y": 238,
+    "y": 165,
     "w": 440,
     "h": 470
   },
   "results:headline": {
     "x": 806,
-    "y": 257,
+    "y": 174,
     "w": 588,
-    "h": 431
+    "h": 451
   },
   "results:nums": {
     "x": 806,
-    "y": 502,
+    "y": 419,
     "w": 588,
-    "h": 105
+    "h": 124
   },
   "results:verdict": {
     "x": 806,
-    "y": 641,
-    "w": 483,
+    "y": 577,
+    "w": 486,
     "h": 48
   },
   "results:stages": {
     "x": 326,
-    "y": 813,
+    "y": 740,
     "w": 1068,
     "h": 132
   },
   "results:grid": {
     "x": 326,
-    "y": 1050,
+    "y": 977,
     "w": 1068,
-    "h": 994
+    "h": 1068
   },
   "results:bars": {
     "x": 326,
-    "y": 1050,
+    "y": 977,
     "w": 568,
-    "h": 369
+    "h": 430
   },
   "results:loss": {
     "x": 920,
-    "y": 1050,
+    "y": 977,
     "w": 474,
-    "h": 369
+    "h": 430
   },
   "results:fails": {
     "x": 326,
-    "y": 1445,
+    "y": 1432,
     "w": 568,
-    "h": 599
+    "h": 612
   },
   "results:receipt": {
     "x": 920,
-    "y": 1445,
+    "y": 1432,
     "w": 474,
-    "h": 599
+    "h": 612
   },
   "results:runs": {
     "x": 326,
     "y": 2149,
     "w": 1068,
-    "h": 68
+    "h": 232
   },
   "calls:costs": {
     "x": 326,
-    "y": 309,
+    "y": 236,
     "w": 1068,
     "h": 99
   },
   "calls:table": {
     "x": 354,
-    "y": 539,
+    "y": 465,
     "w": 1012,
     "h": 17036
   },
   "sizes": {
     "new": {
       "w": 1600,
-      "h": 1307
+      "h": 1321
     },
     "loop-baseline": {
       "w": 1600,
-      "h": 1418
+      "h": 1325
     },
     "loop-teach": {
       "w": 1600,
-      "h": 1398
-    },
-    "loop-train": {
-      "w": 1600,
-      "h": 1398
+      "h": 1325
     },
     "loop-prove": {
       "w": 1600,
-      "h": 1418
+      "h": 1452
     },
     "loop-done": {
       "w": 1600,
-      "h": 1508
+      "h": 1562
     },
     "results": {
       "w": 1600,
-      "h": 2311
+      "h": 2475
     },
     "calls": {
       "w": 1600,
-      "h": 1390
+      "h": 1317
     }
   },
   "run": {
-    "id": "run-001",
-    "number": 1,
-    "createdAt": "2026-10-22T14:56:23.189Z",
-    "finishedAt": "2026-10-22T14:57:17.119Z",
-    "mode": "stub",
+    "id": "run-003",
+    "method": "playbook",
+    "number": 3,
+    "createdAt": "2026-10-24T02:45:05.962Z",
+    "finishedAt": "2026-10-24T02:46:09.433Z",
+    "mode": "live",
     "status": "shipped",
     "stage": "ship",
     "stages": {
       "intake": {
         "status": "done",
-        "title": "240 examples",
+        "title": "230 examples",
         "detail": "8 labels, 120 held out",
         "progress": null
       },
       "baseline": {
         "status": "done",
-        "title": "Base: 73%",
-        "detail": "32 mistakes to learn from",
+        "title": "Base: 74%",
+        "detail": "31 mistakes to learn from",
         "progress": null
       },
       "teach": {
         "status": "done",
-        "title": "76 new cases",
-        "detail": "6 failure types",
+        "title": "123 new cases",
+        "detail": "5 failure types",
         "progress": null
       },
       "train": {
         "status": "done",
-        "title": "LoRA, 3 epochs",
-        "detail": "1 min on Token Factory",
+        "title": "Playbook",
+        "detail": "5 rules, 10 examples",
         "progress": null
       },
       "prove": {
         "status": "done",
-        "title": "Tuned: 89%",
+        "title": "Taught: 87%",
         "detail": "The same held-out tickets",
         "progress": null
       },
       "ship": {
         "status": "done",
         "title": "Shipped",
-        "detail": "apprentice-run-001",
+        "detail": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B + playbook",
         "progress": null
       }
     },
@@ -358,40 +325,40 @@
         "feedback"
       ],
       "counts": {
-        "train": 240,
+        "train": 230,
         "dev": 64,
         "test": 120
       }
     },
     "models": {
-      "student": "meta-llama/Meta-Llama-3.1-8B-Instruct",
-      "studentLabel": "Llama 3.1 8B",
+      "student": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+      "studentLabel": "Nemotron 3 Nano",
       "teacher": "nvidia/Nemotron-3-Ultra-550b-a55b",
       "teacherLabel": "Nemotron 3 Ultra",
       "grader": "nvidia/nemotron-3-super-120b-a12b",
       "graderLabel": "Nemotron 3 Super"
     },
     "baseline": {
-      "model": "meta-llama/Meta-Llama-3.1-8B-Instruct",
-      "label": "Base Llama 3.1 8B",
-      "correct": 88,
+      "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+      "label": "Base Nemotron 3 Nano",
+      "correct": 89,
       "total": 120,
-      "accuracy": 0.7333333333333333,
+      "accuracy": 0.7416666666666667,
       "perLabel": {
         "billing": {
-          "correct": 13,
+          "correct": 11,
           "total": 15
         },
         "refund": {
-          "correct": 9,
+          "correct": 14,
           "total": 15
         },
         "shipping": {
-          "correct": 15,
+          "correct": 13,
           "total": 15
         },
         "technical": {
-          "correct": 13,
+          "correct": 15,
           "total": 15
         },
         "account_access": {
@@ -399,7 +366,52 @@
           "total": 15
         },
         "cancellation": {
-          "correct": 3,
+          "correct": 15,
+          "total": 15
+        },
+        "product_question": {
+          "correct": 9,
+          "total": 15
+        },
+        "feedback": {
+          "correct": 0,
+          "total": 15
+        }
+      },
+      "medianLatencyMs": 427,
+      "costUsd": 0.0014345400000000002,
+      "costPer1k": 0.011954500000000002,
+      "mistakes": 31
+    },
+    "reference": {
+      "model": "nvidia/Nemotron-3-Ultra-550b-a55b",
+      "label": "Nemotron 3 Ultra",
+      "correct": 108,
+      "total": 120,
+      "accuracy": 0.9,
+      "perLabel": {
+        "billing": {
+          "correct": 12,
+          "total": 15
+        },
+        "refund": {
+          "correct": 15,
+          "total": 15
+        },
+        "shipping": {
+          "correct": 15,
+          "total": 15
+        },
+        "technical": {
+          "correct": 15,
+          "total": 15
+        },
+        "account_access": {
+          "correct": 13,
+          "total": 15
+        },
+        "cancellation": {
+          "correct": 15,
           "total": 15
         },
         "product_question": {
@@ -411,77 +423,32 @@
           "total": 15
         }
       },
-      "medianLatencyMs": 61,
-      "costUsd": 0.0004949,
-      "costPer1k": 0.004124166666666667,
-      "mistakes": 32
+      "medianLatencyMs": 508,
+      "costUsd": 0.023515,
+      "costPer1k": 0.19595833333333332,
+      "mistakes": 12
     },
-    "reference": {
-      "model": "nvidia/Nemotron-3-Ultra-550b-a55b",
-      "label": "Nemotron 3 Ultra",
-      "correct": 107,
+    "tuned": {
+      "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+      "label": "Taught Nemotron 3 Nano",
+      "correct": 104,
       "total": 120,
-      "accuracy": 0.8916666666666667,
+      "accuracy": 0.8666666666666667,
       "perLabel": {
         "billing": {
-          "correct": 12,
-          "total": 15
-        },
-        "refund": {
-          "correct": 14,
-          "total": 15
-        },
-        "shipping": {
-          "correct": 15,
-          "total": 15
-        },
-        "technical": {
           "correct": 11,
           "total": 15
         },
-        "account_access": {
-          "correct": 13,
-          "total": 15
-        },
-        "cancellation": {
+        "refund": {
           "correct": 14,
           "total": 15
         },
-        "product_question": {
-          "correct": 15,
-          "total": 15
-        },
-        "feedback": {
-          "correct": 13,
-          "total": 15
-        }
-      },
-      "medianLatencyMs": 912,
-      "costUsd": 0.02479,
-      "costPer1k": 0.20658333333333334,
-      "mistakes": 13
-    },
-    "tuned": {
-      "model": "apprentice-run-001",
-      "label": "Tuned Llama 3.1 8B",
-      "correct": 107,
-      "total": 120,
-      "accuracy": 0.8916666666666667,
-      "perLabel": {
-        "billing": {
-          "correct": 12,
-          "total": 15
-        },
-        "refund": {
-          "correct": 15,
-          "total": 15
-        },
         "shipping": {
-          "correct": 15,
+          "correct": 14,
           "total": 15
         },
         "technical": {
-          "correct": 12,
+          "correct": 14,
           "total": 15
         },
         "account_access": {
@@ -489,154 +456,113 @@
           "total": 15
         },
         "cancellation": {
-          "correct": 12,
-          "total": 15
-        },
-        "product_question": {
           "correct": 15,
           "total": 15
         },
+        "product_question": {
+          "correct": 9,
+          "total": 15
+        },
         "feedback": {
-          "correct": 13,
+          "correct": 14,
           "total": 15
         }
       },
-      "medianLatencyMs": 61,
-      "costUsd": 0.0004956799999999999,
-      "costPer1k": 0.004130666666666666,
-      "mistakes": 13
+      "medianLatencyMs": 392,
+      "costUsd": 0.004390619999999996,
+      "costPer1k": 0.03658849999999997,
+      "mistakes": 16
     },
     "failures": [
       {
         "id": "ft-1",
-        "name": "Refund asked as a billing complaint",
-        "description": "Asks for money back but mentions a charge, so the model says billing.",
-        "gold": "refund",
-        "confusedWith": "billing",
+        "name": "Feedback misclassified as product question",
+        "description": "Model confuses feature requests or general praise/feedback with specific product inquiries due to overlapping keywords like 'add', 'support', 'plan'.",
+        "gold": "feedback",
+        "confusedWith": "product_question",
         "exampleIds": [
-          "dev-008",
-          "dev-024",
-          "dev-027",
-          "dev-057"
+          "dev-015",
+          "dev-047",
+          "dev-049",
+          "dev-051"
         ],
         "count": 4
       },
       {
-        "id": "ft-2",
-        "name": "Cancel read as an account issue",
-        "description": "Wants to end the subscription but mentions the account.",
-        "gold": "cancellation",
-        "confusedWith": "account_access",
-        "exampleIds": [
-          "dev-003",
-          "dev-020",
-          "dev-061"
-        ],
-        "count": 3
-      },
-      {
         "id": "ft-3",
-        "name": "product question read as technical",
-        "description": "Tickets that are product_question get labelled technical.",
-        "gold": "product_question",
-        "confusedWith": "technical",
+        "name": "Feedback misclassified as shipping",
+        "description": "Model incorrectly tags positive feedback about shipping speed/packaging as a shipping issue instead of general feedback.",
+        "gold": "feedback",
+        "confusedWith": "shipping",
         "exampleIds": [
-          "dev-028",
-          "dev-044",
-          "dev-048"
-        ],
-        "count": 3
-      },
-      {
-        "id": "ft-4",
-        "name": "billing read as cancellation",
-        "description": "Tickets that are billing get labelled cancellation.",
-        "gold": "billing",
-        "confusedWith": "cancellation",
-        "exampleIds": [
-          "dev-012",
-          "dev-017"
-        ],
-        "count": 2
-      },
-      {
-        "id": "ft-5",
-        "name": "Cancel before renewal",
-        "description": "Wants to stop the plan before the next charge, so the model says billing.",
-        "gold": "cancellation",
-        "confusedWith": "billing",
-        "exampleIds": [
-          "dev-031",
-          "dev-038"
-        ],
-        "count": 2
-      },
-      {
-        "id": "ft-6",
-        "name": "Plan question with prices",
-        "description": "A question before buying that mentions billing or prices.",
-        "gold": "product_question",
-        "confusedWith": "billing",
-        "exampleIds": [
-          "dev-040",
+          "dev-011",
           "dev-055"
         ],
         "count": 2
+      },
+      {
+        "id": "ft-2",
+        "name": "Shipping confused with billing",
+        "description": "Model mislabels shipping-related queries (tracking, delivery) as billing when payment timing or transaction context is mentioned.",
+        "gold": "shipping",
+        "confusedWith": "billing",
+        "exampleIds": [
+          "dev-013"
+        ],
+        "count": 1
+      },
+      {
+        "id": "ft-4",
+        "name": "Shipping misclassified as account access",
+        "description": "Model confuses delivery instructions (e.g., neighbor drop-off) with account management due to user authentication context.",
+        "gold": "shipping",
+        "confusedWith": "account_access",
+        "exampleIds": [
+          "dev-023"
+        ],
+        "count": 1
+      },
+      {
+        "id": "ft-5",
+        "name": "Product question misclassified as billing",
+        "description": "Model treats plan change or feature availability questions as billing issues when pricing or plan names are mentioned.",
+        "gold": "product_question",
+        "confusedWith": "billing",
+        "exampleIds": [
+          "dev-034"
+        ],
+        "count": 1
       }
     ],
     "fixed": [
       "ft-1",
       "ft-3",
-      "ft-6"
+      "ft-2",
+      "ft-4"
     ],
     "teach": {
-      "written": 160,
-      "kept": 76,
-      "rejected": 84,
+      "written": 131,
+      "kept": 123,
+      "rejected": 8,
       "web": null
     },
-    "training": {
-      "jobId": "ftjob-stub-3",
-      "trainingFile": "file-stub-1",
-      "validationFile": "file-stub-2",
-      "examples": 316,
-      "status": "succeeded",
-      "checkpoints": [
-        {
-          "id": "ckpt-1",
-          "step": 30,
-          "model": "meta-llama/Meta-Llama-3.1-8B-Instruct:ckpt-step-30",
-          "trainLoss": 0.57,
-          "validLoss": 0.688
-        },
-        {
-          "id": "ckpt-2",
-          "step": 60,
-          "model": "meta-llama/Meta-Llama-3.1-8B-Instruct:ckpt-step-60",
-          "trainLoss": 0.262,
-          "validLoss": 0.367
-        },
-        {
-          "id": "ckpt-3",
-          "step": 90,
-          "model": "meta-llama/Meta-Llama-3.1-8B-Instruct:ckpt-step-90",
-          "trainLoss": 0.165,
-          "validLoss": 0.249
-        }
-      ],
-      "fineTunedModel": "ft:Meta-Llama-3.1-8B-Instruct:apprentice:ub-3",
-      "minutes": 1
+    "playbook": {
+      "rules": 5,
+      "examples": 10,
+      "chars": 1948,
+      "text": "House rules, learned from labelled examples:\n- Model confuses feature requests or general praise/feedback with specific product inquiries due to overlapping keywords like 'add', 'support', 'plan'. These go to feedback, not product_question.\n- Model incorrectly tags positive feedback about shipping speed/packaging as a shipping issue instead of general feedback. These go to feedback, not shipping.\n- Model mislabels shipping-related queries (tracking, delivery) as billing when payment timing or transaction context is mentioned. These go to shipping, not billing.\n- Model confuses delivery instructions (e.g., neighbor drop-off) with account management due to user authentication context. These go to shipping, not account_access.\n- Model treats plan change or feature availability questions as billing issues when pricing or plan names are mentioned. These go to product_question, not billing.\n\nWorked examples:\nTicket: Hey team, it would be great if offline mode supported more file types. Cheers\nLabel: feedback\nTicket: Can you bring back the old widget? The new one is harder to use. Thanks.\nLabel: feedback\nTicket: Please add export to PDF to the Team plan, my whole team would use it. Thanks.\nLabel: feedback\nTicket: Good morning. Any plans to support Galaxy S23? I would switch my whole team over. Appreciate it.\nLabel: feedback\nTicket: My order #LUM-8842 shows delivered but nothing at my door. Need tracking help.\nLabel: shipping\nTicket: My replacement device hasn't moved in 5 days — tracking stuck at 'label created'.\nLabel: shipping\nTicket: Parcel marked delivered but received empty padded mailer. Need investigation.\nLabel: shipping\nTicket: Need a return label for the defective dock — RMA approved but no email yet.\nLabel: shipping\nTicket: What file formats does the Pro plan export support right now?\nLabel: product_question\nTicket: Does the Team plan include admin analytics or is that a separate add-on?\nLabel: product_question"
     },
+    "training": null,
     "deployment": {
-      "name": "apprentice-run-001",
+      "name": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B + playbook",
       "status": "active",
-      "baseUrl": "stub"
+      "baseUrl": "https://api.tokenfactory.nebius.com/v1"
     },
     "decision": {
       "ship": true,
-      "reason": "Tuned beats base by 19 of 120 held-out tickets (73% to 89%)."
+      "reason": "Taught beats base by 15 of 120 held-out tickets (74% to 87%)."
     },
-    "costUsd": 0.04196666000000004,
+    "costUsd": 0.04939035999999999,
     "error": null
   }
 }

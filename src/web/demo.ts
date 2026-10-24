@@ -1,4 +1,4 @@
-// Browser-only demo: stands in for the server by replaying a recorded stub run (demo/recording.json) with its
+// Browser-only demo: stands in for the server by replaying a recorded live run (demo/recording.json) with its
 // original timing. It answers the same /api routes the app calls and streams the same events, so the app code
 // is unchanged. Built by scripts/build-demo.mjs; the real app never loads this file.
 
@@ -8,6 +8,7 @@ interface Recording { config: unknown; sample: unknown; final: DemoRun; calls: {
 interface Live { run: DemoRun; calls: { at: string; costUsd: number }[]; events: { at: string }[]; listeners: Set<(data: string) => void> }
 
 const realFetch = window.fetch.bind(window);
+(window as unknown as { APPRENTICE_REPLAY: string }).APPRENTICE_REPLAY = 'This page replays a recorded live run on Nebius Token Factory (October 24, 2026) in your browser, with its real timing, answers and costs. Starting a run replays it again; nothing is sent to Token Factory.';
 const recording: Promise<Recording> = realFetch('recording.json').then((r) => r.json() as Promise<Recording>);
 const runs = new Map<string, Live>();
 let seeded = false;

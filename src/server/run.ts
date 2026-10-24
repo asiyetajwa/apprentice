@@ -417,18 +417,24 @@ function fixedTypes(failures: FailureType[], tuned: EvalResult): string[] {
     .map((f) => f.id);
 }
 
-/** House rules from the failure types, then up to two agreed teacher cases per rule as worked examples. */
-export function buildPlaybook(failures: FailureType[], kept: Array<{ text: string; label: string }>): string {
+/**
+ * House rules from the failure types, then worked examples from the agreed teacher cases: up to two per rule, and
+ * with `everyLabel`, topped up to two for every label, so a run that finds few failure types still shows the
+ * student each queue.
+ */
+export function buildPlaybook(failures: FailureType[], kept: Array<{ text: string; label: string }>, opts: { everyLabel?: string[] } = {}): string {
   const rules = failures.map((f) => `- ${f.description.replace(/\.?$/, '.')} These go to ${f.gold}, not ${f.confusedWith}.`);
   const used = new Set<string>();
   const examples: Array<{ text: string; label: string }> = [];
-  for (const f of failures) {
-    for (const c of kept.filter((k) => k.label === f.gold && !used.has(k.text)).slice(0, 2)) {
+  const take = (label: string, n: number) => {
+    for (const c of kept.filter((k) => k.label === label && !used.has(k.text)).slice(0, n)) {
       used.add(c.text);
       examples.push(c);
     }
-  }
-  const shown = examples.slice(0, 16);
+  };
+  for (const f of failures) take(f.gold, 2);
+  for (const label of opts.everyLabel ?? []) take(label, Math.max(0, 2 - examples.filter((e) => e.label === label).length));
+  const shown = examples.slice(0, opts.everyLabel ? 24 : 16);
   return [PLAYBOOK_HEADING, ...rules, ...(shown.length ? ['', 'Worked examples:', ...shown.map((e) => `Ticket: ${e.text}\nLabel: ${e.label}`)] : [])].join('\n');
 }
 

@@ -1,0 +1,13 @@
+{"at":"2026-10-24T02:41:09.009Z","kind":"log","stage":"intake","text":"230 examples to learn from, 64 checks for tuning, 120 held out for the test. 8 labels."}
+{"at":"2026-10-24T02:41:09.009Z","kind":"log","stage":"intake","text":"Running live on Nebius Token Factory."}
+{"at":"2026-10-24T02:41:18.337Z","kind":"log","stage":"baseline","text":"Base Nemotron 3 Nano got 87 of 120 held-out tickets right (73%)."}
+{"at":"2026-10-24T02:41:31.524Z","kind":"log","stage":"baseline","text":"Nemotron 3 Ultra scored 90% at $0.196 per 1,000 calls: the bar to chase."}
+{"at":"2026-10-24T02:41:38.462Z","kind":"log","stage":"teach","text":"Nemotron 3 Super found 3 failure types in 8 mistakes on the tuning checks."}
+{"at":"2026-10-24T02:41:38.462Z","kind":"log","stage":"teach","text":"Feedback mistaken as product question: Model confuses feature requests or general praise (feedback) with specific product inquiries due to overlapping language about features."}
+{"at":"2026-10-24T02:41:38.462Z","kind":"log","stage":"teach","text":"Billing mistaken as shipping: Model incorrectly assigns billing queries to shipping when text includes both payment and delivery terms, failing to prioritize intent."}
+{"at":"2026-10-24T02:41:38.462Z","kind":"log","stage":"teach","text":"Shipping confused with billing: Model mislabels shipping-related issues as billing when text mentions payment or charges alongside delivery, due to weak contextual disambiguation."}
+{"at":"2026-10-24T02:41:38.462Z","kind":"log","stage":"teach","text":"Tavily skipped: no TAVILY_API_KEY."}
+{"at":"2026-10-24T02:41:54.749Z","kind":"log","stage":"teach","text":"Nemotron 3 Ultra wrote 88 cases; Nemotron 3 Super agreed with 78. 10 dropped."}
+{"at":"2026-10-24T02:41:54.751Z","kind":"log","stage":"train","text":"Wrote a playbook for Nemotron 3 Nano: 3 house rules and 6 worked examples from the agreed cases."}
+{"at":"2026-10-24T02:42:03.375Z","kind":"log","stage":"prove","text":"Taught Nemotron 3 Nano got 90 of 120 right (75%), up from 73%."}
+{"at":"2026-10-24T02:42:03.379Z","kind":"log","stage":"ship","text":"Shipped. Taught beats base by 3 of 120 held-out tickets (73% to 75%). Endpoint: nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B + playbook."}

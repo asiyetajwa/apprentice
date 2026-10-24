@@ -1,0 +1,40 @@
+[
+  {
+    "id": "ft-1",
+    "name": "Feedback mistaken as product question",
+    "description": "Model confuses feature requests or general praise (feedback) with specific product inquiries due to overlapping language about features.",
+    "gold": "feedback",
+    "confusedWith": "product_question",
+    "exampleIds": [
+      "dev-015",
+      "dev-047",
+      "dev-049",
+      "dev-051"
+    ],
+    "count": 4
+  },
+  {
+    "id": "ft-3",
+    "name": "Billing mistaken as shipping",
+    "description": "Model incorrectly assigns billing queries to shipping when text includes both payment and delivery terms, failing to prioritize intent.",
+    "gold": "billing",
+    "confusedWith": "shipping",
+    "exampleIds": [
+      "dev-011",
+      "dev-034",
+      "dev-055"
+    ],
+    "count": 3
+  },
+  {
+    "id": "ft-2",
+    "name": "Shipping confused with billing",
+    "description": "Model mislabels shipping-related issues as billing when text mentions payment or charges alongside delivery, due to weak contextual disambiguation.",
+    "gold": "shipping",
+    "confusedWith": "billing",
+    "exampleIds": [
+      "dev-013"
+    ],
+    "count": 1
+  }
+]
