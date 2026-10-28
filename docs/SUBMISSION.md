@@ -4,7 +4,7 @@ Copy each section into the Devpost form. Hackathon: Nebius x NVIDIA. Deadline: T
 
 ## Links
 
-- **Demo video (YouTube, 1:31):** https://youtu.be/PvEZV1q-UCQ (rendered from the repo, `film/out/ApprenticeLandscape.mp4`)
+- **Demo video (YouTube, 1:31):** to add once uploaded (file: `film/out/ApprenticeLandscape.mp4`, rendered from the repo)
 - **Repository (public, MIT license):** https://github.com/asiyetajwa/apprentice
 - **Trained adapter (Qwen3 4B LoRA):** GitHub release `adapter-qwen3-4b-v1` on the repository
 - **Thumbnail:** `docs/thumbnail.jpg` (3:2) in the repo; `docs/thumbnail-youtube.jpg` (16:9) for YouTube
